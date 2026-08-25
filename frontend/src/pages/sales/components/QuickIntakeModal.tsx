@@ -29,14 +29,14 @@ export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
 }) => {
   return (
     <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="double-bezel max-w-md w-full">
-        <form onSubmit={onSubmit} className="double-bezel-inner p-6 space-y-4 bg-white dark:bg-slate-900">
+      <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-6 space-y-4 max-w-md w-full">
+        <form onSubmit={onSubmit} className="space-y-4">
           
-          <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
             <h3 className="font-extrabold text-base text-slate-950 dark:text-white">
               + Quick Walk-in / Phone Intake
             </h3>
-            <button type="button" onClick={onClose} className="text-slate-400 hover:text-slate-600">✕</button>
+            <button type="button" onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors cursor-pointer">✕</button>
           </div>
 
           <div className="space-y-3 text-xs">

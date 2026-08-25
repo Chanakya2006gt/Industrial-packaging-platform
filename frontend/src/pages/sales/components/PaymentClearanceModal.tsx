@@ -30,15 +30,14 @@ export const PaymentClearanceModal: React.FC<PaymentClearanceModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="double-bezel max-w-md w-full">
-        <div className="double-bezel-inner p-6 space-y-4 bg-white dark:bg-slate-900">
-          
-          <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-            <h3 className="font-extrabold text-base text-slate-950 dark:text-white">
-              Record Bank Clearance
-            </h3>
-            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">✕</button>
-          </div>
+      <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-6 space-y-4 max-w-md w-full">
+        
+        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+          <h3 className="font-extrabold text-base text-slate-950 dark:text-white">
+            Record Bank Clearance
+          </h3>
+          <button onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors cursor-pointer">✕</button>
+        </div>
 
           <div className="space-y-3 text-xs font-mono">
             <div>
@@ -101,7 +100,6 @@ export const PaymentClearanceModal: React.FC<PaymentClearanceModalProps> = ({
             </button>
           </div>
 
-        </div>
       </div>
     </div>
   );
