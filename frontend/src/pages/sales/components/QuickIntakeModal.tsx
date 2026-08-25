@@ -34,14 +34,14 @@ export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
           
           <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
             <h3 className="font-extrabold text-base text-slate-950 dark:text-white">
-              + Quick Walk-in / Phone Intake
+              + New Customer Quote
             </h3>
             <button type="button" onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors cursor-pointer">✕</button>
           </div>
 
           <div className="space-y-3 text-xs">
             <div>
-              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Company Name *</label>
+              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Company / Customer Name *</label>
               <input
                 type="text"
                 required
@@ -65,7 +65,7 @@ export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
             </div>
 
             <div>
-              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Phone Number *</label>
+              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Customer Phone Number *</label>
               <input
                 type="tel"
                 required
@@ -77,14 +77,14 @@ export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
             </div>
 
             <div>
-              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Product Category</label>
+              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Packaging Type</label>
               <select
                 value={intakeCategory}
                 onChange={(e) => setIntakeCategory(e.target.value as any)}
-                className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
+                className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold cursor-pointer"
               >
-                <option value="flexo_labels">8C UV Flexo Roll Labels</option>
-                <option value="offset_packaging">Heidelberg Folding Cartons</option>
+                <option value="flexo_labels">Roll Labels (Flexo)</option>
+                <option value="offset_packaging">Folding Cartons & Boxes</option>
               </select>
             </div>
           </div>
@@ -94,16 +94,16 @@ export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
               type="button"
               onClick={onClose}
               disabled={submitting}
-              className="btn-pill btn-pill-outline text-xs"
+              className="btn-pill btn-pill-outline text-xs cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="btn-pill btn-pill-primary text-xs font-bold disabled:opacity-50"
+              className="btn-pill btn-pill-primary text-xs font-bold disabled:opacity-50 cursor-pointer"
             >
-              {submitting ? 'Registering Intake...' : 'Create & Launch CPQ'}
+              {submitting ? 'Creating Quote...' : 'Create Quote & Open Calculator'}
             </button>
           </div>
 

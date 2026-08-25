@@ -384,7 +384,7 @@ export const AdminDashboardPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#070B12] text-slate-900 dark:text-slate-100 font-sans transition-colors pb-16">
       
-      {/* Top Header & Telemetry */}
+      {/* Top Header & Overview */}
       <header className="bg-white dark:bg-[#0C1220] border-b border-slate-200 dark:border-slate-800 px-4 sm:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 sticky top-0 z-30 shadow-xs">
         <div className="flex items-center gap-4">
           <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm shrink-0">
@@ -393,11 +393,11 @@ export const AdminDashboardPage: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <span className="px-2 py-0.5 rounded-full bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900/60 text-[10px] font-mono font-bold text-[#E00019] dark:text-rose-400">
-                EXECUTIVE MASTER CONSOLE
+                ADMIN PORTAL
               </span>
               <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                SUPERADMIN
+                ADMINISTRATOR
               </span>
             </div>
             <div className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
@@ -406,14 +406,14 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Global Action Tools */}
+        {/* Action Buttons */}
         <div className="flex items-center gap-2.5 flex-wrap">
           <button
             onClick={() => setShowQuickIntakeModal(true)}
             className="btn-pill btn-pill-primary text-xs font-bold shadow-md cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>+ Quick Walk-in Quote</span>
+            <span>+ New Quote</span>
           </button>
 
           <button
@@ -421,7 +421,7 @@ export const AdminDashboardPage: React.FC = () => {
             className="btn-pill btn-pill-outline text-xs font-mono font-bold cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>Export CSV</span>
+            <span>Export Spreadsheet</span>
           </button>
 
           <button
@@ -438,14 +438,14 @@ export const AdminDashboardPage: React.FC = () => {
       <div className="bg-white/80 dark:bg-[#0C1220]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 sm:px-8 overflow-x-auto sticky top-[73px] z-20">
         <div className="flex gap-2 text-xs font-mono">
           {[
-            { id: 'rfqs', label: 'RFQ Pipeline & SLA', icon: FileText, count: rfqs.length },
-            { id: 'estimator', label: 'CPQ Packaging Estimator', icon: Calculator },
-            { id: 'rate_cards', label: 'Supplier Rate Cards', icon: DollarSign },
-            { id: 'samples', label: 'Sample Kit Logistics', icon: Package, count: samples.length },
-            { id: 'staff', label: 'Staff & Roles', icon: Users, count: staffList.length },
-            { id: 'settings', label: 'Plant Settings', icon: Settings },
-            { id: 'media', label: 'Media Assets', icon: Image },
-            { id: 'audit', label: 'Security Audit Logs', icon: ShieldCheck }
+            { id: 'rfqs', label: 'Quotes & Orders', icon: FileText, count: rfqs.length },
+            { id: 'estimator', label: 'Price Calculator', icon: Calculator },
+            { id: 'rate_cards', label: 'Material Costs', icon: DollarSign },
+            { id: 'samples', label: 'Sample Requests', icon: Package, count: samples.length },
+            { id: 'staff', label: 'Team & Roles', icon: Users, count: staffList.length },
+            { id: 'settings', label: 'Company Settings', icon: Settings },
+            { id: 'media', label: 'Photos & Gallery', icon: Image },
+            { id: 'audit', label: 'Activity Log', icon: ShieldCheck }
           ].map(tab => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -474,12 +474,12 @@ export const AdminDashboardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Global Error Banner */}
+      {/* Notice Banner */}
       {dbError && (
         <div className="max-w-7xl mx-auto p-4 m-6 rounded-xl bg-rose-50 dark:bg-rose-950/80 border border-rose-200 dark:border-rose-800 text-xs font-mono text-rose-800 dark:text-rose-200 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-4 h-4 text-[#E00019] dark:text-rose-400 shrink-0" />
-            <span><strong>Database Notification:</strong> {dbError}</span>
+            <span><strong>Notice:</strong> {dbError}</span>
           </div>
           <button onClick={() => setDbError(null)} className="underline hover:opacity-80">Dismiss</button>
         </div>
@@ -488,16 +488,16 @@ export const AdminDashboardPage: React.FC = () => {
       {/* Main Tab Views */}
       <main className="max-w-7xl mx-auto p-4 sm:p-8 space-y-6">
         
-        {/* TAB 1: RFQ OVERVIEW & SLA MONITOR */}
+        {/* TAB 1: RFQ OVERVIEW */}
         {activeTab === 'rfqs' && (
           <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6 space-y-6">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
               <div>
                 <h3 className="font-extrabold text-lg text-slate-950 dark:text-white tracking-tight">
-                  Full Plant RFQ Pipeline (Executive SLA Monitor)
+                  Customer Quotes & Order Requests
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Live manufacturing inquiries with 4-hour countdown timers, dieline CAD inspection, and WhatsApp quote dispatch.
+                  Track incoming inquiries, calculate packaging prices, and send instant quotes to clients via WhatsApp.
                 </p>
               </div>
               <span className="px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900/60 text-xs font-mono font-bold text-[#E00019] dark:text-rose-400">
@@ -530,7 +530,7 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         )}
 
-        {/* TAB 2: INTERACTIVE CPQ ESTIMATOR TOOL */}
+        {/* TAB 2: PRICE CALCULATOR */}
         {activeTab === 'estimator' && (
           <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6">
             <CpqEstimatorPanel
@@ -560,7 +560,7 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         )}
 
-        {/* TAB 3: SUPPLIER RATE CARDS */}
+        {/* TAB 3: MATERIAL COSTS */}
         {activeTab === 'rate_cards' && (
           <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6">
             <RateCardsTab
@@ -578,10 +578,10 @@ export const AdminDashboardPage: React.FC = () => {
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
               <div>
                 <h3 className="font-extrabold text-lg text-slate-950 dark:text-white tracking-tight">
-                  Physical Sample Swatch Kit Requests
+                  Sample Kit Orders
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Courier dispatch tracking for prospective clients requesting physical substrate sample boxes.
+                  Track delivery of physical sample boxes requested by prospective customers.
                 </p>
               </div>
               <span className="px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-900/60 text-xs font-mono font-bold text-amber-700 dark:text-amber-400">
@@ -593,10 +593,10 @@ export const AdminDashboardPage: React.FC = () => {
               <table className="w-full text-left text-xs font-mono">
                 <thead className="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
                   <tr>
-                    <th className="p-3">Ref No</th>
-                    <th className="p-3">Company</th>
+                    <th className="p-3">Order Ref</th>
+                    <th className="p-3">Company & Contact</th>
                     <th className="p-3">Delivery Address</th>
-                    <th className="p-3">Sample Swatches</th>
+                    <th className="p-3">Requested Materials</th>
                     <th className="p-3">Status</th>
                   </tr>
                 </thead>
@@ -620,20 +620,20 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         )}
 
-        {/* TAB 5: STAFF & SALES TEAM */}
+        {/* TAB 5: STAFF & TEAM */}
         {activeTab === 'staff' && (
           <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6 space-y-6">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
               <div>
                 <h3 className="font-extrabold text-lg text-slate-950 dark:text-white tracking-tight">
-                  Staff Accounts & Estimator Roles
+                  Team Members & Access
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Manage internal sales and estimator accounts with Supabase RLS profiles.
+                  Manage accounts for sales managers and estimators.
                 </p>
               </div>
               <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900/60 text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400">
-                {staffList.length} Accounts
+                {staffList.length} Team Members
               </span>
             </div>
 
@@ -645,7 +645,7 @@ export const AdminDashboardPage: React.FC = () => {
                     <th className="p-3">Email</th>
                     <th className="p-3">Role</th>
                     <th className="p-3">Status</th>
-                    <th className="p-3">Actions</th>
+                    <th className="p-3">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -659,7 +659,7 @@ export const AdminDashboardPage: React.FC = () => {
                             ? 'bg-rose-100 dark:bg-rose-950 text-[#E00019] dark:text-rose-300 border border-rose-200 dark:border-rose-800' 
                             : 'bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800'
                         }`}>
-                          {staff.role}
+                          {staff.role === 'superadmin' ? 'Administrator' : 'Sales Representative'}
                         </span>
                       </td>
                       <td className="p-3">
@@ -692,16 +692,16 @@ export const AdminDashboardPage: React.FC = () => {
           <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6 space-y-6">
             <div className="border-b border-slate-100 dark:border-slate-800 pb-4">
               <h3 className="font-extrabold text-lg text-slate-950 dark:text-white tracking-tight">
-                Plant Operational Settings
+                Company & Factory Information
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                Updates here reflect immediately across the public telemetry banner, footer, and contact channels.
+                Changes saved here update immediately on your public website banner, footer, and contact channels.
               </p>
             </div>
 
             <div className="space-y-4 max-w-2xl text-xs font-mono">
               <div>
-                <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1.5">Top Bar Operational Notice</label>
+                <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1.5">Website Announcement Bar</label>
                 <input
                   type="text"
                   defaultValue="Plant Status: 24/7 Continuous Shifts • Industrial Packaging Facility"
@@ -710,7 +710,7 @@ export const AdminDashboardPage: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1.5">Estimating Sales Hotline</label>
+                <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1.5">Sales & Quote Hotline</label>
                 <input
                   type="text"
                   defaultValue="+1 (555) 019-2834"
@@ -719,7 +719,7 @@ export const AdminDashboardPage: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1.5">Manufacturing Facility Address</label>
+                <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1.5">Factory & Office Address</label>
                 <input
                   type="text"
                   defaultValue="1000 Industrial Parkway, Westgate Logistics Park, Metro City"
@@ -731,26 +731,26 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         )}
 
-        {/* TAB 7: MEDIA & BRAND ASSET MANAGER */}
+        {/* TAB 7: MEDIA & PHOTO GALLERY */}
         {activeTab === 'media' && (
           <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6 space-y-6">
             <div className="border-b border-slate-100 dark:border-slate-800 pb-4">
               <h3 className="font-extrabold text-lg text-slate-950 dark:text-white tracking-tight">
-                Production Media & Machinery Photography
+                Factory Photos & Product Showcase
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                Active equipment assets and vector diagrams deployed across the public portal and B2B configurator.
+                Visual assets and photography featured on the public website and product design studio.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {[
-                { tag: 'PRIMARY LOGO', title: 'Official Brand Vector Logo', src: '/assets/logo.svg', isLogo: true },
-                { tag: '8C UV FLEXO', title: '8-Colour Flexo UV Press', src: '/assets/img/press-flexo-8c.jpg' },
-                { tag: 'HEIDELBERG 6C', title: 'Speedmaster 6C Offset Press', src: '/assets/img/press-heidelberg-6c.jpg' },
-                { tag: 'CTP CLEANROOM', title: 'Heidelberg Suprasetter CTP', src: '/assets/img/prepress-ctp.jpg' },
-                { tag: '3D BOTTLE', title: '3D Studio Bottle Mockup', src: '/assets/img/mockups/bottle_studio.jpg' },
-                { tag: '3D CARTON', title: '3D Studio Folding Box Carton', src: '/assets/img/mockups/carton_studio.jpg' }
+                { tag: 'BRAND LOGO', title: 'Official Vector Logo', src: '/assets/logo.svg', isLogo: true },
+                { tag: 'PRINTING PRESS', title: '8-Colour Flexo Label Press', src: '/assets/img/press-flexo-8c.jpg' },
+                { tag: 'OFFSET PRESS', title: 'Speedmaster 6-Colour Offset Press', src: '/assets/img/press-heidelberg-6c.jpg' },
+                { tag: 'CLEANROOM', title: 'High-Precision Laser Prepress Room', src: '/assets/img/prepress-ctp.jpg' },
+                { tag: '3D PREVIEW', title: 'Custom Bottle Label Preview', src: '/assets/img/mockups/bottle_studio.jpg' },
+                { tag: '3D PREVIEW', title: 'Folding Box Carton Preview', src: '/assets/img/mockups/carton_studio.jpg' }
               ].map((item, idx) => (
                 <div key={idx} className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3 shadow-xs">
                   <span className="tech-tag tech-tag-crimson text-[10px]">{item.tag}</span>
@@ -764,20 +764,20 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         )}
 
-        {/* TAB 8: AUDIT LOGS */}
+        {/* TAB 8: ACTIVITY LOG */}
         {activeTab === 'audit' && (
           <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6 space-y-6">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
               <div>
                 <h3 className="font-extrabold text-lg text-slate-950 dark:text-white tracking-tight">
-                  Security & Operational Audit Trail
+                  Recent Activity & History
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Immutable chronological log of price updates, role assignments, and executive status overrides.
+                  Detailed timeline of material price updates, order status changes, and user actions.
                 </p>
               </div>
               <span className="px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/50 border border-cyan-200 dark:border-cyan-900/60 text-xs font-mono font-bold text-cyan-700 dark:text-cyan-400">
-                Live Audit Active
+                Live Tracking Active
               </span>
             </div>
 
@@ -785,9 +785,9 @@ export const AdminDashboardPage: React.FC = () => {
               <table className="w-full text-left text-xs font-mono">
                 <thead className="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
                   <tr>
-                    <th className="p-3">Timestamp</th>
+                    <th className="p-3">Time</th>
                     <th className="p-3">Action</th>
-                    <th className="p-3">Operator</th>
+                    <th className="p-3">User</th>
                     <th className="p-3">Details</th>
                   </tr>
                 </thead>
@@ -798,13 +798,13 @@ export const AdminDashboardPage: React.FC = () => {
                         <td className="p-3 text-slate-500 dark:text-slate-400">{new Date(log.created_at).toLocaleString()}</td>
                         <td className="p-3 font-bold text-slate-950 dark:text-white">{log.action}</td>
                         <td className="p-3 text-slate-700 dark:text-slate-300">{log.operator_email || 'System'}</td>
-                        <td className="p-3 text-slate-500 dark:text-slate-400">{log.details || 'Standard transaction'}</td>
+                        <td className="p-3 text-slate-500 dark:text-slate-400">{log.details || 'Normal operation'}</td>
                       </tr>
                     ))
                   ) : (
                     <tr>
                       <td colSpan={4} className="p-8 text-center text-slate-500">
-                        No critical security alerts. All plant operations operating within nominal parameters.
+                        No recent activity recorded yet. Everything is running smoothly.
                       </td>
                     </tr>
                   )}
@@ -816,7 +816,7 @@ export const AdminDashboardPage: React.FC = () => {
 
       </main>
 
-      {/* Payment Clearance Modal */}
+      {/* Payment Modal */}
       {showPaymentModal && paymentRfq && (
         <PaymentClearanceModal
           rfq={paymentRfq}

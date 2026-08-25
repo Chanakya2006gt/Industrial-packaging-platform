@@ -428,18 +428,22 @@ export const SalesDashboardPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 font-sans">
       
-      {/* Top Header & Telemetry */}
+      {/* Top Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
         <div>
           <div className="flex items-center gap-2">
-            <span className="tech-tag tech-tag-crimson text-[10px]">PLANT ESTIMATING WORKSTATION</span>
-            <span className="tech-tag tech-tag-emerald text-[10px]">AUTH: {profile?.full_name || user?.email}</span>
+            <span className="px-2 py-0.5 rounded-full bg-cyan-50 dark:bg-cyan-950/50 border border-cyan-200 dark:border-cyan-900/60 text-[10px] font-mono font-bold text-cyan-700 dark:text-cyan-400">
+              SALES PORTAL
+            </span>
+            <span className="text-xs font-mono text-slate-500">
+              Logged in: <strong className="text-slate-900 dark:text-white">{profile?.full_name || user?.email}</strong>
+            </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-950 dark:text-white tracking-tight mt-1">
-            Commercial Sales & CPQ Workstation
+            Sales & Customer Quotes
           </h1>
           <p className="text-xs text-slate-600 dark:text-slate-400">
-            Real-time packaging calculations, zero-code Excel rate imports, WhatsApp quotes, and offline bank payment clearance.
+            Create custom packaging estimates, send quotes via WhatsApp, and manage order payments.
           </p>
         </div>
 
@@ -450,18 +454,18 @@ export const SalesDashboardPage: React.FC = () => {
             className="btn-pill btn-pill-primary text-xs font-bold"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>+ Quick Walk-in / Phone Quote</span>
+            <span>+ New Quote</span>
           </button>
           <button
             onClick={handleExportCsv}
             className="btn-pill btn-pill-outline text-xs font-mono font-bold"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>Export CSV</span>
+            <span>Export Spreadsheet</span>
           </button>
           <button
             onClick={() => signOut()}
-            className="p-2 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400"
+            className="p-2 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 cursor-pointer"
             title="Sign Out"
           >
             <LogOut className="w-4 h-4" />
@@ -469,12 +473,12 @@ export const SalesDashboardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Global Error Banner */}
+      {/* Notice Banner */}
       {dbError && (
         <div className="p-4 rounded-xl bg-rose-950/70 border border-rose-800 text-xs font-mono text-rose-200 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
-            <span><strong>Database Error:</strong> {dbError}</span>
+            <span><strong>Notice:</strong> {dbError}</span>
           </div>
           <button onClick={() => setDbError(null)} className="text-xs underline hover:text-white">Dismiss</button>
         </div>
@@ -483,17 +487,17 @@ export const SalesDashboardPage: React.FC = () => {
       {/* Navigation Tabs Bar */}
       <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3 overflow-x-auto text-xs font-mono font-bold">
         {[
-          { id: 'pipeline', label: 'Inquiries & Pipeline', icon: Layers, count: rfqs.filter(r => r.status === 'pending').length },
-          { id: 'estimator', label: 'Packaging CPQ Calculator', icon: Calculator },
-          { id: 'rate_cards', label: 'Supplier Rate Cards (Excel)', icon: FileSpreadsheet },
-          { id: 'offline_clearance', label: 'Offline Bank Clearance Gate', icon: DollarSign, count: clearances.length }
+          { id: 'pipeline', label: 'Customer Quotes', icon: Layers, count: rfqs.filter(r => r.status === 'pending').length },
+          { id: 'estimator', label: 'Price Calculator', icon: Calculator },
+          { id: 'rate_cards', label: 'Material Prices', icon: FileSpreadsheet },
+          { id: 'offline_clearance', label: 'Payment History', icon: DollarSign, count: clearances.length }
         ].map(tab => {
           const Icon = tab.icon;
           return (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 shrink-0 ${
+              className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 shrink-0 cursor-pointer ${
                 activeTab === tab.id
                   ? 'bg-slate-900 text-white dark:bg-cyan-500 dark:text-slate-950 shadow-md'
                   : 'bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-950'
