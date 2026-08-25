@@ -1,0 +1,43 @@
+{
+  "name": "printfast_zambia_website",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Official B2B digital platform for PrintFast Zambia Limited — industrial label converting, custom packaging & commercial print. React, Supabase, Vercel, and Cloudflare architecture.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "printfast",
+    "zambia",
+    "packaging",
+    "flexography",
+    "offset-printing",
+    "b2b"
+  ],
+  "author": "PrintFast Zambia Limited",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "clsx": "^2.1.1",
+    "gsap": "^3.12.5",
+    "lucide-react": "^1.16.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "tailwind-merge": "^2.6.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  }
+}

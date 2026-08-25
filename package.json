@@ -1,0 +1,32 @@
+{
+  "name": "printfast-zambia-monorepo",
+  "version": "2.0.0",
+  "private": true,
+  "description": "PrintFast Zambia Limited — Full-Stack Industrial Converting & Offset Packaging Platform",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --prefix frontend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:worker": "npm run worker --prefix backend",
+    "build": "npm run build --prefix frontend",
+    "build:frontend": "npm run build --prefix frontend",
+    "test:backend": "npm test --prefix backend",
+    "test:e2e": "playwright test",
+    "health": "node backend/scripts/health-check.js",
+    "lint": "npm run lint --prefix frontend"
+  },
+  "keywords": [
+    "packaging",
+    "flexo-printing",
+    "heidelberg-offset",
+    "zambia",
+    "b2b-manufacturing",
+    "cpq"
+  ],
+  "author": "PrintFast Zambia Limited",
+  "license": "UNLICENSED"
+}

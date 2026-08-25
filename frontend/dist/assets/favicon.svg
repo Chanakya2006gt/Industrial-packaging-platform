@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" role="img" aria-label="PrintFast">
+  <rect width="112" height="112" rx="20" fill="#ffffff"/>
+  <g transform="translate(12,12) scale(0.88)">
+    <polygon points="44,0 44,44 0,44"   fill="#E6008A"/>
+    <polygon points="55,0 55,44 99,44"  fill="#F79E33"/>
+    <polygon points="0,54 44,54 44,99"  fill="#149DEC"/>
+    <polygon points="55,54 99,54 55,99" fill="#1A1A1A"/>
+  </g>
+</svg>
