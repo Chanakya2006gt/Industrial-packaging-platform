@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Download, LogOut, Layers, Calculator, FileSpreadsheet, 
-  DollarSign, Plus, AlertCircle, RefreshCw 
+  DollarSign, Plus, AlertCircle, RefreshCw, BarChart3 
 } from 'lucide-react';
 import { supabase, RfqInquiry } from '../../lib/supabase';
 import { useAuth } from '../../lib/auth';
 import { useCorporateMotion } from '../../lib/motion';
 import { calculatePackagingEstimate, DEFAULT_RATES } from '../../lib/calculator';
+import { computeCrmAnalytics } from '../../lib/crmAnalytics';
 
 // Modular Child Components
 import { PipelineList } from './components/PipelineList';
@@ -15,13 +16,14 @@ import { RateCardsTab } from './components/RateCardsTab';
 import { OfflineClearanceTab, ClearanceRecord } from './components/OfflineClearanceTab';
 import { PaymentClearanceModal } from './components/PaymentClearanceModal';
 import { QuickIntakeModal } from './components/QuickIntakeModal';
+import { CrmAnalyticsOverview } from './components/CrmAnalyticsOverview';
 
 export const SalesDashboardPage: React.FC = () => {
   useCorporateMotion();
   const { user, profile, signOut } = useAuth();
 
   // Navigation Tab
-  const [activeTab, setActiveTab] = useState<'pipeline' | 'estimator' | 'rate_cards' | 'offline_clearance'>('pipeline');
+  const [activeTab, setActiveTab] = useState<'analytics' | 'pipeline' | 'estimator' | 'rate_cards' | 'offline_clearance'>('analytics');
   
   // Data State
   const [rfqs, setRfqs] = useState<RfqInquiry[]>([]);
@@ -425,6 +427,10 @@ export const SalesDashboardPage: React.FC = () => {
     a.click();
   };
 
+  const crmAnalytics = useMemo(() => {
+    return computeCrmAnalytics(rfqs, clearances, customRatesLookup);
+  }, [rfqs, clearances, customRatesLookup]);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 font-sans">
       
@@ -443,7 +449,7 @@ export const SalesDashboardPage: React.FC = () => {
             Sales & Customer Quotes
           </h1>
           <p className="text-xs text-slate-600 dark:text-slate-400">
-            Create custom packaging estimates, send quotes via WhatsApp, and manage order payments.
+            Create custom packaging estimates, track conversion funnels, send quotes via WhatsApp, and manage order payments.
           </p>
         </div>
 
@@ -451,14 +457,14 @@ export const SalesDashboardPage: React.FC = () => {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setShowQuickIntakeModal(true)}
-            className="btn-pill btn-pill-primary text-xs font-bold"
+            className="btn-pill btn-pill-primary text-xs font-bold cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>+ New Quote</span>
           </button>
           <button
             onClick={handleExportCsv}
-            className="btn-pill btn-pill-outline text-xs font-mono font-bold"
+            className="btn-pill btn-pill-outline text-xs font-mono font-bold cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export Spreadsheet</span>
@@ -480,13 +486,14 @@ export const SalesDashboardPage: React.FC = () => {
             <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
             <span><strong>Notice:</strong> {dbError}</span>
           </div>
-          <button onClick={() => setDbError(null)} className="text-xs underline hover:text-white">Dismiss</button>
+          <button onClick={() => setDbError(null)} className="text-xs underline hover:text-white cursor-pointer">Dismiss</button>
         </div>
       )}
 
       {/* Navigation Tabs Bar */}
       <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3 overflow-x-auto text-xs font-mono font-bold">
         {[
+          { id: 'analytics', label: 'CRM Analytics', icon: BarChart3 },
           { id: 'pipeline', label: 'Customer Quotes', icon: Layers, count: rfqs.filter(r => r.status === 'pending').length },
           { id: 'estimator', label: 'Price Calculator', icon: Calculator },
           { id: 'rate_cards', label: 'Material Prices', icon: FileSpreadsheet },
@@ -514,6 +521,20 @@ export const SalesDashboardPage: React.FC = () => {
           );
         })}
       </div>
+
+      {/* TAB 0: EXECUTIVE CRM ANALYTICS & INTELLIGENCE */}
+      {activeTab === 'analytics' && (
+        <CrmAnalyticsOverview
+          analytics={crmAnalytics}
+          onSelectAccount={(acc) => {
+            setCalcCompanyName(acc.companyName);
+            setCalcPhone(acc.phone);
+            setActiveTab('estimator');
+          }}
+          onRefresh={loadData}
+          loading={loadingRfqs || loadingClearances}
+        />
+      )}
 
       {/* TAB 1: PIPELINE & LIVE INQUIRIES DESK */}
       {activeTab === 'pipeline' && (

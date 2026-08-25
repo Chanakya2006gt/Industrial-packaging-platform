@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Users, Settings, Image, ShieldCheck, FileText, Package, 
   Plus, Trash2, CheckCircle, RefreshCw, Upload, LogOut, Check,
   AlertCircle, ArrowRight, Calculator, FileSpreadsheet, Download,
-  Layers, Shield, DollarSign
+  Layers, Shield, DollarSign, BarChart3
 } from 'lucide-react';
 import { supabase, PlantSetting, Profile, SampleKitRequest, RfqInquiry } from '../../lib/supabase';
 import { useAuth } from '../../lib/auth';
 import { calculatePackagingEstimate, DEFAULT_RATES } from '../../lib/calculator';
+import { computeCrmAnalytics } from '../../lib/crmAnalytics';
 
 // Modular Child Components
 import { PipelineList } from '../sales/components/PipelineList';
@@ -16,12 +17,13 @@ import { CpqEstimatorPanel } from '../sales/components/CpqEstimatorPanel';
 import { RateCardsTab } from '../sales/components/RateCardsTab';
 import { PaymentClearanceModal } from '../sales/components/PaymentClearanceModal';
 import { QuickIntakeModal } from '../sales/components/QuickIntakeModal';
+import { CrmAnalyticsOverview } from '../sales/components/CrmAnalyticsOverview';
 
 export const AdminDashboardPage: React.FC = () => {
   const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
 
-  const [activeTab, setActiveTab] = useState<'rfqs' | 'estimator' | 'rate_cards' | 'samples' | 'staff' | 'settings' | 'media' | 'audit'>('rfqs');
+  const [activeTab, setActiveTab] = useState<'analytics' | 'rfqs' | 'estimator' | 'rate_cards' | 'samples' | 'staff' | 'settings' | 'media' | 'audit'>('analytics');
   const [rfqs, setRfqs] = useState<RfqInquiry[]>([]);
   const [settings, setSettings] = useState<PlantSetting[]>([]);
   const [staffList, setStaffList] = useState<Profile[]>([]);
@@ -381,36 +383,34 @@ export const AdminDashboardPage: React.FC = () => {
     a.click();
   };
 
+  const crmAnalytics = useMemo(() => {
+    return computeCrmAnalytics(rfqs, [], customRatesLookup);
+  }, [rfqs, customRatesLookup]);
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#070B12] text-slate-900 dark:text-slate-100 font-sans transition-colors pb-16">
       
-      {/* Top Header & Overview */}
-      <header className="bg-white dark:bg-[#0C1220] border-b border-slate-200 dark:border-slate-800 px-4 sm:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 sticky top-0 z-30 shadow-xs">
-        <div className="flex items-center gap-4">
-          <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm shrink-0">
-            <img src="/assets/logo.svg" alt="Apex Packaging & Converting" className="h-7 w-auto object-contain" />
+      {/* Top Header */}
+      <header className="border-b border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0C1220]/70 backdrop-blur-md px-4 sm:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 sticky top-0 z-30">
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 rounded-full bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900/60 text-[10px] font-mono font-bold text-[#E00019] dark:text-rose-400">
+              ADMIN PORTAL
+            </span>
+            <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+              Role: <strong className="text-slate-900 dark:text-white">Administrator</strong> ({user?.email})
+            </span>
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="px-2 py-0.5 rounded-full bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900/60 text-[10px] font-mono font-bold text-[#E00019] dark:text-rose-400">
-                ADMIN PORTAL
-              </span>
-              <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                ADMINISTRATOR
-              </span>
-            </div>
-            <div className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-              Logged in: <strong className="text-slate-900 dark:text-white">{profile?.full_name || user?.email}</strong>
-            </div>
-          </div>
+          <h1 className="text-xl sm:text-2xl font-extrabold text-slate-950 dark:text-white tracking-tight mt-1">
+            Plant & Executive Management
+          </h1>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex items-center gap-2.5 flex-wrap">
+        {/* Global Header Actions */}
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setShowQuickIntakeModal(true)}
-            className="btn-pill btn-pill-primary text-xs font-bold shadow-md cursor-pointer"
+            className="btn-pill btn-pill-primary text-xs font-bold"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>+ New Quote</span>
@@ -438,6 +438,7 @@ export const AdminDashboardPage: React.FC = () => {
       <div className="bg-white/80 dark:bg-[#0C1220]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 sm:px-8 overflow-x-auto sticky top-[73px] z-20">
         <div className="flex gap-2 text-xs font-mono">
           {[
+            { id: 'analytics', label: 'CRM Analytics', icon: BarChart3 },
             { id: 'rfqs', label: 'Quotes & Orders', icon: FileText, count: rfqs.length },
             { id: 'estimator', label: 'Price Calculator', icon: Calculator },
             { id: 'rate_cards', label: 'Material Costs', icon: DollarSign },
@@ -488,6 +489,20 @@ export const AdminDashboardPage: React.FC = () => {
       {/* Main Tab Views */}
       <main className="max-w-7xl mx-auto p-4 sm:p-8 space-y-6">
         
+        {/* TAB 0: CRM ANALYTICS & EXECUTIVE OVERVIEW */}
+        {activeTab === 'analytics' && (
+          <CrmAnalyticsOverview
+            analytics={crmAnalytics}
+            onSelectAccount={(acc) => {
+              setCalcCompanyName(acc.companyName);
+              setCalcPhone(acc.phone);
+              setActiveTab('estimator');
+            }}
+            onRefresh={loadAllData}
+            loading={loading}
+          />
+        )}
+
         {/* TAB 1: RFQ OVERVIEW */}
         {activeTab === 'rfqs' && (
           <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6 space-y-6">
