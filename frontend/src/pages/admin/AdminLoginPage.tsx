@@ -44,39 +44,41 @@ export const AdminLoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#070A10] bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(224,0,25,0.12),transparent_70%)] flex items-center justify-center p-4 selection:bg-[#E00019] selection:text-white">
-      <div className="double-bezel w-full max-w-md bg-slate-950/90 border-rose-950/80 shadow-2xl text-white backdrop-blur-sm">
-        <div className="double-bezel-inner p-8 bg-[#090D18]/95 space-y-6">
+    <div className="min-h-screen bg-[#060911] bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(224,0,25,0.15),transparent_70%)] flex items-center justify-center p-4 selection:bg-[#E00019] selection:text-white">
+      <div className="double-bezel-dark w-full max-w-md shadow-2xl">
+        <div className="double-bezel-dark-inner p-8 space-y-6">
           
           {/* Brand Header & Executive Badge */}
-          <div className="text-center space-y-2">
-            <div className="bg-white inline-block p-2.5 rounded-xl border border-slate-700 mb-1 shadow-md">
+          <div className="text-center space-y-3">
+            <div className="bg-white inline-flex items-center justify-center px-4 py-2.5 rounded-2xl border border-slate-700/60 shadow-md mb-1">
               <img src="/assets/logo.svg" alt="Apex Packaging & Converting" className="h-7 w-auto object-contain" />
             </div>
             
             <div>
-              <div className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold text-rose-400 bg-rose-950/70 px-2.5 py-1 rounded-full border border-rose-800/80 shadow-xs">
-                <ShieldAlert className="w-3 h-3 text-rose-400" />
+              <div className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold text-rose-400 bg-rose-950/80 px-3 py-1 rounded-full border border-rose-800 shadow-xs">
+                <ShieldAlert className="w-3.5 h-3.5 text-rose-400" />
                 <span>EXECUTIVE MANAGEMENT GATEWAY</span>
               </div>
             </div>
 
-            <h1 className="text-xl font-extrabold tracking-tight text-white pt-1">Plant Admin Portal</h1>
-            <p className="text-xs text-slate-400 max-w-xs mx-auto">
-              Executive oversight, staff account management & plant telemetry
-            </p>
+            <div className="space-y-1">
+              <h1 className="text-xl font-extrabold tracking-tight text-white">Plant Admin Portal</h1>
+              <p className="text-xs text-slate-400 max-w-xs mx-auto">
+                Executive oversight, staff account management & plant telemetry
+              </p>
+            </div>
           </div>
 
           {/* Quick Fill Demo Helper Pill */}
-          <div className="p-3 rounded-xl bg-rose-950/40 border border-rose-800/50 flex items-center justify-between text-xs font-mono">
-            <div className="flex items-center gap-2 text-rose-200 text-[11px]">
-              <Sparkles className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-              <span>Admin Account: <strong className="text-white">admin@apexconverting.demo</strong></span>
+          <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between text-xs font-mono shadow-inner">
+            <div className="flex items-center gap-2 text-slate-300 text-[11px]">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span>Demo ID: <strong className="text-rose-400">admin@apexconverting.demo</strong></span>
             </div>
             <button
               type="button"
               onClick={fillDemoCredentials}
-              className="px-2 py-1 rounded bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 font-bold text-[10px] transition-colors border border-rose-500/40 cursor-pointer"
+              className="px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 font-bold text-[10px] transition-colors border border-rose-500/30 cursor-pointer"
             >
               Auto-Fill
             </button>
@@ -84,7 +86,7 @@ export const AdminLoginPage: React.FC = () => {
 
           {/* Error Alert */}
           {errorMsg && (
-            <div className="p-3.5 rounded-xl bg-rose-950/80 border border-rose-700/80 text-xs font-mono text-rose-200 flex items-center gap-2.5 shadow-lg">
+            <div className="p-3.5 rounded-xl bg-rose-950/90 border border-rose-700 text-xs font-mono text-rose-200 flex items-center gap-2.5 shadow-lg">
               <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
               <span className="leading-snug">{errorMsg}</span>
             </div>
@@ -93,34 +95,34 @@ export const AdminLoginPage: React.FC = () => {
           {/* Login Form */}
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-mono font-semibold text-slate-200 mb-1.5">
+              <label className="block text-xs font-mono font-semibold text-slate-300 mb-1.5">
                 SuperAdmin Email
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-9.5 pr-3 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-slate-100 font-mono placeholder:text-slate-500 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 focus:outline-none transition-all"
+                  className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#060A14] border border-slate-800 text-sm text-slate-100 font-mono placeholder:text-slate-600 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 focus:outline-none transition-all shadow-inner"
                   placeholder="admin@apexconverting.demo"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-semibold text-slate-200 mb-1.5">
+              <label className="block text-xs font-mono font-semibold text-slate-300 mb-1.5">
                 Master Security Password
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-9.5 pr-3 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-slate-100 font-mono placeholder:text-slate-500 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 focus:outline-none transition-all"
+                  className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#060A14] border border-slate-800 text-sm text-slate-100 font-mono placeholder:text-slate-600 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 focus:outline-none transition-all shadow-inner"
                   placeholder="••••••••••••"
                 />
               </div>
@@ -150,7 +152,7 @@ export const AdminLoginPage: React.FC = () => {
             <a href="/" className="text-slate-400 hover:text-white transition-colors">
               ← Return to Public Portal
             </a>
-            <a href="/sales/login" className="text-slate-500 hover:text-slate-300 transition-colors">
+            <a href="/sales/login" className="text-slate-400 hover:text-rose-400 transition-colors">
               Sales Workstation →
             </a>
           </div>
