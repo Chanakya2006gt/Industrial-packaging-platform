@@ -130,4 +130,30 @@
 - **Action:** Upgraded `StudioMockupViewer.tsx` and `ConfiguratorSteps.tsx` with native square studio viewing (`aspect-square max-w-[480px]`) and sub-millimeter cylindrical bounding box coordinates for Bottles, 5L Jerry Cans, Glass Jars, Vials, and Folding Cartons.
 - **Format Sync:** Step 1 classification automatically synchronizes container formats, roll vs. sheet geometry, and substrate material presets.
 
+---
+
+### [D015] Executive Administration Parity & Modular Tools Integration
+- **Date:** 2026-08-25
+- **Action:** Integrated full executive parity tools into the Admin Console (`/admin/dashboard`):
+  - Interactive Packaging Price Calculator (`<CpqEstimatorPanel />`).
+  - Raw Material & Paperboard Rate Cards editor with drag-and-drop CSV parser (`<RateCardsTab />`).
+  - Response target pipeline monitor (`<PipelineList />`).
+  - Bank payment clearance modal and rapid phone inquiry intake modal.
+- **Rationale:** Ensures executive plant managers have identical operational estimating power and live price control without context-switching between separate portals.
+
+---
+
+### [D016] User-Centric Terminology Shift & Clean Swiss Card Elevation
+- **Date:** 2026-08-25
+- **Action:** Replaced dense developer/database jargon across all staff dashboards with intuitive, user-friendly commercial packaging terminology:
+  - `Commercial Sales & CPQ Workstation` &rarr; **`Sales & Customer Quotes`**.
+  - `EXECUTIVE MASTER CONSOLE` &rarr; **`ADMIN PORTAL`**.
+  - `Packaging CPQ Calculator` &rarr; **`Price Calculator`**.
+  - `Offline Bank Clearance Gate` &rarr; **`Payment History`**.
+  - `SLA OVERDUE` &rarr; **`Needs Immediate Reply`**.
+  - `Raw Substrate` / `CTP Laser Plates` &rarr; **`Raw Materials & Paper`** / **`Printing Plates Setup`**.
+  - `FINAL GROSS QUOTE` &rarr; **`TOTAL CUSTOMER PRICE`**.
+- **Card Hierarchy:** Replaced nested high-contrast double-bezel frames with clean elevated Swiss B2B cards (`bg-white dark:bg-[#0E1422]`, `border-slate-200 dark:border-slate-800`, `rounded-2xl`, `shadow-xs`).
+
+
 
