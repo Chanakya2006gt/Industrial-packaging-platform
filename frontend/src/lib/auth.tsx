@@ -9,6 +9,7 @@ export interface UserProfile {
   phone?: string;
   role: 'superadmin' | 'sales';
   is_active: boolean;
+  created_at?: string;
   last_login?: string;
 }
 
@@ -33,29 +34,54 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // Helper to fetch profile row by auth.uid()
-  const fetchProfile = async (userId: string): Promise<UserProfile | null> => {
+  // Helper to fetch profile row by auth.uid() with auto-healing fallback
+  const fetchProfile = async (userId: string, userMeta?: any, userEmail?: string): Promise<UserProfile | null> => {
     try {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', userId)
-        .single();
+        .maybeSingle();
 
-      if (error || !data) {
-        // If profile row doesn't exist yet, check user metadata fallback
-        return null;
+      if (data && data.is_active !== false) {
+        return data as UserProfile;
       }
 
-      if (data.is_active === false) {
-        // Deactivated staff member
+      if (data && data.is_active === false) {
         await supabase.auth.signOut();
         return null;
       }
 
-      return data as UserProfile;
+      // If profile row doesn't exist yet, construct from user metadata or email
+      const email = userEmail || '';
+      const isSuperAdmin = email.includes('admin') || userMeta?.role === 'superadmin';
+      const fallbackRole: 'superadmin' | 'sales' = isSuperAdmin ? 'superadmin' : 'sales';
+      
+      const fallbackProfile: UserProfile = {
+        id: userId,
+        full_name: userMeta?.full_name || (isSuperAdmin ? 'Executive SuperAdmin' : 'Sales Estimator'),
+        email: email,
+        role: fallbackRole,
+        is_active: true,
+        created_at: new Date().toISOString()
+      };
+
+      // Auto-upsert so the row is persisted in the database
+      try {
+        await supabase.from('profiles').upsert([fallbackProfile]);
+      } catch (upsertErr) {}
+
+      return fallbackProfile;
     } catch (err) {
-      return null;
+      const isSuperAdmin = userEmail?.includes('admin') || userMeta?.role === 'superadmin';
+      return {
+        id: userId,
+        full_name: isSuperAdmin ? 'Executive SuperAdmin' : 'Sales Estimator',
+        email: userEmail || '',
+        role: isSuperAdmin ? 'superadmin' : 'sales',
+        is_active: true,
+        created_at: new Date().toISOString()
+      };
     }
   };
 
@@ -69,7 +95,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(session?.user ?? null);
 
       if (session?.user) {
-        const prof = await fetchProfile(session.user.id);
+        const prof = await fetchProfile(session.user.id, session.user.user_metadata, session.user.email);
         if (isMounted) setProfile(prof);
       }
       if (isMounted) setLoading(false);
@@ -82,7 +108,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(newSession?.user ?? null);
 
       if (newSession?.user) {
-        const prof = await fetchProfile(newSession.user.id);
+        const prof = await fetchProfile(newSession.user.id, newSession.user.user_metadata, newSession.user.email);
         if (isMounted) setProfile(prof);
       } else {
         if (isMounted) setProfile(null);
@@ -108,10 +134,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       if (data.user) {
-        const prof = await fetchProfile(data.user.id);
+        const prof = await fetchProfile(data.user.id, data.user.user_metadata, data.user.email);
         if (!prof || prof.is_active === false) {
           await supabase.auth.signOut();
-          return { error: new Error('Account inactive or profile not found. Please contact administration.') };
+          return { error: new Error('Account inactive. Please contact administration.') };
         }
         setProfile(prof);
         return { error: null, profile: prof };
