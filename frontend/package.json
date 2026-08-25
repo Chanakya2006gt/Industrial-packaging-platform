@@ -1,23 +1,24 @@
 {
-  "name": "printfast_zambia_website",
+  "name": "industrial-packaging-frontend",
   "version": "2.0.0",
   "type": "module",
-  "description": "Official B2B digital platform for PrintFast Zambia Limited — industrial label converting, custom packaging & commercial print. React, Supabase, Vercel, and Cloudflare architecture.",
+  "description": "B2B digital platform for Apex Packaging & Converting — industrial label converting, custom packaging & commercial print. React, Supabase, Vercel, and Cloudflare architecture.",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "keywords": [
-    "printfast",
-    "zambia",
     "packaging",
+    "converting",
     "flexography",
     "offset-printing",
-    "b2b"
+    "b2b",
+    "finat",
+    "cpq"
   ],
-  "author": "PrintFast Zambia Limited",
-  "license": "ISC",
+  "author": "Engineering Team",
+  "license": "MIT",
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
     "clsx": "^2.1.1",

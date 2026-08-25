@@ -10,8 +10,8 @@ test('sanitizeCsvCell prefixes dangerous formula symbols with a single quote', (
 });
 
 test('sanitizeCsvCell leaves safe standard values untouched', () => {
-  assert.equal(sanitizeCsvCell('Zambian Breweries PLC'), 'Zambian Breweries PLC');
-  assert.equal(sanitizeCsvCell('Lusaka Plant'), 'Lusaka Plant');
+  assert.equal(sanitizeCsvCell('Apex Bottlers Inc'), 'Apex Bottlers Inc');
+  assert.equal(sanitizeCsvCell('Converting Facility'), 'Converting Facility');
   assert.equal(sanitizeCsvCell(''), '');
   assert.equal(sanitizeCsvCell(null), '');
 });
@@ -19,8 +19,8 @@ test('sanitizeCsvCell leaves safe standard values untouched', () => {
 test('generateSanitizedCsv generates compliant multi-row CSV payload', () => {
   const headers = ['Company', 'Contact', 'FormulaTest'];
   const rows = [
-    ['Trade Kings', 'Mwila', '=1+1'],
-    ['Zambeef', 'Chileshe', 'Normal Text']
+    ['Apex Beverages', 'David Vance', '=1+1'],
+    ['Metro Pharma', 'Sarah Jenkins', 'Normal Text']
   ];
 
   const csv = generateSanitizedCsv(headers, rows);

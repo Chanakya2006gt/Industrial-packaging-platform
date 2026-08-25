@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * PrintFast Zambia — Platform Health Diagnostic
+ * Industrial Packaging Platform — System Health Diagnostic
  * Zero-dependency CLI diagnostic tool testing DB connectivity, estimating formulas, and worker readiness.
  */
 
@@ -10,7 +10,7 @@ import { sanitizeCsvCell } from '../src/utils/csvSanitizer.js';
 import { validateMagicBytes } from '../src/utils/magicByteValidator.js';
 
 console.log('\n======================================================');
-console.log('🏭 PRINTFAST ZAMBIA — PLATFORM HEALTH DIAGNOSTIC');
+console.log('🏭 INDUSTRIAL PACKAGING PLATFORM — HEALTH DIAGNOSTIC');
 console.log('======================================================\n');
 
 let passedChecks = 0;

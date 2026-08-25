@@ -47,7 +47,7 @@ export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
                 required
                 value={intakeCompany}
                 onChange={(e) => setIntakeCompany(e.target.value)}
-                placeholder="e.g. Lusaka Dairy Co"
+                placeholder="e.g. Metro Dairy Co"
                 className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
               />
             </div>
@@ -59,19 +59,19 @@ export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
                 required
                 value={intakeContact}
                 onChange={(e) => setIntakeContact(e.target.value)}
-                placeholder="e.g. John Phiri"
+                placeholder="e.g. John Miller"
                 className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
               />
             </div>
 
             <div>
-              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Phone Number (WhatsApp) *</label>
+              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Phone Number *</label>
               <input
                 type="tel"
                 required
                 value={intakePhone}
                 onChange={(e) => setIntakePhone(e.target.value)}
-                placeholder="+260 97X XXX XXX"
+                placeholder="+1 (555) 019-XXXX"
                 className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
               />
             </div>

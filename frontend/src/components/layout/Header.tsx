@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const saved = localStorage.getItem('pzl_theme') || 'light';
+    const saved = localStorage.getItem('app_theme') || localStorage.getItem('pzl_theme') || 'light';
     setTheme(saved as any);
     document.documentElement.setAttribute('data-theme', saved);
   }, []);
@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
   const toggleTheme = () => {
     const next = theme === 'light' ? 'dark' : 'light';
     setTheme(next);
-    localStorage.setItem('pzl_theme', next);
+    localStorage.setItem('app_theme', next);
     document.documentElement.setAttribute('data-theme', next);
   };
 
@@ -36,13 +36,13 @@ export const Header: React.FC = () => {
         <div className="flex items-center gap-4">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="p-1 rounded-md transition-transform group-hover:scale-105">
-              <img src="/assets/logo.svg" alt="PrintFast Zambia" className="h-7 sm:h-8 w-auto object-contain" />
+              <img src="/assets/logo.svg" alt="Apex Packaging & Converting" className="h-7 sm:h-8 w-auto object-contain" />
             </div>
           </Link>
 
           <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono font-bold text-emerald-600 dark:text-emerald-400">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>24/7 MWEMBESHI PLANT ACTIVE</span>
+            <span>24/7 CONVERTING PLANT ACTIVE</span>
           </div>
         </div>
 

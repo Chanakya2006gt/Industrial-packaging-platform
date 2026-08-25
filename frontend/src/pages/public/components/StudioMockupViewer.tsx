@@ -71,31 +71,41 @@ export const StudioMockupViewer: React.FC<StudioMockupViewerProps> = ({
         </div>
 
         {/* Photorealistic Container Stage with Flush Label + 3D Hover Pop-out */}
-        <div className="relative aspect-4/3 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl flex items-center justify-center group select-none">
+        <div className="relative aspect-square w-full max-w-[480px] mx-auto rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl flex items-center justify-center group select-none">
           
           {/* Background Studio Lighting & Image */}
           <img
             src={containerImages[selectedContainer]}
             alt={`${selectedContainer} Photorealistic Studio Mockup`}
-            className="absolute inset-0 w-full h-full object-cover object-center opacity-90 transition-transform duration-700 group-hover:scale-105"
+            onError={(e) => {
+              // Fallback to bottle if custom mockup fails to resolve
+              (e.target as HTMLImageElement).src = '/assets/img/mockups/bottle_studio.jpg';
+            }}
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-95 transition-transform duration-700 group-hover:scale-105"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/30 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/20 pointer-events-none" />
 
-          {/* Calibrated Flush Cylindrical Label with 3D Hover Pop-Out */}
+          {/* Calibrated Flush Cylindrical Label with 3D Hover Pop-Out (D044 1:1 Matrix) */}
           <div
             style={{
-              top: selectedContainer === 'bottle' ? '67%' :
-                   selectedContainer === 'jug' ? '60%' :
-                   selectedContainer === 'jar' ? '54%' :
-                   selectedContainer === 'vial' ? '52%' : '48%',
-              left: selectedContainer === 'bottle' ? '50%' :
-                    selectedContainer === 'jug' ? '49%' :
-                    selectedContainer === 'jar' ? '50%' :
-                    selectedContainer === 'vial' ? '50%' : '50%',
+              top: selectedContainer === 'bottle' ? '67.87%' :
+                   selectedContainer === 'jug' ? '60.55%' :
+                   selectedContainer === 'jar' ? '55.66%' :
+                   selectedContainer === 'vial' ? '66.41%' : '50.98%',
+              left: selectedContainer === 'bottle' ? '49.71%' :
+                    selectedContainer === 'jug' ? '44.73%' :
+                    selectedContainer === 'jar' ? '50.00%' :
+                    selectedContainer === 'vial' ? '49.80%' : '49.51%',
+              width: selectedContainer === 'bottle' ? '20.12%' :
+                     selectedContainer === 'jug' ? '24.61%' :
+                     selectedContainer === 'jar' ? '39.06%' :
+                     selectedContainer === 'vial' ? '21.09%' : '27.15%',
+              height: selectedContainer === 'bottle' ? '28.71%' :
+                      selectedContainer === 'jug' ? '39.06%' :
+                      selectedContainer === 'jar' ? '28.52%' :
+                      selectedContainer === 'vial' ? '28.91%' : '67.58%',
               transform: 'translate(-50%, -50%)',
-              width: selectedContainer === 'carton' ? '44%' : '38%',
-              aspectRatio: `${widthMm} / ${heightMm}`
             }}
             className={`absolute z-10 transition-all duration-300 ease-out cursor-pointer rounded-sm border ${
               substrate.includes('clear')
@@ -110,7 +120,7 @@ export const StudioMockupViewer: React.FC<StudioMockupViewerProps> = ({
               <div className="flex items-center gap-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#E00019]" />
                 <span className="text-[8px] font-extrabold font-mono tracking-tighter uppercase text-slate-900">
-                  PRINTFAST
+                  APEX PACK
                 </span>
               </div>
               <span className="text-[7px] font-mono text-slate-500">
@@ -130,7 +140,7 @@ export const StudioMockupViewer: React.FC<StudioMockupViewerProps> = ({
 
             {/* Label Footer */}
             <div className="border-t border-black/10 pt-0.5 flex items-center justify-between text-[6px] font-mono text-slate-500">
-              <span>LUSAKA PLANT</span>
+              <span>CONVERTING PLANT</span>
               <span>{rollOrSheet === 'roll' ? `FINAT #${finatDirection}` : 'SHEETS'}</span>
             </div>
 

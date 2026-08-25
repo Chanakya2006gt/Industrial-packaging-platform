@@ -1,14 +1,14 @@
-# ARCHITECTURE — PrintFast Zambia Cloud Platform
+# ARCHITECTURE — Industrial Packaging & Operations Platform
 
 **Version:** 2.0 (Production Cloud-Native Enterprise)  
 **Date:** 2026-08-25  
-**Maintainer:** PrintFast Zambia Limited  
+**Maintainer:** Engineering Architecture Team  
 
 ---
 
 ## 1. Executive System Overview
 
-PrintFast Zambia Limited (PZL) operates as a modern cloud-native, high-performance web platform combining:
+The platform operates as a modern cloud-native, high-performance web platform combining:
 1. **Public B2B Engineering Interface**: Fast, responsive customer web experience featuring interactive 5-step B2B quote configuration, FINAT 1–8 roll unwind calculators, CAD dieline uploads, and physical swatch sample logistics.
 2. **Hidden Direct-URL Staff Consoles**:
    * `/sales` &rarr; Estimator Pipeline Console with Trelio-style Decision Gates (`Under Review` &rarr; `Quote Sent` &rarr; `In Production` &rarr; `Dispatched` &rarr; `Settled`) and official Quote/Proof PDF attachments.
@@ -46,7 +46,7 @@ PrintFast Zambia Limited (PZL) operates as a modern cloud-native, high-performan
 
 ## 2. Business Philosophy: Offline Commercials & Zero Digital Payment Gateways
 
-* In regional Zambian and African industrial manufacturing, volume pricing, payment terms (net-30, cash, bank TT, mobile transfer), and dieline alterations are **negotiated strictly offline** (phone, WhatsApp, plant visits).
+* In regional industrial packaging manufacturing, volume pricing, payment terms (net-30, cash, bank TT, wire transfer), and dieline alterations are **negotiated offline** (phone, email, technical consultations).
 * The platform functions as a **Specification, Visibility & Workflow Coordination Gateway**.
 * Status progression moves through human **Decision Gates**:
   1. `RFQ Received` &rarr; Customer submitted technical specs & dielines.
@@ -54,8 +54,8 @@ PrintFast Zambia Limited (PZL) operates as a modern cloud-native, high-performan
   3. `Quote Sent` &rarr; Sales attached official Quote PDF / Dieline Proof generated offline.
   4. `Confirmed` &rarr; Client confirmed order offline.
   5. `In Production` &rarr; Job queued on Heidelberg 6C or 8C UV Flexo.
-  6. `Dispatched` &rarr; Goods departed Mwembeshi Road facility.
-  7. `Settled` &rarr; Trelio-style manual "Mark as Done" confirmation that offline payment was satisfied (zero digital currency amounts tracked).
+  6. `Dispatched` &rarr; Goods departed manufacturing facility.
+  7. `Settled` &rarr; Trelio-style manual "Mark as Settled" confirmation that payment was satisfied.
 
 ---
 
@@ -64,7 +64,7 @@ PrintFast Zambia Limited (PZL) operates as a modern cloud-native, high-performan
 | Layer | Component | Description |
 | :--- | :--- | :--- |
 | **Frontend** | React 18 + Vite + TypeScript | Component modularity, typed props, sub-second route transitions. |
-| **Styling & Design System** | Tailwind CSS + CSS Custom Properties | Exact Swiss 60-30-10 palette (`#f8fafc` canvas, `#0F172A` Slate, `#E00019` PZL Crimson, CMYK accents). |
+| **Styling & Design System** | Tailwind CSS + CSS Custom Properties | Exact Swiss 60-30-10 palette (`#FAFAFC` canvas, `#0F172A` Slate, `#E00019` Laser Crimson, CMYK accents). |
 | **Motion Engine** | GSAP 3.12 + ScrollTrigger | Industrial mass and weighted deceleration curves (`power3.out` / `power2.out`). |
 | **Database** | PostgreSQL 15+ (Supabase) | Cloud ACID relational schema with foreign key constraints and triggers. |
 | **Authentication** | Supabase Auth (JWT) | Role-Based Access Control (`superadmin`, `sales`) with Row Level Security (RLS). |
@@ -74,9 +74,9 @@ PrintFast Zambia Limited (PZL) operates as a modern cloud-native, high-performan
 
 ---
 
-## 4. Visual Continuity & 100% Non-Drift Guarantee
+## 4. Visual Continuity & Design Standard
 
-Every design element from the approved brand system is preserved 1:1:
-* **Typography:** `Fraunces` (Display Serif), `Libre Franklin` (Industrial Body), `IBM Plex Mono` (Machine Specs).
-* **Brand Logo:** Exact mathematical vector SVG with 4-quadrant diamond mark, centered red dot, and roundabout loop.
-* **Photography:** All 5 verified packaging and plant machinery slots (`hero-packaging.jpg`, `press-flexo-8c.jpg`, `press-heidelberg-6c.jpg`, `prepress-ctp.jpg`, `cartons-packaging.jpg`).
+The design system enforces high industrial fidelity:
+* **Typography:** `Plus Jakarta Sans` (Display/Headings), `Inter` (Industrial Body), `IBM Plex Mono` (Machine Specs).
+* **Brand Mark:** Vector SVG mark with 4-quadrant diamond geometry, centered focus dot, and precision loop.
+* **Photography Slots:** 5 verified packaging and plant machinery slots (`hero-packaging.jpg`, `press-flexo-8c.jpg`, `press-heidelberg-6c.jpg`, `prepress-ctp.jpg`, `cartons-packaging.jpg`).

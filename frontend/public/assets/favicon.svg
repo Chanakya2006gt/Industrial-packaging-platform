@@ -1,9 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" role="img" aria-label="PrintFast">
-  <rect width="112" height="112" rx="20" fill="#ffffff"/>
-  <g transform="translate(12,12) scale(0.88)">
-    <polygon points="44,0 44,44 0,44"   fill="#E6008A"/>
-    <polygon points="55,0 55,44 99,44"  fill="#F79E33"/>
-    <polygon points="0,54 44,54 44,99"  fill="#149DEC"/>
-    <polygon points="55,54 99,54 55,99" fill="#1A1A1A"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" role="img" aria-label="Apex Packaging">
+  <rect width="112" height="112" rx="24" fill="#0F172A"/>
+  <g transform="translate(6, 6) scale(0.89)">
+    <!-- Apex Crimson Chevron Left & Right -->
+    <polygon points="56,12 18,96 38,96 56,48" fill="#FF1A35" />
+    <polygon points="56,12 94,96 74,96 56,48" fill="#E00019" />
+    <!-- Interlocking Crossbar in Pure White -->
+    <polygon points="32,68 80,68 86,82 26,82" fill="#FFFFFF" />
+    <!-- CMYK Process Dots along bottom -->
+    <circle cx="34" cy="98" r="3.5" fill="#00A3E0" />
+    <circle cx="48" cy="98" r="3.5" fill="#E6007E" />
+    <circle cx="62" cy="98" r="3.5" fill="#FFD100" />
+    <circle cx="76" cy="98" r="3.5" fill="#FFFFFF" />
   </g>
 </svg>

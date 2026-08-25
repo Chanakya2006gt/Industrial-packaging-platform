@@ -1,5 +1,5 @@
 -- ==============================================================================
--- PrintFast Zambia Limited (PZL) — Cloud PostgreSQL Schema & RLS Policies
+-- Industrial Packaging & Converting — Cloud PostgreSQL Schema & RLS Policies
 -- ==============================================================================
 
 -- Enable UUID extension

@@ -168,11 +168,11 @@ export const SalesDashboardPage: React.FC = () => {
   const handleOpenWhatsAppQuote = (targetRfq?: RfqInquiry) => {
     const phone = targetRfq?.phone || calcPhone || selectedRfq?.phone || '';
     const company = targetRfq?.company_name || calcCompanyName || selectedRfq?.company_name || 'Client';
-    const ref = targetRfq?.reference_no || selectedRfq?.reference_no || 'PZL-QUOTE';
+    const ref = targetRfq?.reference_no || selectedRfq?.reference_no || 'RFQ-QUOTE';
     const phoneClean = phone.replace(/[^0-9]/g, '');
 
     const message = encodeURIComponent(
-      `*PRINTFAST ZAMBIA LIMITED — OFFICIAL B2B ESTIMATE*\n` +
+      `*APEX PACKAGING & CONVERTING — OFFICIAL B2B ESTIMATE*\n` +
       `-------------------------------------------\n` +
       `*Client:* ${company}\n` +
       `*Category:* ${calcCategory === 'flexo_labels' ? '8C UV Flexo Labels' : 'Offset Folding Cartons'}\n` +
@@ -181,16 +181,16 @@ export const SalesDashboardPage: React.FC = () => {
       `*Production:* ~${currentCalc.linearMeters.toLocaleString()}m (~${currentCalc.numberOfRolls} rolls)\n` +
       `-------------------------------------------\n` +
       `*Net Manufacturing Total:* ZMW ${currentCalc.netPriceZMW.toLocaleString()}\n` +
-      `*ZRA VAT (16%):* ZMW ${currentCalc.vatZMW.toLocaleString()}\n` +
+      `*VAT (16%):* ZMW ${currentCalc.vatZMW.toLocaleString()}\n` +
       `*FINAL GROSS QUOTE:* *ZMW ${currentCalc.finalGrossPriceZMW.toLocaleString()}*\n` +
       `*Unit Price:* *ZMW ${currentCalc.unitPriceZMW.toFixed(4)} / unit*\n` +
       `-------------------------------------------\n` +
       `*Turnaround:* 3–5 working days (24/7 continuous shift)\n` +
-      `*Plant Location:* Plot 35288 Mwembeshi Rd, Lusaka\n` +
+      `*Plant Location:* 1000 Industrial Parkway, Westgate Logistics Park\n` +
       `*Official Ref:* ${ref}`
     );
 
-    window.open(`https://wa.me/${phoneClean || '260974000000'}?text=${message}`, '_blank');
+    window.open(`https://wa.me/${phoneClean || '15550192834'}?text=${message}`, '_blank');
   };
 
   // Fail-Closed Status Transition Gate
@@ -358,12 +358,12 @@ export const SalesDashboardPage: React.FC = () => {
     setIntakeSubmitting(true);
     setDbError(null);
 
-    const newRef = `PZL-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const newRef = `RFQ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
     const newInquiryPayload = {
       reference_no: newRef,
       company_name: intakeCompany.trim(),
       contact_name: intakeContact.trim(),
-      email: 'walkin@printfastzambia.com',
+      email: 'walkin@apexconverting.demo',
       phone: intakePhone.trim(),
       industry: 'Commercial / Walk-in',
       category: intakeCategory,
@@ -421,7 +421,7 @@ export const SalesDashboardPage: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `PZL_Sales_Ledger_${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = `Apex_Sales_Ledger_${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
   };
 

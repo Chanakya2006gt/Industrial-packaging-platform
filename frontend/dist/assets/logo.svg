@@ -1,48 +1,83 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 168" role="img" aria-label="PrintFast Zambia Limited">
-  <title>PrintFast Zambia Limited</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 150" role="img" aria-label="Apex Packaging &amp; Converting">
+  <title>Apex Packaging &amp; Converting</title>
+  <defs>
+    <!-- Dynamic Gradient for Apex Summit Facet -->
+    <linearGradient id="apexCrimsonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF1A35" />
+      <stop offset="100%" stop-color="#B80014" />
+    </linearGradient>
+    <linearGradient id="apexSlateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#070B12" />
+    </linearGradient>
+  </defs>
 
-  <!-- ===== CMYK Diamond Mark: 3 Solid Triangles (Magenta, Orange, Cyan) + Black P in 4th quadrant ===== -->
-  <polygon points="44,18 90,18 90,64" fill="#E6008A"/><!-- Magenta Top-Left -->
-  <polygon points="102,18 102,64 148,64" fill="#F79E33"/><!-- Orange/Yellow Top-Right -->
-  <polygon points="44,76 90,76 90,122" fill="#149DEC"/><!-- Cyan Bottom-Left -->
+  <!-- ==================== 1. GEOMETRIC APEX EMBLEM ==================== -->
+  <g transform="translate(15, 10)">
+    <!-- CMYK Process Alignment Calibration Bar -->
+    <g transform="translate(0, 18)">
+      <circle cx="8" cy="8" r="4.5" fill="#00A3E0" />
+      <circle cx="8" cy="26" r="4.5" fill="#E6007E" />
+      <circle cx="8" cy="44" r="4.5" fill="#FFD100" />
+      <circle cx="8" cy="62" r="4.5" fill="#0F172A" />
+      <line x1="8" y1="72" x2="8" y2="102" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="2 2" />
+    </g>
 
-  <!-- ===== Swoosh / Roundabout Line: Starts at Red Dot over 'i', wraps FAST, connects to ZAMBIA LIMITED pill ===== -->
-  <path d="M213,50 H546 A46,46 0 0,1 592,96 A46,46 0 0,1 546,142 H486"
-        fill="none" stroke="#1A1A1A" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Main Geometric 'A' Peak / Folded Packaging Chevron -->
+    <!-- Left Ascender / Facet -->
+    <polygon points="75,12 30,118 52,118 75,56" fill="url(#apexCrimsonGrad)" />
+    
+    <!-- Right Ascender / Facet -->
+    <polygon points="75,12 120,118 98,118 75,56" fill="#E00019" />
 
-  <!-- ===== Red Dot (Tittle over the 'i' in PRINT) ===== -->
-  <circle cx="213" cy="50" r="9" fill="#E00019"/>
+    <!-- Interlocking Precision Crossbar / Converting Fold Plane -->
+    <polygon points="46,82 104,82 112,100 38,100" fill="url(#apexSlateGrad)" />
 
-  <!-- ===== Wordmark: PRINT (Extra Bold, Chunky Industrial Black #1A1A1A) ===== -->
-  <!-- P: Heavy Stem, Solid Bowl in 4th Quadrant -->
-  <path d="M102,76 H136 C144,76 148,81 148,91 C148,101 144,106 136,106 H116 V122 H102 Z M116,87.5 H133 C135.5,87.5 136.5,89 136.5,91 C136.5,93 135.5,94.5 133,94.5 H116 Z" fill="#1A1A1A" fill-rule="evenodd"/>
-  
-  <!-- R: Heavy Stem, Chunky Bowl, Sturdy Angled Leg -->
-  <path d="M154,76 H186 C194,76 198,80.5 198,89.5 C198,96.5 194,101.5 186.5,103 L200,122 H184.5 L172.5,104.5 H168 V122 H154 Z M168,87.5 H183.5 C186,87.5 187,88.5 187,89.5 C187,90.5 186,91.5 183.5,91.5 H168 Z" fill="#1A1A1A" fill-rule="evenodd"/>
-  
-  <!-- I: Heavy 14px Stem Directly Aligned Under Red Dot (cx=213) -->
-  <rect x="206" y="76" width="14" height="46" fill="#1A1A1A"/>
-  
-  <!-- N: Heavy Stems & Powerful Diagonal -->
-  <path d="M226,76 H239.5 L258.5,106.5 V76 H272 V122 H258.5 L239.5,91.5 V122 H226 Z" fill="#1A1A1A"/>
-  
-  <!-- T: Heavy Top Bar & Stem -->
-  <path d="M278,76 H322 V88.5 H307 V122 H293 V88.5 H278 Z" fill="#1A1A1A"/>
+    <!-- Sharp Center Apex Registration Diamond -->
+    <polygon points="75,28 85,46 75,64 65,46" fill="#FAFAFC" />
+    <circle cx="75" cy="46" r="3.5" fill="#E00019" />
 
-  <!-- ===== Wordmark: FAST (Extra Bold, Solid Red #E00019) ===== -->
-  <!-- F -->
-  <path d="M330,76 H372 V88.5 H344 V97 H366 V107.5 H344 V122 H330 Z" fill="#E00019"/>
-  
-  <!-- A: Solid Heavy Apex with Triangular Counter -->
-  <path d="M397,76 H407 L426,122 H411 L406.8,110.5 H397.2 L393,122 H378 Z M402,87.5 L399.5,101.5 H404.5 Z" fill="#E00019" fill-rule="evenodd"/>
-  
-  <!-- S: Chunky, Compact, Powerful Curves -->
-  <path d="M 434,115.5 L 442.5,119.5 C 446.5,121.0 451.0,122.0 456.0,122.0 C 467.0,122.0 475.0,116.5 475.0,108.5 C 475.0,100.5 466.5,96.5 454.5,93.0 C 444.5,90.0 439.0,87.0 439.0,83.0 C 439.0,79.0 444.5,76.0 454.0,76.0 C 460.5,76.0 466.0,77.8 470.5,81.0 L 474.5,76.5 C 469.0,73.0 462.0,71.5 454.0,71.5 C 440.0,71.5 431.0,78.5 431.0,88.0 C 431.0,96.0 438.5,100.0 450.5,103.5 C 462.5,107.0 467.0,110.0 467.0,114.5 C 467.0,119.0 461.5,122.0 454.5,122.0 C 447.0,122.0 440.5,119.5 434,115.5 Z" fill="#E00019"/>
-  
-  <!-- T -->
-  <path d="M480,76 H524 V88.5 H509 V122 H495 V88.5 H480 Z" fill="#E00019"/>
+    <!-- Precision Registration Crosshair Markers -->
+    <circle cx="75" cy="118" r="3" fill="none" stroke="#E00019" stroke-width="1.5" />
+    <line x1="75" y1="112" x2="75" y2="124" stroke="#E00019" stroke-width="1.5" />
+    <line x1="69" y1="118" x2="81" y2="118" stroke="#E00019" stroke-width="1.5" />
+  </g>
 
-  <!-- ===== ZAMBIA LIMITED Pill & Text ===== -->
-  <rect x="278" y="127" width="208" height="30" rx="8" fill="#1A1A1A"/>
-  <text x="382" y="147.5" font-family="'Arial Black','Helvetica Neue',Helvetica,sans-serif" font-size="14.5" font-weight="900" letter-spacing="2.2" text-anchor="middle" fill="#ffffff">ZAMBIA LIMITED</text>
+  <!-- ==================== 2. BRAND TYPOGRAPHY ==================== -->
+  <!-- Primary Wordmark: APEX -->
+  <text x="160" y="78" 
+        font-family="system-ui, -apple-system, 'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', sans-serif" 
+        font-size="64" 
+        font-weight="900" 
+        letter-spacing="5" 
+        fill="#0F172A">APEX</text>
+
+  <!-- Secondary Industrial Wordmark: PACKAGING & CONVERTING -->
+  <g transform="translate(162, 94)">
+    <!-- High-Legibility Background Badge Pill -->
+    <rect x="0" y="0" width="375" height="28" rx="6" fill="#0F172A" />
+    <text x="187" y="19" 
+          font-family="system-ui, -apple-system, 'Plus Jakarta Sans', 'Inter', 'IBM Plex Mono', sans-serif" 
+          font-size="13" 
+          font-weight="800" 
+          letter-spacing="3" 
+          text-anchor="middle" 
+          fill="#FFFFFF">PACKAGING &amp; CONVERTING</text>
+  </g>
+
+  <!-- Subtitle Tagline / Specification -->
+  <text x="164" y="136" 
+        font-family="'IBM Plex Mono', monospace" 
+        font-size="9.5" 
+        font-weight="700" 
+        letter-spacing="2" 
+        fill="#64748B">PRECISION CONVERTING • FINAT STANDARD</text>
+
+  <!-- CMYK Process Registration Line -->
+  <g transform="translate(485, 131)">
+    <rect x="0" y="0" width="12" height="4" fill="#00A3E0" />
+    <rect x="13" y="0" width="12" height="4" fill="#E6007E" />
+    <rect x="26" y="0" width="12" height="4" fill="#FFD100" />
+    <rect x="39" y="0" width="12" height="4" fill="#0F172A" />
+  </g>
 </svg>

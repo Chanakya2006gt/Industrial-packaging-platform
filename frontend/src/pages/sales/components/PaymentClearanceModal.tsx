@@ -54,8 +54,8 @@ export const PaymentClearanceModal: React.FC<PaymentClearanceModalProps> = ({
                 onChange={(e) => setPaymentMethod(e.target.value as any)}
                 className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
               >
-                <option value="stanbic_wire">Stanbic Bank Wire Transfer</option>
-                <option value="zanaco_wire">ZANACO Corporate Transfer</option>
+                <option value="stanbic_wire">Commercial Wire Transfer</option>
+                <option value="zanaco_wire">Corporate ACH / Electronic Transfer</option>
                 <option value="cheque">Bank Cheque / Draft</option>
                 <option value="cash">Cash Settlement (Plant Cashier)</option>
               </select>
@@ -68,7 +68,7 @@ export const PaymentClearanceModal: React.FC<PaymentClearanceModalProps> = ({
                 required
                 value={paymentRefNo}
                 onChange={(e) => setPaymentRefNo(e.target.value)}
-                placeholder="e.g. STB-TXN-884920"
+                placeholder="e.g. TXN-WIRE-884920"
                 className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
               />
             </div>

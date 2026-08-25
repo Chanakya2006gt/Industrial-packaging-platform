@@ -111,7 +111,7 @@ export const AdminDashboardPage: React.FC = () => {
       <header className="bg-[#0C1220] border-b border-slate-800 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="bg-white p-1.5 rounded-xl border border-slate-700 shadow-sm">
-            <img src="/assets/logo.svg" alt="PrintFast Zambia" className="h-6 w-auto object-contain" />
+            <img src="/assets/logo.svg" alt="Apex Packaging & Converting" className="h-6 w-auto object-contain" />
           </div>
           <div>
             <div className="text-xs font-mono font-bold text-rose-400">EXECUTIVE MASTER CONSOLE</div>
@@ -349,7 +349,7 @@ export const AdminDashboardPage: React.FC = () => {
                   <label className="block text-slate-400 mb-1">Top Bar Operational Notice</label>
                   <input
                     type="text"
-                    defaultValue="Plant Status: 24/7 Continuous Shifts • Mwembeshi Road, Lusaka"
+                    defaultValue="Plant Status: 24/7 Continuous Shifts • Industrial Packaging Facility"
                     onBlur={(e) => handleUpdateSetting('plant_status_notice', e.target.value)}
                     className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white"
                   />
@@ -358,7 +358,7 @@ export const AdminDashboardPage: React.FC = () => {
                   <label className="block text-slate-400 mb-1">Estimating Sales Phone</label>
                   <input
                     type="text"
-                    defaultValue="+260 974 423 496"
+                    defaultValue="+1 (555) 019-2834"
                     onBlur={(e) => handleUpdateSetting('sales_phone', e.target.value)}
                     className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white"
                   />
@@ -367,7 +367,7 @@ export const AdminDashboardPage: React.FC = () => {
                   <label className="block text-slate-400 mb-1">Plant Location Address</label>
                   <input
                     type="text"
-                    defaultValue="Plot 35288 Mwembeshi Road, Light Industrial Area, Lusaka, Zambia"
+                    defaultValue="1000 Industrial Parkway, Westgate Logistics Park, Metro City"
                     onBlur={(e) => handleUpdateSetting('factory_location', e.target.value)}
                     className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white"
                   />

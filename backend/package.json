@@ -1,8 +1,8 @@
 {
-  "name": "printfast-zambia-backend",
+  "name": "industrial-packaging-backend",
   "version": "2.0.0",
   "type": "module",
-  "description": "PrintFast Zambia API & Background Worker",
+  "description": "Industrial Packaging Platform API & Background Worker",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

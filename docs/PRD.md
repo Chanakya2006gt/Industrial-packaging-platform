@@ -1,15 +1,15 @@
-# Product Requirements Document (PRD) — PrintFast Zambia Cloud Platform
+# Product Requirements Document (PRD) — Industrial Packaging Platform
 
 **Version:** 2.0  
 **Date:** 2026-08-25  
-**Owner:** PrintFast Zambia Limited Management  
+**Owner:** Product & Engineering  
 **Status:** Approved & Shipped  
 
 ---
 
 ## 1. Product Scope & Vision
 
-PrintFast Zambia Limited (PZL) is Lusaka's premier industrial printing and label converting press (operating 24/7 with 8-colour flexo lines and Heidelberg Speedmaster offset machinery).
+The platform serves industrial printing and packaging converters operating continuous high-volume production (multi-colour flexographic label lines and Heidelberg Speedmaster offset lithography).
 
 The digital platform bridges commercial packaging buyers with plant manufacturing workflows through:
 1. **High-Fidelity Public Interface**: Instant specification configuration for procurement and brand managers without artificial login walls.
@@ -23,8 +23,8 @@ The digital platform bridges commercial packaging buyers with plant manufacturin
 ### 2.1 Public B2B Interface
 * **FR-1 (5-Step Configurator)**: Multi-step interactive RFQ builder with dynamic substrate specifications, volume tiers, FINAT 1–8 unwind selectors, and CAD dieline uploader.
 * **FR-2 (Sample Kit Logistics)**: Free physical sample swatch pack request form with direct dispatch tracking.
-* **FR-3 (Machine Telemetry)**: Live 8-station flexo deck status (`Cyan`, `Mag`, `Yel`, `Black`, `Spot 1`, `Spot 2`, `Gold Foil`, `UV Varnish`), turnaround notice, and phone/WhatsApp links.
-* **FR-4 (Zero Visual Drift)**: 100% adherence to Swiss 60-30-10 palette, Fraunces/Libre Franklin typography, and GSAP industrial motion curves.
+* **FR-3 (Machine Telemetry)**: Live 8-station flexo deck status (`Cyan`, `Mag`, `Yel`, `Black`, `Spot 1`, `Spot 2`, `Gold Foil`, `UV Varnish`), turnaround notice, and contact links.
+* **FR-4 (Visual Consistency)**: Adherence to Swiss 60-30-10 palette, Plus Jakarta Sans/IBM Plex Mono typography, and GSAP industrial motion curves.
 
 ### 2.2 Hidden Sales Console (`/sales` — Direct URL)
 * **FR-5 (Pipeline Tracking)**: Real-time filtering by `Pending Review`, `Quoted`, `In Production`, `Dispatched`, and `Settled`.
@@ -33,12 +33,12 @@ The digital platform bridges commercial packaging buyers with plant manufacturin
 
 ### 2.3 Executive Management Hub (`/admin` — Direct URL)
 * **FR-8 (Staff Management)**: Create, monitor, and deactivate Sales Estimator accounts.
-* **FR-9 (Plant Settings & Media)**: Live update of operational notices, phone numbers, and all 6 site media slots (including primary vector brand logo).
+* **FR-9 (Plant Settings & Media)**: Live update of operational notices, contact numbers, and all 6 site media slots.
 * **FR-10 (Security Audit Trail)**: Cryptographic logging of logins, media updates, and decision gate advancements.
 
 ---
 
 ## 3. Commercial Reality & Non-Goals
 
-* **Zero In-App Payment Gateways**: Commercial prices, volume discounts, and payment methods (net-30, cash, bank TT, mobile transfer) are negotiated 100% offline. No credit card or live price engines exist inside the app.
+* **Zero In-App Payment Gateways**: Commercial prices, volume discounts, and payment methods (net-30, cash, bank TT, wire transfer) are negotiated offline. No credit card or live price engines exist inside the app.
 * **Hidden Staff Consoles**: Public navigation shows zero links or mentions of `/sales` or `/admin`. Access is strictly via direct URL address bar entry.

@@ -1,5 +1,5 @@
 -- ==============================================================================
--- PRINTFAST ZAMBIA LIMITED — AUTH & RLS SECURITY HARDENING (MIGRATION 0004)
+-- INDUSTRIAL PACKAGING & CONVERTING — AUTH & RLS SECURITY HARDENING (MIGRATION 0004)
 -- ==============================================================================
 
 -- 1. Helper function to safely fetch authenticated user's role

@@ -27,10 +27,10 @@ test.describe('B2B Packaging & Roll Configurator E2E', () => {
 
     // Step 5: Review & Submit
     await expect(page.locator('text=Step 5: Review & Submit Manufacturing RFQ')).toBeVisible();
-    await page.fill('input[placeholder*="Zambian Breweries"]', 'Playwright Test Brewery');
-    await page.fill('input[placeholder*="Mulenga Chileshe"]', 'Test Estimator');
-    await page.fill('input[placeholder*="procurement@company"]', 'test@playwright.co.zm');
-    await page.fill('input[placeholder*="+260 97X"]', '+260971234567');
+    await page.fill('input[placeholder*="Apex Bottling"]', 'Playwright Test Brewery');
+    await page.fill('input[placeholder*="David Vance"]', 'Test Estimator');
+    await page.fill('input[placeholder*="procurement@company"]', 'test@playwright.demo');
+    await page.fill('input[placeholder*="+1 (555)"]', '+15550192834');
 
     await page.click('button:has-text("Submit Manufacturing RFQ")');
 

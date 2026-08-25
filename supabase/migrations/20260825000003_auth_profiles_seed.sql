@@ -1,5 +1,5 @@
 -- ==============================================================================
--- PRINTFAST ZAMBIA LIMITED — AUTH PROFILES RLS & HELPER POLICIES
+-- INDUSTRIAL PACKAGING & CONVERTING — AUTH PROFILES RLS & HELPER POLICIES
 -- ==============================================================================
 
 -- 1. Profiles Table Policies

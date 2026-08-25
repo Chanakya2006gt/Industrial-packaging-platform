@@ -1,6 +1,6 @@
 /**
- * Render Background Worker Entry Point
- * Runs continuous 15-minute background maintenance loop for PrintFast Zambia.
+ * Background Worker Entry Point
+ * Runs continuous 15-minute background maintenance loop for SLA monitoring & quote expiry.
  */
 
 import { assertRequiredEnv, secureLogger } from './utils/bootGuards.js';
@@ -16,7 +16,7 @@ const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabase
 
 const INTERVAL_MS = Number(process.env.WORKER_INTERVAL_MS) || 15 * 60 * 1000; // 15 minutes default
 
-secureLogger.info('🚀 PrintFast Zambia Background Worker Initialized', { intervalMinutes: INTERVAL_MS / 60000 });
+secureLogger.info('🚀 Industrial Packaging Background Worker Initialized', { intervalMinutes: INTERVAL_MS / 60000 });
 
 async function runWorkerCycle() {
   secureLogger.info('⚡ Starting worker cycle execution');

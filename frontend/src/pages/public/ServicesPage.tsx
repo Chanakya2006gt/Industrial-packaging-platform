@@ -84,7 +84,7 @@ export const ServicesPage: React.FC = () => {
                   <tr>
                     <td className="p-4 font-bold">Typical Turnaround</td>
                     <td className="p-4 font-mono text-emerald-600 dark:text-emerald-400 font-semibold">3 to 5 Working Days</td>
-                    <td className="p-4 text-slate-600 dark:text-slate-400">24/7 continuous shift scheduling in Lusaka</td>
+                    <td className="p-4 text-slate-600 dark:text-slate-400">24/7 continuous plant shift scheduling</td>
                   </tr>
                 </tbody>
               </table>
@@ -281,7 +281,7 @@ export const ServicesPage: React.FC = () => {
                   <tr>
                     <td className="p-4 font-bold">Corporate Stationeries</td>
                     <td className="p-4 font-mono">Letterheads, Multi-Part NCR Forms, Envelopes</td>
-                    <td className="p-4 text-slate-600 dark:text-slate-400">Standard 48-hour rapid dispatch across Lusaka</td>
+                    <td className="p-4 text-slate-600 dark:text-slate-400">Standard 48-hour rapid dispatch nationwide</td>
                   </tr>
                 </tbody>
               </table>

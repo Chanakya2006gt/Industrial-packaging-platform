@@ -113,12 +113,12 @@ export const ContactPage: React.FC = () => {
       
       {/* Header Banner */}
       <section className="pt-10 text-center space-y-3 max-w-3xl mx-auto">
-        <div className="tech-tag tech-tag-crimson">MWEMBESHI ROAD PLANT & ESTIMATING DESK</div>
+        <div className="tech-tag tech-tag-crimson">CENTRAL CONVERTING PLANT & ESTIMATING DESK</div>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
           Contact Plant Estimating & Logistics
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          Speak directly with our technical team in Lusaka, request a physical sample kit, or schedule a plant inspection at our Mwembeshi Road facility.
+          Speak directly with our technical engineering team, request a physical sample kit, or schedule a plant consultation at our converting facility.
         </p>
       </section>
 
@@ -130,7 +130,7 @@ export const ContactPage: React.FC = () => {
           <div className="double-bezel-inner p-8 h-full flex flex-col justify-between space-y-6 bg-white dark:bg-slate-900">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">Lusaka Facility Details</h3>
+                <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">Manufacturing Facility Details</h3>
                 <span className="tech-tag tech-tag-emerald">24/7 OPEN</span>
               </div>
               
@@ -140,7 +140,7 @@ export const ContactPage: React.FC = () => {
                   <div>
                     <strong className="block text-slate-900 dark:text-white">Physical Plant Facility</strong>
                     <span className="text-slate-600 dark:text-slate-400 font-mono text-xs">
-                      Plot 35288 Mwembeshi Road, Light Industrial Area, Lusaka, Zambia
+                      1000 Industrial Parkway, Westgate Logistics Park, Metro City
                     </span>
                   </div>
                 </div>
@@ -149,8 +149,8 @@ export const ContactPage: React.FC = () => {
                   <Phone className="w-5 h-5 text-cyan-500 shrink-0 mt-0.5" />
                   <div>
                     <strong className="block text-slate-900 dark:text-white">Direct Estimating Line</strong>
-                    <a href="tel:+260974423496" className="text-slate-600 dark:text-slate-400 font-mono text-xs hover:text-cyan-500">
-                      +260 974 423 496
+                    <a href="tel:+15550192834" className="text-slate-600 dark:text-slate-400 font-mono text-xs hover:text-cyan-500">
+                      +1 (555) 019-2834
                     </a>
                   </div>
                 </div>
@@ -158,9 +158,9 @@ export const ContactPage: React.FC = () => {
                 <div className="flex items-start gap-3.5">
                   <MessageSquare className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="block text-slate-900 dark:text-white">WhatsApp Plant Dispatch</strong>
-                    <a href="https://wa.me/260974423496" target="_blank" rel="noopener noreferrer" className="text-emerald-600 dark:text-emerald-400 font-mono text-xs hover:underline">
-                      +260 974 423 496 (Click to Chat)
+                    <strong className="block text-slate-900 dark:text-white">Direct Dispatch Messaging</strong>
+                    <a href="https://wa.me/15550192834" target="_blank" rel="noopener noreferrer" className="text-emerald-600 dark:text-emerald-400 font-mono text-xs hover:underline">
+                      +1 (555) 019-2834 (Click to Connect)
                     </a>
                   </div>
                 </div>
@@ -169,8 +169,8 @@ export const ContactPage: React.FC = () => {
                   <Mail className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
                   <div>
                     <strong className="block text-slate-900 dark:text-white">Estimating & Inquiries Email</strong>
-                    <a href="mailto:sales@printfastzambia.com" className="text-slate-600 dark:text-slate-400 font-mono text-xs hover:text-amber-500">
-                      sales@printfastzambia.com
+                    <a href="mailto:sales@apexconverting.demo" className="text-slate-600 dark:text-slate-400 font-mono text-xs hover:text-amber-500">
+                      sales@apexconverting.demo
                     </a>
                   </div>
                 </div>
@@ -182,7 +182,7 @@ export const ContactPage: React.FC = () => {
                 Production Shift Schedule
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-mono">
-                Press lines operate continuously in three 8-hour industrial rotations. Walk-in technical consultations and CAD proofing reviews welcome Monday – Friday, 08:00 – 17:00 CAT.
+                Press lines operate continuously in three 8-hour industrial rotations. Walk-in technical consultations and CAD proofing reviews welcome Monday – Friday, 08:00 – 17:00.
               </p>
             </div>
           </div>
@@ -228,7 +228,7 @@ export const ContactPage: React.FC = () => {
                       value={inquiryName}
                       onChange={(e) => setInquiryName(e.target.value)}
                       className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
-                      placeholder="e.g. Kondwani Phiri"
+                      placeholder="e.g. Alex Morgan"
                     />
                   </div>
 
@@ -239,7 +239,7 @@ export const ContactPage: React.FC = () => {
                       value={inquiryCompany}
                       onChange={(e) => setInquiryCompany(e.target.value)}
                       className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
-                      placeholder="e.g. Lusaka Agro Ltd"
+                      placeholder="e.g. Apex Beverages Inc."
                     />
                   </div>
                 </div>
@@ -258,14 +258,14 @@ export const ContactPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Phone Number (WhatsApp) *</label>
+                    <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Phone Number *</label>
                     <input
                       type="tel"
                       required
                       value={inquiryPhone}
                       onChange={(e) => setInquiryPhone(e.target.value)}
                       className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
-                      placeholder="+260 97X XXX XXX"
+                      placeholder="+1 (555) 019-XXXX"
                     />
                   </div>
                 </div>
@@ -308,32 +308,27 @@ export const ContactPage: React.FC = () => {
                 <span>GEOGRAPHIC PLANT LOCATION</span>
               </div>
               <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">
-                Plot 35288 Mwembeshi Road, Light Industrial Area, Lusaka
+                1000 Industrial Parkway, Westgate Logistics Park, Metro City
               </h3>
-              <p className="text-xs text-slate-500">Easily accessible via Lumumba Road and Mungwi Road freight corridors.</p>
+              <p className="text-xs text-slate-500">Easily accessible via primary industrial logistics and freight corridors.</p>
             </div>
             <a
-              href="https://maps.google.com/?q=Mwembeshi+Road+Lusaka+Zambia"
+              href="https://maps.google.com/?q=Westgate+Logistics+Park"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-pill btn-pill-outline text-xs font-mono font-bold shrink-0"
             >
-              <span>Open in Google Maps</span>
+              <span>Open in Maps</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
 
           <div className="h-72 w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 dark:border-slate-800 relative flex items-center justify-center text-center p-6">
-            <iframe
-              title="PrintFast Zambia Facility Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15383.504936387087!2d28.2536838!3d-15.4216892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940f368097b6933%3A0xb36ef2799c85fae4!2sMwembeshi%20Rd%2C%20Lusaka%2C%20Zambia!5e0!3m2!1sen!2szm!4v1700000000000!5m2!1sen!2szm"
-              className="w-full h-full border-0 absolute inset-0 opacity-80 filter grayscale contrast-125"
-              loading="lazy"
-            />
-            <div className="relative z-10 bg-slate-950/90 backdrop-blur-md p-4 rounded-xl border border-white/10 text-white max-w-sm">
+            <div className="absolute inset-0 bg-slate-900/60 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px] opacity-70" />
+            <div className="relative z-10 bg-slate-950/90 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-white max-w-sm">
               <div className="w-3 h-3 rounded-full bg-[#E00019] mx-auto mb-2 animate-ping" />
-              <strong className="block text-xs font-mono">PRINTFAST ZAMBIA LIMITED</strong>
-              <span className="text-[11px] text-slate-300">Plot 35288 Mwembeshi Road • 24/7 Security Gate</span>
+              <strong className="block text-xs font-mono">APEX PACKAGING & CONVERTING</strong>
+              <span className="text-[11px] text-slate-300">1000 Industrial Parkway • 24/7 Security Gate</span>
             </div>
           </div>
         </div>
@@ -368,7 +363,7 @@ export const ContactPage: React.FC = () => {
                   Tracking Reference: <strong className="text-amber-600 dark:text-amber-400">{sampleRef}</strong>
                 </p>
                 <p className="text-xs text-slate-600 dark:text-slate-300 max-w-md mx-auto pt-2">
-                  Our Lusaka delivery courier will deliver the curated sample box to <span className="text-slate-950 dark:text-white font-bold">{sampleAddress}</span> within 24–48 hours.
+                  Our dispatch courier will deliver the curated sample box to <span className="text-slate-950 dark:text-white font-bold">{sampleAddress}</span> within 24–48 hours.
                 </p>
               </div>
               <button
@@ -433,7 +428,7 @@ export const ContactPage: React.FC = () => {
                     value={sampleCompany}
                     onChange={(e) => setSampleCompany(e.target.value)}
                     className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
-                    placeholder="e.g. Lusaka Bottlers Ltd"
+                    placeholder="e.g. Apex Bottlers Inc."
                   />
                 </div>
 
@@ -445,7 +440,7 @@ export const ContactPage: React.FC = () => {
                     value={sampleContact}
                     onChange={(e) => setSampleContact(e.target.value)}
                     className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
-                    placeholder="e.g. Kondwani Banda"
+                    placeholder="e.g. David Vance"
                   />
                 </div>
 
@@ -457,7 +452,7 @@ export const ContactPage: React.FC = () => {
                     value={sampleEmail}
                     onChange={(e) => setSampleEmail(e.target.value)}
                     className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
-                    placeholder="kondwani@company.com"
+                    placeholder="david@company.com"
                   />
                 </div>
 
@@ -469,20 +464,20 @@ export const ContactPage: React.FC = () => {
                     value={samplePhone}
                     onChange={(e) => setSamplePhone(e.target.value)}
                     className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
-                    placeholder="+260 97X XXX XXX"
+                    placeholder="+1 (555) 019-XXXX"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Office Delivery Address (Lusaka & Nationwide) *</label>
+                <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Office Delivery Address *</label>
                 <input
                   type="text"
                   required
                   value={sampleAddress}
                   onChange={(e) => setSampleAddress(e.target.value)}
                   className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
-                  placeholder="e.g. Stand 1045, Great East Road, Rhodes Park, Lusaka"
+                  placeholder="e.g. Suite 400, 100 Industrial Pkwy, Metro City"
                 />
               </div>
 

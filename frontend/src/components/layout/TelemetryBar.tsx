@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Clock, Phone, MapPin } from 'lucide-react';
 
 export const TelemetryBar: React.FC = () => {
-  const [lusakaTime, setLusakaTime] = useState('');
+  const [plantTime, setPlantTime] = useState('');
 
   useEffect(() => {
     const updateTime = () => {
       const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'Africa/Lusaka',
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
         hour12: false
       };
-      setLusakaTime(new Intl.DateTimeFormat('en-GB', options).format(new Date()));
+      setPlantTime(new Intl.DateTimeFormat('en-US', options).format(new Date()));
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
@@ -35,7 +34,7 @@ export const TelemetryBar: React.FC = () => {
 
           <div className="hidden md:flex items-center gap-1 text-slate-400">
             <Clock className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Lusaka CAT: <strong className="text-slate-200">{lusakaTime || '12:00:00'}</strong></span>
+            <span>Plant Clock: <strong className="text-slate-200">{plantTime || '12:00:00'}</strong></span>
           </div>
         </div>
 
@@ -46,11 +45,11 @@ export const TelemetryBar: React.FC = () => {
           </span>
           <span className="hidden sm:inline text-slate-700">•</span>
           <a
-            href="tel:+260974423496"
+            href="tel:+15550192834"
             className="flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
           >
             <Phone className="w-3.5 h-3.5 text-[#E00019]" />
-            <span>Plant Estimating: <strong>+260 974 423 496</strong></span>
+            <span>Plant Estimating: <strong>+1 (555) 019-2834</strong></span>
           </a>
         </div>
 

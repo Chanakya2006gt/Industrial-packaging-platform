@@ -7,7 +7,7 @@ test.describe('Mobile Responsive & Theme Integrity E2E', () => {
     await page.goto('/');
 
     // Verify Brand Logo
-    await expect(page.locator('img[alt="PrintFast Zambia Limited"]')).toBeVisible();
+    await expect(page.locator('img[alt*="Apex Packaging"]')).toBeVisible();
 
     // Mobile Hamburger Drawer Toggle
     const menuBtn = page.locator('button[aria-label="Toggle mobile menu"]');
@@ -26,7 +26,7 @@ test.describe('Mobile Responsive & Theme Integrity E2E', () => {
     if (await themeBtn.isVisible()) {
       await themeBtn.click();
       // Verify page still renders without crashing
-      await expect(page.locator('text=PrintFast')).toBeVisible();
+      await expect(page.locator('text=Packaging')).toBeVisible();
     }
   });
 

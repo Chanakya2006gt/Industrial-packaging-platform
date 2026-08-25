@@ -1,5 +1,5 @@
 -- ==============================================================================
--- PRINTFAST ZAMBIA LIMITED — SALES CRM & RATE CARDS SCHEMA
+-- INDUSTRIAL PACKAGING & CONVERTING — SALES CRM & RATE CARDS SCHEMA
 -- ==============================================================================
 
 -- 1. Supplier Raw Material Rate Cards

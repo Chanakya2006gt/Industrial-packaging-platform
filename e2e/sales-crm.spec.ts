@@ -11,12 +11,12 @@ test.describe('Commercial Sales CPQ Workstation & Auth Guard E2E', () => {
   test('Route Guard: Direct access to /admin without active session redirects to /admin/login', async ({ page }) => {
     await page.goto('/admin');
     await expect(page).toHaveURL(/.*\/admin\/login/);
-    await expect(page.locator('text=Plant Master Console')).toBeVisible();
+    await expect(page.locator('text=Plant Admin Portal')).toBeVisible();
   });
 
   test('Login Fail-Closed: Attempting login with empty or invalid credentials shows error banner', async ({ page }) => {
     await page.goto('/sales/login');
-    await page.fill('input[type="email"]', 'fake.staff@printfastzambia.com');
+    await page.fill('input[type="email"]', 'fake.staff@apexconverting.demo');
     await page.fill('input[type="password"]', 'WrongPassword123');
     await page.click('button:has-text("Sign In to Workstation")');
 

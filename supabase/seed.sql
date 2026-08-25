@@ -1,15 +1,15 @@
 -- ==============================================================================
--- PrintFast Zambia Limited (PZL) — Database Seed Script
+-- Apex Packaging & Converting — Database Seed Script
 -- ==============================================================================
 
 -- 1. Default Plant Settings & Media Slots
 INSERT INTO public.plant_settings (key, value, description)
 VALUES
-    ('plant_status_notice', 'Plant Status: 24/7 Continuous Shifts • Mwembeshi Road, Lusaka', 'Top bar operational notice'),
-    ('sales_phone', '+260 974 423 496', 'Primary sales estimating phone'),
-    ('whatsapp_number', '+260 974 423 496', 'Direct WhatsApp plant dispatch phone'),
-    ('sales_email', 'sales@printfastzambia.com', 'Official RFQ reception inbox'),
-    ('factory_location', 'Plot 35288 Mwembeshi Road, Light Industrial Area, Lusaka, Zambia', 'Physical manufacturing plant address'),
+    ('plant_status_notice', 'Plant Status: 24/7 Continuous Shifts • Industrial Packaging Facility', 'Top bar operational notice'),
+    ('sales_phone', '+1 (555) 019-2834', 'Primary sales estimating phone'),
+    ('whatsapp_number', '+1 (555) 019-2834', 'Direct dispatch phone'),
+    ('sales_email', 'sales@apexconverting.demo', 'Official RFQ reception inbox'),
+    ('factory_location', '1000 Industrial Parkway, Westgate Logistics Park, Metro City', 'Physical manufacturing plant address'),
     ('default_currency', 'ZMW', 'Default billing currency'),
     ('quote_turnaround_text', 'Quote Turnaround: < 4 Hours', 'Estimating speed commitment'),
     ('media_site_logo', 'assets/logo.svg', 'Primary brand logo vector/image'),
@@ -81,11 +81,11 @@ INSERT INTO public.rfq_inquiries (
 ) VALUES
     (
         'a1b2c3d4-0001-4000-8000-000000000001',
-        'PZL-2026-0801',
-        'Zambian Breweries PLC',
-        'Mulenga Chileshe',
-        'procurement@zambianbreweries.co.zm',
-        '+260 977 123 456',
+        'RFQ-2026-0801',
+        'Apex Bottling Co.',
+        'David Vance',
+        'd.vance@apexbottling.demo',
+        '+1 (555) 019-2834',
         'Beverage',
         'flexo_labels',
         'polypropylene_white',
@@ -97,15 +97,15 @@ INSERT INTO public.rfq_inquiries (
         '["uv_varnish", "cold_foil"]'::jsonb,
         'High-speed rotary bottling line. Need sample swatch before mass run.',
         'pending',
-        'Chanakya (Sales Director)'
+        'Alex Miller (Estimating Director)'
     ),
     (
         'a1b2c3d4-0002-4000-8000-000000000002',
-        'PZL-2026-0802',
-        'Lusaka Pharma Laboratories',
-        'Dr. Karen Banda',
-        'k.banda@lusakapharma.com',
-        '+260 966 987 654',
+        'RFQ-2026-0802',
+        'Metro Pharma Laboratories',
+        'Dr. Karen Hayes',
+        'k.hayes@metropharma.demo',
+        '+1 (555) 019-7744',
         'Pharmaceutical',
         'offset_packaging',
         'fbb_carton',
@@ -117,6 +117,6 @@ INSERT INTO public.rfq_inquiries (
         '["uv_varnish", "embossing"]'::jsonb,
         'Outer cartons for 100ml cough syrup bottles. Embossed braille required.',
         'quoted',
-        'Chanakya (Sales Director)'
+        'Alex Miller (Estimating Director)'
     )
 ON CONFLICT (reference_no) DO NOTHING;

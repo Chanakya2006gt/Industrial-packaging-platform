@@ -1,66 +1,170 @@
-# PrintFast Zambia Limited (PZL) — Cloud Operations Platform
+# Apex Packaging & Converting — Industrial Operations Platform
 
 [![Architecture](https://img.shields.io/badge/Architecture-Cloud--Native_React_+_Supabase-blue)](./docs/ARCHITECTURE.md)
-[![Design System](https://img.shields.io/badge/Design_System-60--30--10_Industrial-red)](./src/styles/globals.css)
-[![Security](https://img.shields.io/badge/Security-Supabase_RLS_+_Cloudflare-green)](./docs/SECURITY.md)
-[![Audit Log](https://img.shields.io/badge/Ledger-memory__PZL.md-orange)](./memory_PZL.md)
+[![Design System](https://img.shields.io/badge/Design_System-Swiss_60--30--10_Industrial-red)](./frontend/src/styles/globals.css)
+[![Security](https://img.shields.io/badge/Security-Supabase_RLS_+_Defense--in--Depth-green)](./docs/SECURITY.md)
+[![Decisions Ledger](https://img.shields.io/badge/Architecture_Ledger-DECISIONS.md-orange)](./DECISIONS.md)
 
-Welcome to the official technical repository and digital platform for **PrintFast Zambia Limited (PZL)**, Lusaka's premier high-volume printing press and packaging converter specializing in flexographic self-adhesive labels, Heidelberg multi-colour offset lithography (up to 28.5"×40"), and precision industrial finishing.
+An enterprise-grade, cloud-native B2B manufacturing and operations platform engineered for industrial packaging converters. The system connects public B2B procurement clients with high-volume production lines (multi-colour flexographic roll label converting and Heidelberg Speedmaster offset lithography) through an interactive 5-step CAD/FINAT configurator, real-time CPQ estimator, and secure role-based operations consoles.
 
 ---
 
-## 1. Documentation Index
+## 🌟 Highlights & Key Engineering Capabilities
 
-This project adheres to rigorous, production-grade software engineering standards:
+### 1. Interactive 5-Step B2B Configurator & FINAT Rewind Visualizer
+- **FINAT 1–8 Technical Reel Viewer**: Full visual feedback loop rendering European standard label unwind orientations (Wound Out / Wound In, Top/Bottom/Left/Right off first) for automatic bottling and packaging machinery.
+- **3D Container Mockup Studio**: Dynamic substrate pop-out preview across bottles, jars, jugs, vials, and cartons with live finish overlays (White/Clear/Silver BOPP, Cold Foil, Spot UV).
+- **Client Magic-Byte Pre-flight**: Fail-closed client-side binary validation verifying authentic PDF/vector headers (`%PDF-`, `PNG`, `PK\x03\x04`) before storage ingestion.
 
-| Document | Purpose & Scope |
+### 2. Dual-Engine CPQ Estimator & Parity Test Suite
+- **Complex Industrial Estimating Math**: Calculates square meter surface area, linear web meters, CTP plate exposure costs, hourly press run calculations (flexo vs. offset), embellishments, and margin controls.
+- **Isomorphic Parity**: Shared TypeScript / Node.js calculation models with deterministic unit tests verifying 100% parity across client preview and backend API quotation endpoints.
+- **CSV Formula Injection Defense**: Sanitizes spreadsheet exports to mitigate formula execution vulnerabilities in Excel / Google Sheets (`=`, `+`, `-`, `@`).
+
+### 3. Workflow Decision Gates & Operations CRM (`/sales`)
+- **Trelio-Style Workflow Decision Gates**: Manages offline-first industrial commercial lifecycles (`Under Review` &rarr; `Quote Dispatched` &rarr; `In Production` &rarr; `Dispatched` &rarr; `Mark as Settled`).
+- **Dynamic 4-Hour SLA Monitor**: Real-time visual countdown timers and background worker sweeps tracking turnaround targets.
+- **Offline Bank Clearance Ledger**: Records verified wire transfers, corporate ACH, bank cheques, and cash settlements with audit records.
+
+### 4. Zero-Trust Supabase Security Architecture (`/admin`)
+- **Row Level Security (RLS) Matrix**: Strict PostgreSQL policies isolating public anonymous RFQ insertions, estimator read/updates, and executive superadmin role capabilities.
+- **Secure Auth Session Hooks**: Role normalization with protection against privilege escalation.
+- **Executive Operations Console**: Staff management, live media slot replacements, and cryptographic audit logs.
+
+---
+
+## 📐 System Architecture
+
+```
+                                  [ Cloudflare / Edge CDN ]
+                                             │
+                                             ▼
+                        [ Vercel Edge: React 18 Application (SPA) ]
+                                             │
+           ┌─────────────────────────────────┼─────────────────────────────────┐
+           ▼                                 ▼                                 ▼
+[ Public Customer Portal ]        [ Sales Operations Console ]      [ Executive Management Hub ]
+• 5-Step B2B Configurator         • Route: `/sales`                 • Route: `/admin`
+• FINAT 1–8 Rewind Viewer         • CPQ Estimation Engine           • Staff Account CRUD
+• 3D Studio Mockup Stage          • Trelio Decision Gates           • Dynamic Plant Settings
+• Sample Swatch Kit Request       • Rate Card CSV Importer          • Live Media Slots & Audit
+           │                                 │                                 │
+           └─────────────────────────────────┼─────────────────────────────────┘
+                                             ▼
+                                [ Supabase Cloud Platform ]
+                                             │
+         ┌───────────────────────────────────┼───────────────────────────────────┐
+         ▼                                   ▼                                   ▼
+[ PostgreSQL 15 + RLS ]             [ Supabase Auth (JWT) ]            [ Object Storage (S3) ]
+• `rfq_inquiries`                   • Role: `superadmin`               • `rfq-dielines`
+• `sample_kit_requests`             • Role: `sales`                    • `quote-attachments`
+• `supplier_rate_cards`             • Function: `get_user_role()`      • `site-media`
+• `offline_bank_clearances`
+```
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies |
 | :--- | :--- |
-| 📄 **[`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md)** | Cloud-native system architecture, React + Supabase PostgreSQL schema, RLS policies, and Vercel/Cloudflare edge delivery. |
-| 📄 **[`docs/PRD.md`](./docs/PRD.md)** | Product Requirements Document: Target personas, 5-step B2B Configurator, FINAT roll calculator, hidden direct-URL staff consoles. |
-| 📄 **[`docs/SECURITY.md`](./docs/SECURITY.md)** | Threat model, Supabase RLS matrix, RBAC roles (`superadmin`, `sales`), magic-byte file validation, and Cloudflare WAF. |
-| 📄 **[`memory_PZL.md`](./memory_PZL.md)** | Append-only decision ledger ([D000] &rarr; [D029]), competitor benchmarking insights, and error resolution registry. |
+| **Frontend** | React 18, TypeScript, Vite, React Router 6 |
+| **Styling & UI** | Tailwind CSS, Lucide Icons, Custom Double-Bezel Design Tokens |
+| **Animation Engine** | GSAP 3.12 (GreenSock), ScrollTrigger |
+| **Backend Services** | Node.js (ES Modules), Express 4.21, Native Node Test Runner |
+| **Database & Auth** | Supabase Managed PostgreSQL 15+, Supabase Auth, Row Level Security |
+| **Cloud Storage** | S3-compatible Object Storage (`rfq-dielines`, `quote-attachments`) |
+| **Testing** | Node Native Test Runner (`node:test`), Playwright E2E |
 
 ---
 
-## 2. Technology Stack & Key Features
+## 📁 Repository Structure
 
-- **Frontend Application**: React 18 + Vite + TypeScript.
-- **Styling & Theme**: Tailwind CSS + Custom CSS Variables (Swiss 60-30-10 industrial palette).
-- **Motion Choreography**: GSAP 3.12 + ScrollTrigger corporate animation engine with industrial deceleration curves.
-- **Database & Auth**: Supabase Managed PostgreSQL 15+ with Row Level Security (RLS) & JWT authentication.
-- **Cloud Object Storage**: S3-compatible Supabase Storage (`rfq-dielines`, `quote-attachments`, `site-media`).
-- **Deployment & Edge Security**: Vercel Global Edge Hosting with Cloudflare DNS, DDoS protection, and WAF.
-
-### Portals & Routing Architecture:
-* **Public Customer Interface** (`/`, `/about`, `/services`, `/gallery`, `/contact`, `/configurator`): Seamless B2B specification configuration, CAD dieline uploader, sample kit ordering, and machine telemetry. Zero artificial login walls.
-* **Hidden Sales Console** (Direct URL: `/sales`): Estimator pipeline management, dieline inspection, Quote PDF attachment, and **Trelio-Style Decision Gates** (`Under Review` &rarr; `Quote Sent` &rarr; `In Production` &rarr; `Dispatched` &rarr; **`Mark as Settled`**).
-* **Hidden Executive Hub** (Direct URL: `/admin`): Plant ownership telemetry, sales staff account CRUD & deactivation, dynamic plant settings, and live media asset replacement.
+```text
+├── backend/
+│   ├── scripts/health-check.js          # Zero-dependency platform diagnostic tool
+│   ├── src/domain/estimating/           # Isomorphic CPQ mathematical calculation engine
+│   ├── src/jobs/                        # 4-hr SLA monitor & 30-day quote expiry sweep jobs
+│   ├── src/utils/                       # Magic-byte validator, CSV sanitizer, boot guards
+│   ├── src/server.js                    # Express API with staff bearer token verification
+│   ├── src/worker.js                    # Continuous 15-min background job scheduler
+│   └── test/                            # Unit tests for math parity, CSV & magic bytes
+├── docs/
+│   ├── ARCHITECTURE.md                  # Comprehensive architectural specification
+│   ├── PRD.md                           # Product Requirements Document
+│   └── SECURITY.md                      # Threat model & Supabase RLS matrix
+├── e2e/                                 # Playwright end-to-end integration tests
+├── frontend/
+│   ├── public/assets/                   # SVG vector marks and industrial plant photography
+│   └── src/
+│       ├── components/layout/           # Header, Footer, TelemetryBar, ProtectedRoute
+│       ├── lib/                         # Supabase client, Auth provider, CPQ calculator
+│       ├── pages/public/                # Home, About, Services, Gallery, Contact, Configurator
+│       ├── pages/sales/                 # Pipeline Kanban, CPQ Estimator, Rate Cards, Clearances
+│       └── pages/admin/                 # Staff CRUD, Plant Settings, Media Slots, Audit Logs
+├── supabase/
+│   ├── migrations/                      # PostgreSQL schema, RLS policies, RBAC functions
+│   └── seed.sql                         # Demonstrative B2B catalog, rate cards & test pipeline
+├── DECISIONS.md                         # Append-only architectural decision records (D001-D040)
+└── package.json                         # Workspace monorepo manifest
+```
 
 ---
 
-## 3. Quick Start & Local Setup
+## 🚀 Getting Started
 
+### Prerequisites
+- Node.js 18+ or 20+
+- npm 9+
+
+### 1. Clone & Install Dependencies
 ```bash
-# 1. Clone repository
-git clone https://github.com/Chanakya2006gt/Printfast_Zambia.git
-cd Printfast_zambia_website
-
-# 2. Copy environment template
-cp .env.example .env
-
-# 3. Install dependencies
+git clone https://github.com/Chanakya2006gt/industrial-packaging-platform.git
+cd industrial-packaging-platform
 npm install
+```
 
-# 4. Start local development server
+### 2. Configure Environment Variables
+```bash
+cp frontend/.env.example frontend/.env
+```
+*(Optionally populate `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` for live cloud database features).*
+
+### 3. Run Development Server
+```bash
+# Start frontend application (Vite on http://localhost:5173)
 npm run dev
 
-# 5. Build for production (Vercel)
+# Or start backend API server (http://localhost:5001)
+npm run dev:backend
+# Or run background worker
+npm run dev:worker
+```
+
+### 4. Demo Staff Consoles & Roles
+The platform includes two role-protected operations consoles:
+
+| Console Route | Email Reference | Role | Capabilities |
+| :--- | :--- | :--- | :--- |
+| **`/sales/login`** | `sales@apexconverting.demo` | `sales` | RFQ Kanban Pipeline, CPQ Packaging Calculator, Excel Rate Cards, Offline Bank Clearances |
+| **`/admin/login`** | `admin@apexconverting.demo` | `superadmin` | Executive Master Console, Staff Account CRUD, Live Plant Settings, Media Slots & Audit Logs |
+
+*Note: In your Supabase project, accounts are created under **Authentication &rarr; Users** with your chosen password and mapped to `public.profiles`.*
+
+
+### 5. Execute Test Suites & Health Diagnostic
+```bash
+# Run backend unit tests (CPQ parity, CSV sanitization, magic bytes, worker SLA)
+npm run test:backend
+
+# Run platform diagnostic health check
+npm run health
+
+# Build frontend for production verification
 npm run build
 ```
 
 ---
 
-## 4. License & Proprietary Rights
-
-All brand marks, machinery specifications, and corporate assets are proprietary to **PrintFast Zambia Limited**.
-Software architecture and platform source code are developed for the exclusive operations of PZL.
+## 📄 License
+This project is open source and available under the [MIT License](LICENSE).

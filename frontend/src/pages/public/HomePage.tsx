@@ -28,7 +28,7 @@ export const HomePage: React.FC = () => {
               </h1>
 
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-                From waterproof beverage bottle labels and pharmaceutical cartons to heavy-duty FMCG packaging and commercial catalogues. Manufactured in Lusaka with European press machinery.
+                From waterproof beverage bottle labels and pharmaceutical cartons to heavy-duty FMCG packaging and commercial catalogues. Manufactured with European precision press machinery.
               </p>
 
               {/* Nested Button-in-Button CTAs */}
@@ -82,7 +82,7 @@ export const HomePage: React.FC = () => {
                     <Activity className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-bold text-slate-900 dark:text-white">24/7 Lusaka Plant</div>
+                    <div className="font-bold text-slate-900 dark:text-white">24/7 Production</div>
                     <div className="text-[11px] text-slate-500">Continuous shifts</div>
                   </div>
                 </div>
@@ -91,8 +91,8 @@ export const HomePage: React.FC = () => {
                     <Layers className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-bold text-slate-900 dark:text-white">Proudly Zambian</div>
-                    <div className="text-[11px] text-slate-500">Mwembeshi Rd facility</div>
+                    <div className="font-bold text-slate-900 dark:text-white">Industrial Grade</div>
+                    <div className="text-[11px] text-slate-500">Modern facility</div>
                   </div>
                 </div>
               </div>
@@ -111,7 +111,7 @@ export const HomePage: React.FC = () => {
                         Plant Fleet Telemetry
                       </div>
                       <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-0.5">
-                        Lusaka Facility • 8C Flexo + 6C Offset Litho
+                        Converting Facility • 8C Flexo + 6C Offset Litho
                       </div>
                     </div>
                     <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 shrink-0">
@@ -220,7 +220,7 @@ export const HomePage: React.FC = () => {
             Packaging & Print Solutions
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
-            Manufactured in Lusaka with European press machinery and local technical support.
+            Manufactured with European press machinery and dedicated engineering technical support.
           </p>
         </div>
 
@@ -322,7 +322,7 @@ export const HomePage: React.FC = () => {
                   Request a Free Physical Sample Kit
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-sm max-w-xl leading-relaxed font-sans">
-                  Inspect genuine label adhesives on your containers and test boxboard calipers before placing volume orders. We dispatch swatch packs across Zambia.
+                  Inspect genuine label adhesives on your containers and test boxboard calipers before placing volume orders. We dispatch swatch packs directly to your office.
                 </p>
                 <div className="flex flex-wrap items-center gap-4 pt-2">
                   <Link to="/contact#sample-kit" className="btn-pill btn-pill-primary text-xs font-bold">
@@ -351,7 +351,7 @@ export const HomePage: React.FC = () => {
         <div className="max-w-2xl space-y-2">
           <div className="tech-tag tech-tag-emerald">MANUFACTURING STANDARDS</div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
-            The PrintFast Commitment
+            The Manufacturing Commitment
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
             Reliable production capacity and strict quality management calibrated for industrial supply chains.
@@ -395,7 +395,7 @@ export const HomePage: React.FC = () => {
               <div className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">CONTINUOUS 04</div>
               <h3 className="text-base font-bold text-slate-950 dark:text-white">24/7 Factory Output</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Continuous operations at our Lusaka plant ensure strict delivery turnaround for seasonal FMCG production surges.
+                Continuous operations at our converting plant ensure strict delivery turnaround for seasonal FMCG production surges.
               </p>
             </div>
           </div>

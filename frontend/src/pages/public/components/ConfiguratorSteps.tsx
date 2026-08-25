@@ -114,12 +114,60 @@ export const ConfiguratorSteps: React.FC<ConfiguratorStepsProps> = ({
           ))}
         </div>
 
-        {/* STEP 1: DIMENSIONS & VOLUME */}
+        {/* STEP 1: PRODUCT FORMAT, DIMENSIONS & VOLUME */}
         {currentStep === 1 && (
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">Step 1: Container Dimensions & Order Volume</h3>
-              <p className="text-xs text-slate-500 mt-1">Specify width and height in millimeters, plus your required batch volume.</p>
+              <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">Step 1: Product Format & Dimensions</h3>
+              <p className="text-xs text-slate-500 mt-1">Select your packaging classification, container dimensions in millimeters, and batch volume.</p>
+            </div>
+
+            {/* Packaging Classification Selector */}
+            <div>
+              <label className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 mb-2">Packaging Classification</label>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {[
+                  { id: 'flexo_labels', label: 'Flexo Roll Labels', tag: 'ROTARY ROLL', desc: 'Bottles, Jars, Jerry Cans & Vials on automatic reels.' },
+                  { id: 'folding_cartons', label: 'Folding Box Cartons', tag: 'FBB / CARTON', desc: 'Rigid medicine boxes, retail cartons & sleeves.' },
+                  { id: 'commercial_print', label: 'Commercial Sheets', tag: 'FLAT SHEET', desc: 'Sheeted labels, product inserts & booklets.' }
+                ].map(p => (
+                  <div
+                    key={p.id}
+                    onClick={() => {
+                      setCategory(p.id);
+                      if (p.id === 'folding_cartons') {
+                        setRollOrSheet('sheet');
+                        setSubstrate('fbb_carton');
+                        setWidthMm(110);
+                        setHeightMm(180);
+                      } else if (p.id === 'commercial_print') {
+                        setRollOrSheet('sheet');
+                        setSubstrate('fasson_semi_gloss');
+                        setWidthMm(100);
+                        setHeightMm(150);
+                      } else {
+                        setRollOrSheet('roll');
+                        setSubstrate('polypropylene_white');
+                        setWidthMm(85);
+                        setHeightMm(120);
+                      }
+                    }}
+                    className={`p-3.5 rounded-xl border-2 cursor-pointer transition-all flex flex-col justify-between ${
+                      category === p.id
+                        ? 'border-[#E00019] bg-rose-50/60 dark:bg-rose-950/30 text-slate-950 dark:text-white shadow-sm'
+                        : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <strong className="font-bold text-xs font-mono">{p.label}</strong>
+                        <span className="tech-tag tech-tag-crimson text-[8px]">{p.tag}</span>
+                      </div>
+                      <p className="text-[11px] text-slate-500">{p.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -129,7 +177,7 @@ export const ConfiguratorSteps: React.FC<ConfiguratorStepsProps> = ({
                   type="number"
                   value={widthMm}
                   onChange={(e) => setWidthMm(Math.max(10, Number(e.target.value)))}
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-bold font-mono"
+                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-bold font-mono text-slate-950 dark:text-white"
                 />
               </div>
 
@@ -139,18 +187,18 @@ export const ConfiguratorSteps: React.FC<ConfiguratorStepsProps> = ({
                   type="number"
                   value={heightMm}
                   onChange={(e) => setHeightMm(Math.max(10, Number(e.target.value)))}
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-bold font-mono"
+                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-bold font-mono text-slate-950 dark:text-white"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Batch Quantity</label>
+                <label className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Batch Quantity (Units)</label>
                 <input
                   type="number"
                   value={quantity}
                   step={5000}
                   onChange={(e) => setQuantity(Math.max(1000, Number(e.target.value)))}
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-bold font-mono"
+                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-bold font-mono text-slate-950 dark:text-white"
                 />
               </div>
             </div>
@@ -354,7 +402,7 @@ export const ConfiguratorSteps: React.FC<ConfiguratorStepsProps> = ({
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm"
-                  placeholder="e.g. Lusaka Bottlers Limited"
+                  placeholder="e.g. Apex Bottling Co."
                 />
               </div>
               <div>
@@ -365,7 +413,7 @@ export const ConfiguratorSteps: React.FC<ConfiguratorStepsProps> = ({
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
                   className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm"
-                  placeholder="e.g. Kondwani Banda"
+                  placeholder="e.g. David Vance"
                 />
               </div>
               <div>
@@ -387,7 +435,7 @@ export const ConfiguratorSteps: React.FC<ConfiguratorStepsProps> = ({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm"
-                  placeholder="+260 97X XXX XXX"
+                  placeholder="+1 (555) 019-XXXX"
                 />
               </div>
             </div>

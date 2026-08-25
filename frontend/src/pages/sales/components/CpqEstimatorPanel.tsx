@@ -81,17 +81,17 @@ export const CpqEstimatorPanel: React.FC<CpqEstimatorPanelProps> = ({
                   type="text"
                   value={calcCompanyName}
                   onChange={(e) => setCalcCompanyName(e.target.value)}
-                  placeholder="e.g. Zambian Breweries PLC"
+                  placeholder="e.g. Apex Bottlers Ltd"
                   className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
                 />
               </div>
               <div>
-                <label className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Client WhatsApp Phone</label>
+                <label className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Client Contact Phone</label>
                 <input
                   type="text"
                   value={calcPhone}
                   onChange={(e) => setCalcPhone(e.target.value)}
-                  placeholder="e.g. +260 977 123 456"
+                  placeholder="e.g. +1 (555) 019-2834"
                   className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
                 />
               </div>
@@ -266,7 +266,7 @@ export const CpqEstimatorPanel: React.FC<CpqEstimatorPanelProps> = ({
 
               <button
                 onClick={() => {
-                  alert(`Official PZL Job-Card Generated! Gross: ZMW ${currentCalc.finalGrossPriceZMW.toLocaleString()}`);
+                  alert(`Official Job-Card Generated! Gross: ZMW ${currentCalc.finalGrossPriceZMW.toLocaleString()}`);
                 }}
                 className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 border border-slate-700"
               >

@@ -1,8 +1,8 @@
 {
-  "name": "printfast-zambia-monorepo",
+  "name": "industrial-packaging-platform",
   "version": "2.0.0",
   "private": true,
-  "description": "PrintFast Zambia Limited — Full-Stack Industrial Converting & Offset Packaging Platform",
+  "description": "Apex Packaging & Converting — Full-Stack Industrial Converting & Offset Packaging Operations Platform",
   "workspaces": [
     "frontend",
     "backend"
@@ -23,10 +23,12 @@
     "packaging",
     "flexo-printing",
     "heidelberg-offset",
-    "zambia",
+    "converting",
     "b2b-manufacturing",
-    "cpq"
+    "cpq",
+    "finat-calculator",
+    "supabase-rls"
   ],
-  "author": "PrintFast Zambia Limited",
-  "license": "UNLICENSED"
+  "author": "Engineering Team",
+  "license": "MIT"
 }

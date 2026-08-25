@@ -1,14 +1,14 @@
-# SECURITY — PrintFast Zambia Cloud Platform
+# SECURITY — Industrial Packaging & Operations Platform
 
 **Version:** 2.0  
 **Date:** 2026-08-25  
-**Classification:** Internal Technical Architecture  
+**Classification:** Technical Security Architecture  
 
 ---
 
 ## 1. Security Architecture & Threat Model
 
-The PrintFast Zambia cloud platform enforces Defense-in-Depth across every layer:
+The cloud operations platform enforces Defense-in-Depth across every layer:
 
 ```
 [ Edge WAF / Cloudflare ] ──► [ Vercel Edge Headers ] ──► [ React Router Guards ] ──► [ Supabase RLS Policies ]

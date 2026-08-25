@@ -1,6 +1,6 @@
 /**
- * Render Web Service API Entry Point
- * Express HTTP API for PrintFast Zambia with JWT Token Auth, CORS allowlist, security headers, and CPQ endpoints.
+ * Industrial Packaging Platform API Entry Point
+ * Express HTTP API with JWT Token Auth, CORS allowlist, security headers, and CPQ endpoints.
  */
 
 import express from 'express';
@@ -24,8 +24,6 @@ const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabase
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
-  'https://printfastzambia.com',
-  'https://www.printfastzambia.com',
   ...(process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [])
 ];
 
@@ -35,7 +33,7 @@ app.use(cors({
     if (origin.endsWith('.vercel.app') || allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
-    return callback(new Error('CORS origin not allowed by PrintFast security policy.'));
+    return callback(new Error('CORS origin not allowed by platform security policy.'));
   },
   credentials: true
 }));
@@ -95,9 +93,9 @@ app.get('/healthz', (req, res) => {
 
 app.get('/', (req, res) => {
   res.json({
-    service: 'printfast-api',
+    service: 'packaging-platform-api',
     status: 'healthy',
-    facility: 'Plot 35288 Mwembeshi Road, Lusaka, Zambia',
+    facility: '1000 Industrial Parkway, Westgate Logistics Park, Metro City',
     schedule: '24/7 continuous shift production'
   });
 });
@@ -125,7 +123,7 @@ app.post('/api/estimator/calculate', requireStaffAuth, (req, res) => {
 // 5. Staff-Protected CSV Export Endpoint
 app.post('/api/export/csv', requireStaffAuth, (req, res) => {
   try {
-    const { headers, rows, filename = 'printfast_export.csv' } = req.body;
+    const { headers, rows, filename = 'sales_export.csv' } = req.body;
     if (!headers || !rows) {
       return res.status(400).json({ error: 'Headers and rows are required.' });
     }
@@ -158,5 +156,5 @@ app.post('/api/upload/validate', requireStaffAuth, (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  secureLogger.info(`🏭 PrintFast Zambia API active on port ${PORT}`);
+  secureLogger.info(`🏭 Industrial Packaging API active on port ${PORT}`);
 });

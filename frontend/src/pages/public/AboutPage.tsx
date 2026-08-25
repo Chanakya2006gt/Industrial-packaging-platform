@@ -11,12 +11,12 @@ export const AboutPage: React.FC = () => {
       
       {/* Header Banner */}
       <section className="pt-10 text-center space-y-3 max-w-3xl mx-auto">
-        <div className="tech-tag tech-tag-crimson">24/7 LUSAKA INDUSTRIAL CONVERTING</div>
+        <div className="tech-tag tech-tag-crimson">24/7 INDUSTRIAL CONVERTING</div>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
-          Your Local Packaging Manufacturing Partner
+          Your Industrial Packaging Manufacturing Partner
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          Located in Lusaka's Light Industrial Area, PrintFast Zambia Limited operates 24/7 continuous shifts to manufacture custom roll labels, product cartons, and commercial collateral with Swiss-grade precision.
+          Operating 24/7 continuous production shifts, Apex Packaging & Converting manufactures custom roll labels, product cartons, and commercial collateral with Swiss-grade precision.
         </p>
       </section>
 
@@ -60,7 +60,7 @@ export const AboutPage: React.FC = () => {
             <ul className="space-y-3.5 text-xs sm:text-sm font-mono text-slate-700 dark:text-slate-300">
               <li className="flex items-start gap-3">
                 <span className="tech-tag tech-tag-neutral shrink-0 min-w-[75px] text-center">PLANT</span>
-                <span>Plot 35288 Mwembeshi Road, Light Industrial Area, Lusaka.</span>
+                <span>1000 Industrial Parkway, Westgate Logistics Park, Metro City.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="tech-tag tech-tag-cyan shrink-0 min-w-[75px] text-center">FLEXO</span>

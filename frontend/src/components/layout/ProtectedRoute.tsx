@@ -27,7 +27,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowe
           Verifying Plant Security Credentials
         </h2>
         <p className="text-xs text-slate-400 mt-1 max-w-xs">
-          Authenticating workstation session with Mwembeshi Road security gateway...
+          Authenticating workstation session with secure plant gateway...
         </p>
       </div>
     );

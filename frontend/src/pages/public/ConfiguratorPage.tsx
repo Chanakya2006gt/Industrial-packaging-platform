@@ -75,7 +75,7 @@ export const ConfiguratorPage: React.FC = () => {
     e.preventDefault();
     setSubmitting(true);
     setSubmitError(null);
-    const refNo = `PZL-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const refNo = `RFQ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
     try {
       let fileUrl = '';
@@ -197,7 +197,7 @@ export const ConfiguratorPage: React.FC = () => {
                 Official Reference: <strong className="text-[#E00019]">{submittedRef}</strong>
               </p>
               <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto pt-2">
-                Our plant estimating team at Mwembeshi Road has received your CAD specifications. An official quote PDF with dieline validation will be dispatched within 4 hours.
+                Our plant estimating team has received your CAD specifications. An official quote PDF with dieline validation will be dispatched within 4 hours.
               </p>
             </div>
 
@@ -266,6 +266,10 @@ export const ConfiguratorPage: React.FC = () => {
               <FinatReelViewer
                 finatDirection={finatDirection}
                 setFinatDirection={setFinatDirection}
+                coreMm={coreMm}
+                widthMm={widthMm}
+                heightMm={heightMm}
+                quantity={quantity}
                 finatStandards={finatStandards}
               />
             )}
