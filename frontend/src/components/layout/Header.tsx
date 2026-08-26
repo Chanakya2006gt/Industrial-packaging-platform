@@ -30,6 +30,14 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full px-4 sm:px-6 lg:px-8 pt-3 pb-2 transition-all">
+      {/* Accessible Keyboard Skip Link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-slate-950 focus:text-white focus:rounded-xl focus:shadow-xl focus:border focus:border-rose-500 text-xs font-mono font-bold"
+      >
+        Skip to main content
+      </a>
+
       <div className="max-w-7xl mx-auto glass-nav rounded-full px-5 py-2.5 flex items-center justify-between transition-all">
         
         {/* Brand Logo & Telemetry Indicator */}

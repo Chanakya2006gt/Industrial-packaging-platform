@@ -167,6 +167,17 @@
   - Top Corporate Accounts Leaderboard (`<TopAccountsLeaderboard />`): Lifetime spend ranking with instant quote shortcut.
 - **Benefit:** 100% vector fidelity, 60fps performance, zero layout shift (zero FOUC), and perfect light/dark theme adaptation without bulky third-party charting libraries.
 
+---
+
+### [D018] Performance Code-Splitting, SEO/GEO AI Discovery & WCAG 2.2 Accessibility Upgrades
+- **Date:** 2026-08-26
+- **Action:** Implemented a full-system audit enhancement package:
+  - **Dynamic Route-Level Code Splitting**: Converted static imports in `App.tsx` to `React.lazy()` with `<Suspense fallback={<PageLoader />}>`, isolating heavy admin/CRM charting modules and reducing entry bundle from ~745 kB to ~407 kB (117 kB gzip).
+  - **AI Agentic Discovery (GEO)**: Authored `public/llms.txt` exposing machine fleet specifications, FINAT 1–8 reel standards, and substrate technical data to AI search engines (Perplexity, ChatGPT Search, Google AI Overviews).
+  - **Search & Social Discovery**: Generated `public/robots.txt`, `public/sitemap.xml`, Canonical tags, OpenGraph cards, Twitter cards, and Schema.org JSON-LD structured data for `Organization` and `Manufacturer`.
+  - **WCAG 2.2 Accessibility**: Added keyboard "Skip to main content" link and explicit main element focus navigation.
+
+
 
 
 

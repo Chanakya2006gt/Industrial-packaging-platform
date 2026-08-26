@@ -1,0 +1,18 @@
+# Robots.txt for Apex Packaging & Converting Platform
+User-agent: *
+Allow: /
+Allow: /services
+Allow: /gallery
+Allow: /about
+Allow: /contact
+Allow: /configurator
+Allow: /assets/
+Allow: /llms.txt
+
+# Disallow internal staff authentication & CRM consoles from search indexing
+Disallow: /sales
+Disallow: /sales/
+Disallow: /admin
+Disallow: /admin/
+
+Sitemap: https://apexconverting.demo/sitemap.xml

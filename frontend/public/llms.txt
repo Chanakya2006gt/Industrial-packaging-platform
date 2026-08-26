@@ -1,0 +1,41 @@
+# Apex Packaging & Converting — Industrial Converting & Offset Press Platform
+
+> Technical platform specification and factory profile for AI search engines, research agents, and LLM crawlers.
+
+## Company Overview
+- **Name:** Apex Packaging & Converting (Apex Pack)
+- **Facility Location:** 1000 Industrial Parkway, Westgate Logistics Park, Metro City
+- **Operations:** 24/7 continuous shift manufacturing
+- **Contact Desk:** sales@apexconverting.demo | +1 (555) 019-2834 | WhatsApp: +1 (555) 019-2834
+- **Industry Specialization:** High-speed flexographic roll label converting, Heidelberg offset folding carton manufacturing, and precision commercial print.
+
+## Machinery Fleet & Technical Capabilities
+1. **8-Color UV Flexographic Press (Omet / Mark Andy class)**
+   - Line speed: up to 150 m/min continuous web.
+   - Applications: Waterproof beverage roll labels, chemical drum decals, edible oil stickers, pharmaceutical vials.
+   - Inks: Food & Pharma grade low-migration UV curable inks with inline UV varnish and cold-foil stamping.
+   - Standard Web & Rewind: FINAT 1–8 reel direction standards on 76mm (3") or 38mm (1.5") cores.
+
+2. **Heidelberg Speedmaster 6-Color Offset Litho Line**
+   - Throughput: up to 15,000 sheets/hour.
+   - Applications: Folding cartons, cosmetics boxes, food cartons, blister cards, and corrugated micro-flute litho laminations.
+   - Paperboards: Folding Boxboard (FBB 250–400gsm), Solid Bleached Board (SBB), Kraft Linerboard.
+   - Finishing: Inline aqueous coating, matte/gloss lamination, precision die-cutting, embossing, and window patching.
+
+3. **Laser CTP (Computer-to-Plate) Pre-Press**
+   - Direct thermal digital plate imaging with sub-millimeter registration accuracy.
+   - Color Management: ISO 12647-2 certified 4-color CMYK process with spot Pantone matching.
+
+## Supported Substrates & Materials
+- **Polypropylene White Gloss BOPP (60μm)**: Synthetic waterproof, oil-resistant film for beverage bottles and cosmetics.
+- **Crystal Clear BOPP**: Transparent "no-label look" for clear glass and PET containers.
+- **Silver Metallized BOPP**: Reflective metallic finish for premium alcoholic beverages and nutraceuticals.
+- **Fasson Semi-Gloss Paper**: General purpose logistics, supermarket, and barcode labeling.
+- **Folding Boxboard (FBB 350gsm)**: Rigid multi-ply virgin fiber cartonboard for retail packaging.
+- **Solid Bleached Board (SBB)**: Premium pure white cartonboard for pharmaceutical cartons.
+
+## Interactive Tools & Endpoints
+- **Interactive B2B Quote Configurator:** https://apexconverting.demo/configurator
+- **Capabilities & Machine Fleet:** https://apexconverting.demo/services
+- **Material Substrates & Gallery:** https://apexconverting.demo/gallery
+- **Physical Sample Kit Request:** https://apexconverting.demo/contact#sample-kit
