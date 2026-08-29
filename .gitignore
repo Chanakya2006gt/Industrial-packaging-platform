@@ -19,6 +19,8 @@ dist/
 build/
 .vite/
 frontend/dist/
+playwright-report/
+test-results/
 
 # OS Files
 .DS_Store

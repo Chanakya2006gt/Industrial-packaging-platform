@@ -6,7 +6,7 @@
 import { secureLogger } from '../utils/bootGuards.js';
 
 export async function runSlaMonitor(supabaseClient) {
-  secureLogger.info('Running 4-hour SLA monitor sweep');
+  secureLogger.info('Running 3-hour SLA monitor sweep');
   
   if (!supabaseClient) {
     return { checkedCount: 0, alertCount: 0 };
@@ -28,9 +28,31 @@ export async function runSlaMonitor(supabaseClient) {
 
     const alertCount = overdueRfqs?.length || 0;
     if (alertCount > 0) {
-      secureLogger.warn(`[SLA ALERT] ${alertCount} RFQ(s) approaching 4-hour turnaround deadline!`, {
-        references: overdueRfqs.map((r) => r.reference_no)
+      const references = overdueRfqs.map((r) => r.reference_no);
+      secureLogger.warn(`[SLA ALERT] ${alertCount} RFQ(s) approaching 3-hour turnaround deadline!`, {
+        references
       });
+
+      // Dispatch webhook if SLA_WEBHOOK_URL is configured
+      const webhookUrl = process.env.SLA_WEBHOOK_URL;
+      if (webhookUrl && typeof fetch !== 'undefined') {
+        try {
+          await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              alert: 'SLA_TURNAROUND_BREACH_WARNING',
+              thresholdHours: 3,
+              timestamp: new Date().toISOString(),
+              count: alertCount,
+              overdueRfqs: overdueRfqs.map(r => ({ ref: r.reference_no, company: r.company_name, submitted: r.created_at }))
+            })
+          });
+          secureLogger.info('Dispatched SLA alert to configured webhook URL');
+        } catch (whErr) {
+          secureLogger.error('Failed to post SLA alert webhook', { error: whErr.message });
+        }
+      }
     }
 
     return { checkedCount: alertCount, alertCount };

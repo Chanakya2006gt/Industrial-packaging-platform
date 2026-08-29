@@ -1,10 +1,12 @@
 /**
  * Industrial Packaging Platform API Entry Point
- * Express HTTP API with JWT Token Auth, CORS allowlist, security headers, and CPQ endpoints.
+ * Express HTTP API with JWT Token Auth, CORS allowlist, Helmet CSP, multi-tier rate limiting, and CPQ endpoints.
  */
 
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import { createClient } from '@supabase/supabase-js';
 import { assertRequiredEnv, secureLogger } from './utils/bootGuards.js';
 import { calculatePackagingEstimate, DEFAULT_RATES } from './domain/estimating/calculator.js';
@@ -20,7 +22,49 @@ const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || '';
 const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
-// 1. CORS Allowlist Setup
+// 1. Security Headers with Helmet & CSP
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'", "https://*.supabase.co", "https://*.vercel.app"],
+      objectSrc: ["'none'"],
+      frameAncestors: ["'none'"],
+      upgradeInsecureRequests: [],
+    },
+  },
+  crossOriginEmbedderPolicy: false,
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true,
+  },
+}));
+
+// 2. Multi-Tier Distributed Rate Limiting
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 300,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests from this IP, please try again after 15 minutes.' }
+});
+
+const strictLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Rate limit exceeded for sensitive operation, please retry later.' }
+});
+
+app.use(globalLimiter);
+
+// 3. CORS Allowlist Setup
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
@@ -40,8 +84,8 @@ app.use(cors({
 
 app.use(express.json({ limit: '10mb' }));
 
-// 2. Staff Authentication Middleware
-async function requireStaffAuth(req, res, next) {
+// 4. Fail-Closed Staff Authentication Middleware
+export async function requireStaffAuth(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ error: 'Authentication required. Missing Bearer token.' });
@@ -52,13 +96,14 @@ async function requireStaffAuth(req, res, next) {
     return res.status(401).json({ error: 'Invalid token format.' });
   }
 
+  // Fail closed if Supabase is unconfigured in production or strict mode
   if (!supabase) {
-    // If Supabase not configured in local testing, allow if in non-production
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && process.env.ALLOW_DEV_BYPASS === 'true') {
       req.user = { id: 'dev-user', role: 'sales' };
+      req.profile = { role: 'sales', is_active: true };
       return next();
     }
-    return res.status(500).json({ error: 'Auth service unconfigured.' });
+    return res.status(500).json({ error: 'Authentication service unavailable.' });
   }
 
   try {
@@ -68,13 +113,13 @@ async function requireStaffAuth(req, res, next) {
     }
 
     // Verify user profile role and active status
-    const { data: profile } = await supabase
+    const { data: profile, error: profileErr } = await supabase
       .from('profiles')
       .select('role, is_active')
       .eq('id', user.id)
       .single();
 
-    if (!profile || profile.is_active === false) {
+    if (profileErr || !profile || profile.is_active === false) {
       return res.status(403).json({ error: 'Staff account inactive or profile not found.' });
     }
 
@@ -86,7 +131,7 @@ async function requireStaffAuth(req, res, next) {
   }
 }
 
-// 3. Public Health & Metadata Endpoints
+// 5. Public Health & Metadata Endpoints
 app.get('/healthz', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
 });
@@ -104,8 +149,8 @@ app.get('/api/rates', (req, res) => {
   res.json({ success: true, rates: DEFAULT_RATES });
 });
 
-// 4. Staff-Protected Packaging Estimating CPQ API Endpoint
-app.post('/api/estimator/calculate', requireStaffAuth, (req, res) => {
+// 6. Staff-Protected Packaging Estimating CPQ API Endpoint
+app.post('/api/estimator/calculate', strictLimiter, requireStaffAuth, (req, res) => {
   try {
     const input = req.body;
     if (!input || !input.widthMm || !input.heightMm || !input.quantity) {
@@ -120,8 +165,8 @@ app.post('/api/estimator/calculate', requireStaffAuth, (req, res) => {
   }
 });
 
-// 5. Staff-Protected CSV Export Endpoint
-app.post('/api/export/csv', requireStaffAuth, (req, res) => {
+// 7. Staff-Protected CSV Export Endpoint
+app.post('/api/export/csv', strictLimiter, requireStaffAuth, (req, res) => {
   try {
     const { headers, rows, filename = 'sales_export.csv' } = req.body;
     if (!headers || !rows) {
@@ -137,8 +182,8 @@ app.post('/api/export/csv', requireStaffAuth, (req, res) => {
   }
 });
 
-// 6. Server-Side Magic-Byte File Validation Endpoint
-app.post('/api/upload/validate', requireStaffAuth, (req, res) => {
+// 8. Server-Side Magic-Byte File Validation Endpoint
+app.post('/api/upload/validate', strictLimiter, requireStaffAuth, (req, res) => {
   try {
     const { base64Data, expectedType } = req.body;
     if (!base64Data || !expectedType) {
@@ -154,7 +199,15 @@ app.post('/api/upload/validate', requireStaffAuth, (req, res) => {
   }
 });
 
-// Start Server
-app.listen(PORT, () => {
-  secureLogger.info(`🏭 Industrial Packaging API active on port ${PORT}`);
-});
+import { fileURLToPath } from 'url';
+
+// Export app for integration and unit testing
+export default app;
+
+// Start Server if executed directly
+const isDirectEntry = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isDirectEntry && process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    secureLogger.info(`🏭 Industrial Packaging API active on port ${PORT}`);
+  });
+}

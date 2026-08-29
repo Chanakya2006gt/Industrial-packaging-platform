@@ -435,7 +435,7 @@ export const AdminDashboardPage: React.FC = () => {
       </header>
 
       {/* Navigation Tabs */}
-      <div className="bg-white/80 dark:bg-[#0C1220]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 sm:px-8 overflow-x-auto sticky top-[73px] z-20">
+      <div className="bg-card/80 backdrop-blur-md border-b border-border px-4 sm:px-8 overflow-x-auto sticky top-[73px] z-20">
         <div className="flex gap-2 text-xs font-mono">
           {[
             { id: 'analytics', label: 'CRM Analytics', icon: BarChart3 },
@@ -456,15 +456,15 @@ export const AdminDashboardPage: React.FC = () => {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`py-3.5 px-3 flex items-center gap-2 border-b-2 font-bold transition-all whitespace-nowrap cursor-pointer ${
                   isActive
-                    ? 'border-[#E00019] text-[#E00019] dark:text-white'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-muted-foreground hover:text-foreground'
                 }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>
                 {tab.count !== undefined && tab.count > 0 && (
                   <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-                    isActive ? 'bg-[#E00019] text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
+                    isActive ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
                   }`}>
                     {tab.count}
                   </span>
@@ -850,6 +850,7 @@ export const AdminDashboardPage: React.FC = () => {
       {/* Quick Intake Modal */}
       {showQuickIntakeModal && (
         <QuickIntakeModal
+          isOpen={showQuickIntakeModal}
           intakeCompany={intakeCompany}
           setIntakeCompany={setIntakeCompany}
           intakeContact={intakeContact}

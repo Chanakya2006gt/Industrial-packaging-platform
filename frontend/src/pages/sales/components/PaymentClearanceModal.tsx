@@ -1,5 +1,20 @@
 import React from 'react';
 import { RfqInquiry } from '../../../lib/supabase';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '../../../components/ui/dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../../../components/ui/select';
 
 interface PaymentClearanceModalProps {
   rfq: RfqInquiry | null;
@@ -26,65 +41,66 @@ export const PaymentClearanceModal: React.FC<PaymentClearanceModalProps> = ({
   onClose,
   onConfirm
 }) => {
-  if (!rfq) return null;
-
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-6 space-y-4 max-w-md w-full">
-        
-        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-          <h3 className="font-extrabold text-base text-slate-950 dark:text-white">
-            Record Customer Payment
-          </h3>
-          <button onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors cursor-pointer">✕</button>
-        </div>
+    <Dialog open={!!rfq} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle>Record Customer Payment</DialogTitle>
+          <DialogDescription>
+            Confirm receipt of funds to advance quote to manufacturing queue.
+          </DialogDescription>
+        </DialogHeader>
 
-        <div className="space-y-3 text-xs font-mono">
-          <div>
-            <span className="text-slate-500">Customer / Company:</span>
-            <strong className="block text-slate-900 dark:text-white text-sm">{rfq.company_name}</strong>
-            <span className="text-[11px] text-slate-400">Quote Ref: {rfq.reference_no}</span>
+        {rfq && (
+          <div className="space-y-3.5 text-xs font-mono py-2">
+            <div className="p-3 rounded-xl bg-muted/50 border border-border space-y-1">
+              <span className="text-muted-foreground block">Customer / Company:</span>
+              <strong className="block text-foreground text-sm font-sans font-bold">{rfq.company_name}</strong>
+              <span className="text-[11px] text-muted-foreground">Quote Ref: {rfq.reference_no}</span>
+            </div>
+
+            <div>
+              <label className="block font-bold text-foreground mb-1.5 font-sans text-xs">Payment Method</label>
+              <Select value={paymentMethod} onValueChange={(val: any) => setPaymentMethod(val)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Payment Method" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="stanbic_wire">Bank Wire Transfer</SelectItem>
+                  <SelectItem value="zanaco_wire">Online Bank Transfer (ACH / EFT)</SelectItem>
+                  <SelectItem value="cheque">Company Cheque</SelectItem>
+                  <SelectItem value="cash">Cash Payment</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <label className="block font-bold text-foreground mb-1.5 font-sans text-xs">Payment Reference or Transaction ID *</label>
+              <input
+                type="text"
+                required
+                value={paymentRefNo}
+                onChange={(e) => setPaymentRefNo(e.target.value)}
+                placeholder="e.g. TXN-WIRE-884920"
+                className="w-full h-10 px-3 rounded-xl border border-input bg-card text-foreground text-xs font-bold focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              />
+            </div>
+
+            <div>
+              <label className="block font-bold text-foreground mb-1.5 font-sans text-xs">Payment Amount ($ / USD)</label>
+              <input
+                type="number"
+                value={paymentAmount}
+                onChange={(e) => setPaymentAmount(Number(e.target.value))}
+                className="w-full h-10 px-3 rounded-xl border border-input bg-card text-foreground text-xs font-bold focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              />
+            </div>
           </div>
+        )}
 
-          <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Payment Method</label>
-            <select
-              value={paymentMethod}
-              onChange={(e) => setPaymentMethod(e.target.value as any)}
-              className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold cursor-pointer"
-            >
-              <option value="stanbic_wire">Bank Wire Transfer</option>
-              <option value="zanaco_wire">Online Bank Transfer (ACH / EFT)</option>
-              <option value="cheque">Company Cheque</option>
-              <option value="cash">Cash Payment</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Payment Reference or Transaction ID *</label>
-            <input
-              type="text"
-              required
-              value={paymentRefNo}
-              onChange={(e) => setPaymentRefNo(e.target.value)}
-              placeholder="e.g. TXN-WIRE-884920"
-              className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
-            />
-          </div>
-
-          <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Payment Amount (ZMW)</label>
-            <input
-              type="number"
-              value={paymentAmount}
-              onChange={(e) => setPaymentAmount(Number(e.target.value))}
-              className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
-            />
-          </div>
-        </div>
-
-        <div className="flex justify-end gap-2 pt-3 border-t border-slate-200 dark:border-slate-800">
+        <DialogFooter className="gap-2 pt-2 border-t border-border">
           <button
+            type="button"
             onClick={onClose}
             disabled={submitting}
             className="btn-pill btn-pill-outline text-xs cursor-pointer"
@@ -92,15 +108,16 @@ export const PaymentClearanceModal: React.FC<PaymentClearanceModalProps> = ({
             Cancel
           </button>
           <button
+            type="button"
             onClick={onConfirm}
             disabled={submitting || !paymentRefNo}
             className="btn-pill btn-pill-primary text-xs font-bold disabled:opacity-50 cursor-pointer"
           >
             {submitting ? 'Saving Payment...' : 'Confirm Payment & Start Production'}
           </button>
-        </div>
-
-      </div>
-    </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
+

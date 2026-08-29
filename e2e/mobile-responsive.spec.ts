@@ -6,15 +6,15 @@ test.describe('Mobile Responsive & Theme Integrity E2E', () => {
     await page.setViewportSize({ width: 390, height: 844 }); // iPhone 12 viewport
     await page.goto('/');
 
-    // Verify Brand Logo
-    await expect(page.locator('img[alt*="Apex Packaging"]')).toBeVisible();
+    // Verify Brand Logo in Header
+    await expect(page.locator('header img[alt*="Apex Packaging"]')).toBeVisible();
 
     // Mobile Hamburger Drawer Toggle
     const menuBtn = page.locator('button[aria-label="Toggle mobile menu"]');
     if (await menuBtn.isVisible()) {
       await menuBtn.click();
-      await expect(page.locator('text=Capabilities')).toBeVisible();
-      await expect(page.locator('text=Substrates & Works')).toBeVisible();
+      await expect(page.locator('.mobile-drawer a, div.lg\\:hidden a').filter({ hasText: 'Capabilities' }).first()).toBeVisible();
+      await expect(page.locator('.mobile-drawer a, div.lg\\:hidden a').filter({ hasText: 'Substrates & Works' }).first()).toBeVisible();
     }
   });
 
@@ -22,11 +22,12 @@ test.describe('Mobile Responsive & Theme Integrity E2E', () => {
     await page.goto('/');
     
     // Find theme toggle button
-    const themeBtn = page.locator('button[aria-label*="theme"], button:has-text("Theme"), button:has(.lucide-sun), button:has(.lucide-moon)').first();
+    const themeBtn = page.locator('button[aria-label="Toggle Theme"]').first();
     if (await themeBtn.isVisible()) {
       await themeBtn.click();
-      // Verify page still renders without crashing
-      await expect(page.locator('text=Packaging')).toBeVisible();
+      // Verify html data-theme changed
+      const themeAttr = await page.getAttribute('html', 'data-theme');
+      expect(themeAttr).toMatch(/dark|light/);
     }
   });
 

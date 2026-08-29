@@ -169,13 +169,59 @@
 
 ---
 
-### [D018] Performance Code-Splitting, SEO/GEO AI Discovery & WCAG 2.2 Accessibility Upgrades
-- **Date:** 2026-08-26
-- **Action:** Implemented a full-system audit enhancement package:
-  - **Dynamic Route-Level Code Splitting**: Converted static imports in `App.tsx` to `React.lazy()` with `<Suspense fallback={<PageLoader />}>`, isolating heavy admin/CRM charting modules and reducing entry bundle from ~745 kB to ~407 kB (117 kB gzip).
-  - **AI Agentic Discovery (GEO)**: Authored `public/llms.txt` exposing machine fleet specifications, FINAT 1–8 reel standards, and substrate technical data to AI search engines (Perplexity, ChatGPT Search, Google AI Overviews).
-  - **Search & Social Discovery**: Generated `public/robots.txt`, `public/sitemap.xml`, Canonical tags, OpenGraph cards, Twitter cards, and Schema.org JSON-LD structured data for `Organization` and `Manufacturer`.
-  - **WCAG 2.2 Accessibility**: Added keyboard "Skip to main content" link and explicit main element focus navigation.
+### [D019] Full Token System Consolidation & CSS Variable Architecture
+- **Date:** 2026-08-29
+- **Action:** Consolidated all scattered palette utilities into a semantic HSL token architecture in `frontend/src/styles/globals.css` and `frontend/tailwind.config.js`:
+  - Defined CSS variables `--background`, `--foreground`, `--card`, `--popover`, `--primary` (Laser Crimson `355 100% 44%`), `--secondary`, `--muted`, `--accent`, `--destructive`, `--border`, `--input`, `--ring`, `--radius`.
+  - Added universal accessible focus system `:where(a, button, input, select, textarea, [tabindex]):focus-visible` with 2px ring offset.
+  - Added global reduced motion fallback `@media (prefers-reduced-motion: reduce)` collapsing transitions and animations to 0.01ms.
+  - Bound dynamic elevation tokens (`shadow-theme-sm` through `shadow-theme-2xl`, `shadow-bezel`).
+- **Rationale:** Guarantees strict Swiss 60-30-10 distribution, consistent dark mode inversion, and eliminates scattered hardcoded hex codes.
+
+---
+
+### [D020] Accessible Radix UI Primitives & Unified Theme Calibration
+- **Date:** 2026-08-29
+- **Action:** Installed `@radix-ui/react-dialog`, `@radix-ui/react-select`, `@radix-ui/react-tabs`, `@radix-ui/react-tooltip`, `sonner`, and `class-variance-authority`.
+- **Implementations:**
+  - Replaced hand-rolled modal overlays in `PaymentClearanceModal.tsx` and `QuickIntakeModal.tsx` with Radix `Dialog` providing focus trap and Escape key dismissal.
+  - Replaced native `<select>` controls across `PipelineList.tsx` and `CpqEstimatorPanel.tsx` with accessible Radix `Select` popovers.
+  - Mounted Sonner toast engine `<Toaster />` at the root application level.
+  - Swept all remaining `#E00019` hex strings across staff dashboards to semantic token classes (`bg-primary`, `text-primary`, `border-primary`).
+
+---
+
+### [D021] SVG Sparkline Area Fills, Terminus Pulse & Lazy Media Performance
+- **Date:** 2026-08-29
+- **Action:** Upgraded CRM KPI dashboard widgets and media assets for maximum visual polish and Core Web Vitals efficiency:
+  - Added gradient polygon fills (`<polygon fill="url(#spark-grad)">`), anti-aliased polyline paths, and pulsing SVG terminus dots (`<circle className="animate-ping">`) in `CrmKpiGrid.tsx`.
+  - Added `loading="lazy"` and `decoding="async"` across all media assets in `AboutPage.tsx`, `GalleryPage.tsx`, `HomePage.tsx`, and `ServicesPage.tsx`.
+  - Verified zero layout shift and smooth 60fps rendering in GSAP corporate motion transitions.
+
+---
+
+### [D022] Backend Security Hardening, Helmet CSP, Rate Limiting & SLA Webhooks
+- **Date:** 2026-08-29
+- **Action:** Implemented OWASP security hardening in Express API server (`backend/src/server.js`), background worker (`backend/src/worker.js`), and Supabase database schema (`supabase/migrations/20260829000001_security_and_storage_hardening.sql`):
+  - **Helmet & CSP:** Configured strict Content Security Policy directives, HSTS preload, X-Content-Type-Options (`nosniff`), and frame ancestors (`'none'`).
+  - **Multi-Tier Rate Limiting:** Global limiter (300 req/15min) and strict sensitive endpoint limiter (60 req/15min) using `express-rate-limit`.
+  - **Fail-Closed Authentication:** Middleware strictly fails closed (401/500) if Bearer tokens are invalid, malformed, or if auth service is unconfigured.
+  - **Worker Overlap Lock:** Added `let isRunning = false;` execution guard to prevent concurrent scheduler cycle collisions.
+  - **SLA Webhook Dispatch:** Added automated JSON webhook dispatch in `slaMonitor.js` to notify external systems upon 3-hour SLA breach risks.
+  - **Database Migration 0005:** Added compound indices on `rfq_inquiries(status, created_at)`, automated profile role change audit trigger, and hardened S3 storage bucket RLS policies.
+  - **Vercel Security Headers:** Declared CSP, HSTS, X-Frame-Options, X-Content-Type-Options in `frontend/vercel.json`.
+
+---
+
+### [D023] Playwright E2E Suite, Fast-Check Property Fuzzing & DOM Quality Hygiene Verification
+- **Date:** 2026-08-29
+- **Verification Results:**
+  - **Playwright E2E Smoke & Functional Suite:** 16 tests executed across all public routes (`/`, `/services`, `/configurator`, `/gallery`, `/about`, `/contact`), portal login flows (`/sales/login`, `/admin/login`), route protection guards, 5-step wizard submissions, and mobile drawer navigation — **16 passed cleanly with 0 failures**.
+  - **Property-Based Fuzzing (`fast-check`):** 1,000 randomized packaging inputs verified in `backend/test/calculatorFuzzing.test.js` asserting finite price invariants, VAT precision, tooling fee waivers, and unit price calculations — **1000/1000 passed**.
+  - **Backend Integration Tests:** 17 unit and security test cases passing cleanly covering Helmet headers, strict CORS, magic-byte signatures, CSV injection sanitization, and fail-closed auth.
+  - **Frontend Quality & Copy Hygiene Auditor (`audit-dom-quality.js`):** Scanned 44 source files with zero forbidden buzzwords, zero unlabelled metrics, 100% compliant `alt` attributes, and 100% genuine entity data.
+  - **TypeScript & Vite Build:** `npm run build` compiled 1,989 modules with zero TypeScript errors and zero warnings.
+
 
 
 

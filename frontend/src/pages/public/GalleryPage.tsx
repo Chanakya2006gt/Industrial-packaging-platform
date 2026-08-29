@@ -122,7 +122,7 @@ export const GalleryPage: React.FC = () => {
             <div className="double-bezel-inner p-6 h-full flex flex-col justify-between space-y-4">
               <div className="space-y-3">
                 <div className="h-48 rounded-xl overflow-hidden bg-slate-900 relative border border-slate-200 dark:border-slate-800">
-                  <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                  <img src={item.img} alt={item.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                   <span className="absolute top-3 left-3 tech-tag tech-tag-cyan">{item.badge}</span>
                 </div>
                 <div className="flex items-center justify-between">

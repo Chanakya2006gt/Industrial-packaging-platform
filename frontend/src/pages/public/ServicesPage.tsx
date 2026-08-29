@@ -27,7 +27,7 @@ export const ServicesPage: React.FC = () => {
         <div id="flexo" className="double-bezel">
           <div className="double-bezel-inner p-6 sm:p-10 space-y-8">
             <div className="h-64 sm:h-80 w-full rounded-2xl overflow-hidden relative bg-slate-900 border border-slate-200 dark:border-slate-800">
-              <img src="/assets/img/press-flexo-8c.jpg" alt="8-Colour High-Speed Flexographic UV Label Line" className="w-full h-full object-cover" />
+              <img src="/assets/img/press-flexo-8c.jpg" alt="8-Colour High-Speed Flexographic UV Label Line" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               <span className="absolute top-4 left-4 tech-tag tech-tag-cyan">8-COLOUR UV FLEXO</span>
             </div>
 
@@ -96,7 +96,7 @@ export const ServicesPage: React.FC = () => {
         <div id="offset" className="double-bezel">
           <div className="double-bezel-inner p-6 sm:p-10 space-y-8">
             <div className="h-64 sm:h-80 w-full rounded-2xl overflow-hidden relative bg-slate-900 border border-slate-200 dark:border-slate-800">
-              <img src="/assets/img/press-heidelberg-6c.jpg" alt="Heidelberg Speedmaster 6C" className="w-full h-full object-cover" />
+              <img src="/assets/img/press-heidelberg-6c.jpg" alt="Heidelberg Speedmaster 6C" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               <span className="absolute top-4 left-4 tech-tag tech-tag-crimson">HEIDELBERG SPEEDMASTER 6C</span>
             </div>
 
@@ -165,7 +165,7 @@ export const ServicesPage: React.FC = () => {
         <div id="finishing" className="double-bezel">
           <div className="double-bezel-inner p-6 sm:p-10 space-y-8">
             <div className="h-64 sm:h-80 w-full rounded-2xl overflow-hidden relative bg-slate-900 border border-slate-200 dark:border-slate-800">
-              <img src="/assets/img/mockups/bottle_studio.jpg" alt="Rotary Cold Foil & UV Varnish Finishes" className="w-full h-full object-cover" />
+              <img src="/assets/img/mockups/bottle_studio.jpg" alt="Rotary Cold Foil & UV Varnish Finishes" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               <span className="absolute top-4 left-4 tech-tag tech-tag-amber">FOIL & EMBELLISHMENT</span>
             </div>
 
@@ -229,7 +229,7 @@ export const ServicesPage: React.FC = () => {
         <div id="commercial" className="double-bezel">
           <div className="double-bezel-inner p-6 sm:p-10 space-y-8">
             <div className="h-64 sm:h-80 w-full rounded-2xl overflow-hidden relative bg-slate-900 border border-slate-200 dark:border-slate-800">
-              <img src="/assets/img/prepress-ctp.jpg" alt="Laser CTP Commercial Printing Suite" className="w-full h-full object-cover" />
+              <img src="/assets/img/prepress-ctp.jpg" alt="Laser CTP Commercial Printing Suite" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               <span className="absolute top-4 left-4 tech-tag tech-tag-cyan">COMMERCIAL & BINDERY</span>
             </div>
 

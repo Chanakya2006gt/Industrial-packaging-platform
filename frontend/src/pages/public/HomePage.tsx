@@ -231,7 +231,7 @@ export const HomePage: React.FC = () => {
             <div className="double-bezel-inner p-6 h-full flex flex-col justify-between space-y-4">
               <div className="space-y-4">
                 <div className="h-48 rounded-xl overflow-hidden relative bg-slate-900 border border-slate-200 dark:border-slate-800">
-                  <img src="/assets/img/press-flexo-8c.jpg" alt="8-Colour Flexo Labels" className="w-full h-full object-cover" />
+                  <img src="/assets/img/press-flexo-8c.jpg" alt="8-Colour Flexo Labels" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                   <span className="absolute top-3 left-3 tech-tag tech-tag-cyan">8C UV FLEXO</span>
                 </div>
                 <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">Waterproof Roll Labels</h3>
@@ -245,7 +245,7 @@ export const HomePage: React.FC = () => {
                 </ul>
               </div>
               <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                <Link to="/services#flexo" className="text-xs font-mono font-bold text-[#E00019] hover:underline flex items-center gap-1">
+                <Link to="/services#flexo" className="text-xs font-mono font-bold text-primary hover:underline flex items-center gap-1">
                   <span>Explore Label Specs</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -258,7 +258,7 @@ export const HomePage: React.FC = () => {
             <div className="double-bezel-inner p-6 h-full flex flex-col justify-between space-y-4">
               <div className="space-y-4">
                 <div className="h-48 rounded-xl overflow-hidden relative bg-slate-900 border border-slate-200 dark:border-slate-800">
-                  <img src="/assets/img/cartons-packaging.jpg" alt="Heidelberg Folding Cartons" className="w-full h-full object-cover" />
+                  <img src="/assets/img/cartons-packaging.jpg" alt="Heidelberg Folding Cartons" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                   <span className="absolute top-3 left-3 tech-tag tech-tag-crimson">HEIDELBERG 6C</span>
                 </div>
                 <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">Custom Packaging Boxes</h3>
@@ -272,7 +272,7 @@ export const HomePage: React.FC = () => {
                 </ul>
               </div>
               <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                <Link to="/services#offset" className="text-xs font-mono font-bold text-[#E00019] hover:underline flex items-center gap-1">
+                <Link to="/services#offset" className="text-xs font-mono font-bold text-primary hover:underline flex items-center gap-1">
                   <span>Explore Box Specs</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -285,7 +285,7 @@ export const HomePage: React.FC = () => {
             <div className="double-bezel-inner p-6 h-full flex flex-col justify-between space-y-4">
               <div className="space-y-4">
                 <div className="h-48 rounded-xl overflow-hidden relative bg-slate-900 border border-slate-200 dark:border-slate-800">
-                  <img src="/assets/img/prepress-ctp.jpg" alt="Commercial Publishing" className="w-full h-full object-cover" />
+                  <img src="/assets/img/prepress-ctp.jpg" alt="Commercial Publishing" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                   <span className="absolute top-3 left-3 tech-tag tech-tag-purple">LASER CTP</span>
                 </div>
                 <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">Reports, Books & Invoices</h3>
@@ -299,7 +299,7 @@ export const HomePage: React.FC = () => {
                 </ul>
               </div>
               <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                <Link to="/services#commercial" className="text-xs font-mono font-bold text-[#E00019] hover:underline flex items-center gap-1">
+                <Link to="/services#commercial" className="text-xs font-mono font-bold text-primary hover:underline flex items-center gap-1">
                   <span>Explore Print Specs</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -338,7 +338,7 @@ export const HomePage: React.FC = () => {
               </div>
 
               <div className="lg:col-span-4 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 h-56 lg:h-64 bg-slate-100 dark:bg-slate-900">
-                <img src="/assets/img/hero-packaging.jpg" alt="Sample Kit Swatch Book" className="w-full h-full object-cover" />
+                <img src="/assets/img/hero-packaging.jpg" alt="Sample Kit Swatch Book" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               </div>
 
             </div>

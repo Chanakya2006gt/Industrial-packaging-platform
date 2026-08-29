@@ -5,31 +5,66 @@
 @tailwind utilities;
 
 :root {
-  /* --- Swiss Industrial 60-30-10 Palette --- */
+  /* --- Semantic HSL Design System (Swiss 60-30-10) --- */
+  --background: 240 20% 98%;
+  --foreground: 222 47% 11%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  
+  --primary: 355 100% 44%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 355 100% 44%;
+  --radius: 0.75rem;
+
+  /* CMYK Palette */
+  --cmyk-c: 197 100% 44%;
+  --cmyk-m: 327 100% 45%;
+  --cmyk-y: 49 100% 50%;
+  --cmyk-k: 222 47% 11%;
+
+  /* Dynamic Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  --shadow-bezel: 0 0 0 1px hsl(var(--border)), 0 2px 4px -1px rgba(0, 0, 0, 0.04), 0 8px 16px -4px rgba(0, 0, 0, 0.03);
+
+  /* Legacy variable mappings for backward compatibility */
   --bg-canvas: #FAFAFC;
   --bg-canvas-alt: #F1F4F9;
   --surface-card: #FFFFFF;
   --surface-well: #F3F5FA;
   --surface-bezel: rgba(15, 23, 42, 0.035);
-
   --text-primary: #0F172A;
   --text-secondary: #334155;
   --text-muted: #64748B;
-  --border: #E2E8F0;
+  --border-color: #E2E8F0;
   --border-light: #F1F5F9;
   --border-strong: #CBD5E1;
-
-  /* Laser Brand Crimson */
   --accent-brand: #E00019;
   --accent-brand-hover: #B80014;
   --accent-brand-active: #990010;
   --accent-brand-subtle: rgba(224, 0, 25, 0.08);
-
-  /* CMYK Palette */
-  --cmyk-c: #00A3E0;
-  --cmyk-m: #E6007E;
-  --cmyk-y: #FFD100;
-  --cmyk-k: #0F172A;
 
   /* Typography */
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -37,28 +72,80 @@
 }
 
 [data-theme="dark"] {
+  --background: 222 47% 5%;
+  --foreground: 210 40% 98%;
+  
+  --card: 222 42% 9%;
+  --card-foreground: 210 40% 98%;
+  
+  --popover: 222 42% 9%;
+  --popover-foreground: 210 40% 98%;
+  
+  --primary: 355 100% 58%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 355 100% 58%;
+
+  /* Dark Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+  --shadow-bezel: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.5), 0 12px 24px -4px rgba(0, 0, 0, 0.4);
+
+  /* Legacy Dark Mappings */
   --bg-canvas: #070B12;
   --bg-canvas-alt: #0C1220;
   --surface-card: #0E1422;
   --surface-well: #090E18;
   --surface-bezel: rgba(255, 255, 255, 0.04);
-
   --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
   --text-muted: #94A3B8;
-  --border: rgba(255, 255, 255, 0.10);
+  --border-color: rgba(255, 255, 255, 0.10);
   --border-light: rgba(255, 255, 255, 0.05);
   --border-strong: rgba(255, 255, 255, 0.20);
-
   --accent-brand: #FF2B44;
   --accent-brand-hover: #E00019;
   --accent-brand-active: #B80014;
   --accent-brand-subtle: rgba(255, 43, 68, 0.15);
 }
 
+/* Universal Accessible Focus Ring */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Universal Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
-  background-color: var(--bg-canvas);
-  color: var(--text-primary);
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

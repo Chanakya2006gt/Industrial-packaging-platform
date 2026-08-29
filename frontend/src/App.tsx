@@ -4,6 +4,7 @@ import { TelemetryBar } from './components/layout/TelemetryBar';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { PageLoader } from './components/layout/PageLoader';
+import { Toaster } from './components/ui/sonner';
 import { AuthProvider } from './lib/auth';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
 
@@ -36,6 +37,7 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 export const App: React.FC = () => {
   return (
     <AuthProvider>
+      <Toaster position="top-right" closeButton richColors />
       <Router>
         <Suspense fallback={<PageLoader />}>
           <Routes>

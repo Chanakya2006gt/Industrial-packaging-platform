@@ -30,5 +30,8 @@
     "supabase-rls"
   ],
   "author": "Engineering Team",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1"
+  }
 }

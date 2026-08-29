@@ -18,7 +18,14 @@ const INTERVAL_MS = Number(process.env.WORKER_INTERVAL_MS) || 15 * 60 * 1000; //
 
 secureLogger.info('🚀 Industrial Packaging Background Worker Initialized', { intervalMinutes: INTERVAL_MS / 60000 });
 
+let isRunning = false;
+
 async function runWorkerCycle() {
+  if (isRunning) {
+    secureLogger.warn('Worker cycle already running, skipping overlapping run');
+    return;
+  }
+  isRunning = true;
   secureLogger.info('⚡ Starting worker cycle execution');
   const startTime = Date.now();
 
@@ -27,6 +34,8 @@ async function runWorkerCycle() {
     await runQuoteExpirySweep(supabase);
   } catch (err) {
     secureLogger.error('Worker cycle execution error', { error: err.message });
+  } finally {
+    isRunning = false;
   }
 
   const durationMs = Date.now() - startTime;

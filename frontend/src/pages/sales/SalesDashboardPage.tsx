@@ -491,7 +491,7 @@ export const SalesDashboardPage: React.FC = () => {
       )}
 
       {/* Navigation Tabs Bar */}
-      <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3 overflow-x-auto text-xs font-mono font-bold">
+      <div className="flex items-center gap-2 border-b border-border pb-3 overflow-x-auto text-xs font-mono font-bold">
         {[
           { id: 'analytics', label: 'CRM Analytics', icon: BarChart3 },
           { id: 'pipeline', label: 'Customer Quotes', icon: Layers, count: rfqs.filter(r => r.status === 'pending').length },
@@ -506,14 +506,14 @@ export const SalesDashboardPage: React.FC = () => {
               onClick={() => setActiveTab(tab.id as any)}
               className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 shrink-0 cursor-pointer ${
                 activeTab === tab.id
-                  ? 'bg-slate-900 text-white dark:bg-cyan-500 dark:text-slate-950 shadow-md'
-                  : 'bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-950'
+                  ? 'bg-primary text-primary-foreground shadow-theme-sm'
+                  : 'bg-card border border-border text-muted-foreground hover:text-foreground'
               }`}
             >
               <Icon className="w-4 h-4" />
               <span>{tab.label}</span>
               {tab.count !== undefined && tab.count > 0 && (
-                <span className="px-1.5 py-0.2 rounded-full bg-[#E00019] text-white text-[10px]">
+                <span className="px-1.5 py-0.2 rounded-full bg-primary text-primary-foreground text-[10px]">
                   {tab.count}
                 </span>
               )}
@@ -626,6 +626,7 @@ export const SalesDashboardPage: React.FC = () => {
       {/* MODAL 2: QUICK WALK-IN / PHONE INTAKE MODAL */}
       {showQuickIntakeModal && (
         <QuickIntakeModal
+          isOpen={showQuickIntakeModal}
           intakeCompany={intakeCompany}
           setIntakeCompany={setIntakeCompany}
           intakeContact={intakeContact}

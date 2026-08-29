@@ -101,12 +101,12 @@ export const AboutPage: React.FC = () => {
           <div className="double-bezel">
             <div className="double-bezel-inner overflow-hidden flex flex-col items-center text-center">
               <div className="h-40 w-full overflow-hidden bg-slate-900 relative">
-                <img src="/assets/img/prepress-ctp.jpg" alt="CTP Laser Platesetter" className="w-full h-full object-cover" />
+                <img src="/assets/img/prepress-ctp.jpg" alt="CTP Laser Platesetter" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 <span className="absolute top-2 left-2 tech-tag tech-tag-purple text-[10px]">STAGE 01</span>
               </div>
               <div className="p-5 space-y-2">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Pre-Press Verification</h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
+                <h4 className="font-bold text-sm text-foreground">Pre-Press Verification</h4>
+                <p className="text-xs text-muted-foreground">
                   Dieline inspection, bleed validation, and laser CTP plate exposure for razor-sharp micro-registration.
                 </p>
               </div>
@@ -116,12 +116,12 @@ export const AboutPage: React.FC = () => {
           <div className="double-bezel">
             <div className="double-bezel-inner overflow-hidden flex flex-col items-center text-center">
               <div className="h-40 w-full overflow-hidden bg-slate-900 relative">
-                <img src="/assets/img/press-flexo-8c.jpg" alt="8C UV Flexo Press" className="w-full h-full object-cover" />
+                <img src="/assets/img/press-flexo-8c.jpg" alt="8C UV Flexo Press" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 <span className="absolute top-2 left-2 tech-tag tech-tag-cyan text-[10px]">STAGE 02</span>
               </div>
               <div className="p-5 space-y-2">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">High-Speed Press Run</h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
+                <h4 className="font-bold text-sm text-foreground">High-Speed Press Run</h4>
+                <p className="text-xs text-muted-foreground">
                   Continuous press monitoring for exact ink density, color consistency, and registration accuracy.
                 </p>
               </div>
@@ -131,12 +131,12 @@ export const AboutPage: React.FC = () => {
           <div className="double-bezel">
             <div className="double-bezel-inner overflow-hidden flex flex-col items-center text-center">
               <div className="h-40 w-full overflow-hidden bg-slate-900 relative">
-                <img src="/assets/img/press-heidelberg-6c.jpg" alt="Heidelberg 6C Press" className="w-full h-full object-cover" />
+                <img src="/assets/img/press-heidelberg-6c.jpg" alt="Heidelberg 6C Press" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 <span className="absolute top-2 left-2 tech-tag tech-tag-crimson text-[10px]">STAGE 03</span>
               </div>
               <div className="p-5 space-y-2">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Finishing & Embellishment</h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
+                <h4 className="font-bold text-sm text-foreground">Finishing & Embellishment</h4>
+                <p className="text-xs text-muted-foreground">
                   Rotary cold foiling, protective UV varnishing, die-cutting, embossing, and automated folding-gluing.
                 </p>
               </div>
@@ -146,12 +146,12 @@ export const AboutPage: React.FC = () => {
           <div className="double-bezel">
             <div className="double-bezel-inner overflow-hidden flex flex-col items-center text-center">
               <div className="h-40 w-full overflow-hidden bg-slate-900 relative">
-                <img src="/assets/img/cartons-packaging.jpg" alt="Final Quality Check" className="w-full h-full object-cover" />
+                <img src="/assets/img/cartons-packaging.jpg" alt="Final Quality Check" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 <span className="absolute top-2 left-2 tech-tag tech-tag-emerald text-[10px]">STAGE 04</span>
               </div>
               <div className="p-5 space-y-2">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Inspection & Dispatch</h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
+                <h4 className="font-bold text-sm text-foreground">Inspection & Dispatch</h4>
+                <p className="text-xs text-muted-foreground">
                   FINAT rewind verification, core inspection, protective moisture packaging, and plant dispatch.
                 </p>
               </div>

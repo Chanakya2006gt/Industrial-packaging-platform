@@ -5,25 +5,21 @@ test.describe('B2B Packaging & Roll Configurator E2E', () => {
   test('Happy Path: complete 5-step custom roll label RFQ submission', async ({ page }) => {
     await page.goto('/configurator');
 
-    // Step 1: Category & Substrate
-    await expect(page.locator('text=Step 1: Select Packaging Category & Substrate')).toBeVisible();
-    await page.click('text=White Gloss BOPP 60μm');
-    await page.click('text=Next: Dimensions & Quantity');
+    // Step 1: Format & Dimensions
+    await expect(page.locator('text=1. Dimensions & Volume')).toBeVisible();
+    await page.click('button:has-text("Next: Choose Substrate")');
 
-    // Step 2: Dimensions & Quantity
-    await expect(page.locator('text=Step 2: Physical Dimensions & Order Volume')).toBeVisible();
-    await page.click('text=50,000 units');
-    await page.click('text=Next: Application & Roll Details');
+    // Step 2: Substrate Material
+    await expect(page.locator('text=Step 2: Substrate & Subsurface Material')).toBeVisible();
+    await page.click('button:has-text("Next: Application & Roll Details")');
 
     // Step 3: Application & Roll Format
     await expect(page.locator('text=Step 3: Application Method & Roll Orientation')).toBeVisible();
-    await page.click('text=Automatic Machine Applicator');
-    await page.click('text=Dir #1');
-    await page.click('text=Next: Finishes & Coatings');
+    await page.click('button:has-text("Next: Finishes & Coatings")');
 
     // Step 4: Finishes
     await expect(page.locator('text=Step 4: Protective Coatings & Finishes')).toBeVisible();
-    await page.click('text=Next: Review & Contact Details');
+    await page.click('button:has-text("Next: Review & Contact Details")');
 
     // Step 5: Review & Submit
     await expect(page.locator('text=Step 5: Review & Submit Manufacturing RFQ')).toBeVisible();
@@ -35,21 +31,21 @@ test.describe('B2B Packaging & Roll Configurator E2E', () => {
     await page.click('button:has-text("Submit Manufacturing RFQ")');
 
     // Verify Confirmation
-    await expect(page.locator('text=B2B Manufacturing RFQ Received!')).toBeVisible({ timeout: 10000 });
-    await expect(page.locator('text=Official Reference ID:')).toBeVisible();
+    await expect(page.locator('text=RFQ Dispatched to Engineering Desk')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('text=Official Reference:')).toBeVisible();
   });
 
   test('Interactive 3D Mockup Container Switcher works', async ({ page }) => {
     await page.goto('/configurator');
-    await expect(page.locator('text=Studio 3D Mockup')).toBeVisible();
+    await expect(page.locator('text=3D Container Virtual Prototyping Studio')).toBeVisible();
     
-    // Switch to Jug
-    await page.click('button:has-text("Jug")');
-    await expect(page.locator('text=HDPE Oil Jug Mockup')).toBeVisible();
+    // Switch to Jerry Can
+    await page.click('button:has-text("5L Jerry Can")');
+    await expect(page.locator('button:has-text("5L Jerry Can")')).toHaveClass(/bg-slate-900|dark:bg-white/);
 
-    // Switch to Jar
-    await page.click('button:has-text("Jar")');
-    await expect(page.locator('text=Glass Honey/Food Jar Mockup')).toBeVisible();
+    // Switch to Glass Jar
+    await page.click('button:has-text("Glass Honey Jar")');
+    await expect(page.locator('button:has-text("Glass Honey Jar")')).toHaveClass(/bg-slate-900|dark:bg-white/);
   });
 
 });

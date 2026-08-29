@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { Search, Calculator, MessageSquare, CheckSquare, Clock, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { RfqInquiry } from '../../../lib/supabase';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../../../components/ui/select';
 
 interface PipelineListProps {
   rfqs: RfqInquiry[];
@@ -32,20 +39,20 @@ export const PipelineList: React.FC<PipelineListProps> = ({
     const createdMs = new Date(createdAt).getTime();
     const nowMs = Date.now();
     const elapsedMinutes = Math.floor((nowMs - createdMs) / 60000);
-    const deadlineMinutes = 4 * 60; // 4 hours response goal
+    const deadlineMinutes = 3 * 60; // 3 hours response goal
     const remainingMinutes = deadlineMinutes - elapsedMinutes;
 
     if (remainingMinutes <= 0) {
       const overdueMins = Math.abs(remainingMinutes);
       return (
-        <span className="text-[10px] font-mono font-bold text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-950/60 px-2 py-0.5 rounded flex items-center gap-1 border border-rose-300 dark:border-rose-800">
-          <Clock className="w-3 h-3 text-rose-600 animate-pulse" />
+        <span className="text-[10px] font-mono font-bold text-destructive bg-destructive/10 px-2 py-0.5 rounded flex items-center gap-1 border border-destructive/30">
+          <Clock className="w-3 h-3 text-destructive animate-pulse" />
           <span>Needs Immediate Reply (+{Math.floor(overdueMins / 60)}h {overdueMins % 60}m)</span>
         </span>
       );
     }
 
-    if (remainingMinutes <= 90) {
+    if (remainingMinutes <= 60) {
       return (
         <span className="text-[10px] font-mono font-bold text-amber-800 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded flex items-center gap-1 border border-amber-300 dark:border-amber-800">
           <Clock className="w-3 h-3 text-amber-600" />
@@ -100,8 +107,8 @@ export const PipelineList: React.FC<PipelineListProps> = ({
               onClick={() => setFilter(st.id)}
               className={`px-3 py-1.5 rounded-xl font-bold transition-all shrink-0 cursor-pointer ${
                 filter === st.id
-                  ? 'bg-[#E00019] text-white shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
+                  ? 'bg-primary text-primary-foreground shadow-theme-sm'
+                  : 'bg-card border border-border text-muted-foreground hover:text-foreground'
               }`}
             >
               {st.label}
@@ -110,23 +117,23 @@ export const PipelineList: React.FC<PipelineListProps> = ({
         </div>
 
         <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search company, ref, or contact..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+            className="w-full h-10 pl-9 pr-3 rounded-xl border border-input bg-card text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           />
         </div>
       </div>
 
       {loading ? (
-        <div className="p-12 text-center text-xs font-mono text-slate-500">
+        <div className="p-12 text-center text-xs font-mono text-muted-foreground">
           Loading customer quotes...
         </div>
       ) : filteredRfqs.length === 0 ? (
-        <div className="p-12 text-center text-xs font-mono text-slate-500 border border-dashed rounded-2xl border-slate-300 dark:border-slate-800">
+        <div className="p-12 text-center text-xs font-mono text-muted-foreground border border-dashed rounded-2xl border-border">
           No quotes found matching your search.
         </div>
       ) : (
@@ -134,14 +141,14 @@ export const PipelineList: React.FC<PipelineListProps> = ({
           {filteredRfqs.map(rfq => (
             <div
               key={rfq.id}
-              className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-all p-5 flex flex-col md:flex-row md:items-center justify-between gap-4"
+              className="bg-card border border-border rounded-2xl shadow-theme-sm hover:border-border/80 transition-all p-5 flex flex-col md:flex-row md:items-center justify-between gap-4"
             >
               {/* Left Metadata */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-mono font-bold text-xs text-[#E00019]">{rfq.reference_no}</span>
-                  <span className="text-slate-400">•</span>
-                  <h3 className="font-extrabold text-base text-slate-950 dark:text-white">{rfq.company_name}</h3>
+                  <span className="font-mono font-bold text-xs text-primary">{rfq.reference_no}</span>
+                  <span className="text-muted-foreground">•</span>
+                  <h3 className="font-extrabold text-base text-foreground">{rfq.company_name}</h3>
                   
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold font-mono uppercase ${
                     rfq.status === 'settled' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800' :
@@ -155,7 +162,7 @@ export const PipelineList: React.FC<PipelineListProps> = ({
                   {getSlaIndicator(rfq.created_at, rfq.status)}
                 </div>
 
-                <div className="flex items-center gap-4 text-xs font-mono text-slate-600 dark:text-slate-400 flex-wrap">
+                <div className="flex items-center gap-4 text-xs font-mono text-muted-foreground flex-wrap">
                   <span>👤 {rfq.contact_name} ({rfq.phone})</span>
                   <span>📏 {rfq.dimensions_mm}mm</span>
                   <span>📦 {rfq.quantity.toLocaleString()} units</span>
@@ -163,7 +170,7 @@ export const PipelineList: React.FC<PipelineListProps> = ({
                 </div>
 
                 {rfq.notes && (
-                  <p className="text-xs text-slate-500 italic bg-slate-50 dark:bg-slate-900/60 p-2 rounded-lg border border-slate-200/60 dark:border-slate-800/60 max-w-2xl">
+                  <p className="text-xs text-muted-foreground italic bg-muted/40 p-2 rounded-lg border border-border max-w-2xl">
                     "{rfq.notes}"
                   </p>
                 )}
@@ -172,26 +179,32 @@ export const PipelineList: React.FC<PipelineListProps> = ({
               {/* Right Action Buttons */}
               <div className="flex items-center gap-2 shrink-0 flex-wrap">
                 
-                {/* Status Dropdown */}
-                <select
-                  value={rfq.status}
-                  disabled={updatingId === rfq.id}
-                  onChange={(e) => handleStatusChange(rfq.id, e.target.value)}
-                  className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-xs font-mono font-bold text-slate-700 dark:text-slate-300 cursor-pointer"
-                >
-                  <option value="pending">New Inquiry</option>
-                  <option value="reviewing">Under Review</option>
-                  <option value="quoted">Quote Sent</option>
-                  <option value="confirmed">Confirmed</option>
-                  <option value="in_production">In Production</option>
-                  <option value="dispatched">Dispatched</option>
-                  <option value="settled">Paid & Settled</option>
-                  <option value="cancelled">Cancelled</option>
-                </select>
+                {/* Radix Status Select */}
+                <div className="w-36">
+                  <Select
+                    value={rfq.status}
+                    disabled={updatingId === rfq.id}
+                    onValueChange={(val) => handleStatusChange(rfq.id, val)}
+                  >
+                    <SelectTrigger className="h-9 text-xs font-mono font-bold">
+                      <SelectValue placeholder="Status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="pending">New Inquiry</SelectItem>
+                      <SelectItem value="reviewing">Under Review</SelectItem>
+                      <SelectItem value="quoted">Quote Sent</SelectItem>
+                      <SelectItem value="confirmed">Confirmed</SelectItem>
+                      <SelectItem value="in_production">In Production</SelectItem>
+                      <SelectItem value="dispatched">Dispatched</SelectItem>
+                      <SelectItem value="settled">Paid & Settled</SelectItem>
+                      <SelectItem value="cancelled">Cancelled</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
                 <button
                   onClick={() => onEstimateRfq(rfq)}
-                  className="px-3.5 py-2 rounded-xl bg-cyan-600 text-white font-mono text-xs font-bold hover:bg-cyan-700 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
+                  className="px-3.5 py-2 rounded-xl bg-cyan-600 text-white font-mono text-xs font-bold hover:bg-cyan-700 transition-all flex items-center gap-1.5 shadow-theme-sm cursor-pointer"
                   title="Open Price Calculator"
                 >
                   <Calculator className="w-3.5 h-3.5" />
@@ -200,7 +213,7 @@ export const PipelineList: React.FC<PipelineListProps> = ({
 
                 <button
                   onClick={() => onWhatsAppRfq(rfq)}
-                  className="px-3.5 py-2 rounded-xl bg-emerald-600 text-white font-mono text-xs font-bold hover:bg-emerald-700 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
+                  className="px-3.5 py-2 rounded-xl bg-emerald-600 text-white font-mono text-xs font-bold hover:bg-emerald-700 transition-all flex items-center gap-1.5 shadow-theme-sm cursor-pointer"
                   title="Send Quote via WhatsApp"
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
@@ -210,7 +223,7 @@ export const PipelineList: React.FC<PipelineListProps> = ({
                 {rfq.status !== 'settled' && (
                   <button
                     onClick={() => onOpenPaymentModal(rfq)}
-                    className="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-mono text-xs font-bold hover:bg-slate-200 transition-all flex items-center gap-1 cursor-pointer"
+                    className="px-3 py-2 rounded-xl bg-muted border border-border text-foreground font-mono text-xs font-bold hover:bg-accent transition-all flex items-center gap-1 cursor-pointer"
                     title="Record Payment"
                   >
                     <CheckSquare className="w-3.5 h-3.5 text-emerald-500" />
@@ -227,3 +240,4 @@ export const PipelineList: React.FC<PipelineListProps> = ({
     </div>
   );
 };
+

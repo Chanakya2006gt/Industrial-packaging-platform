@@ -1,6 +1,22 @@
 import React from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '../../../components/ui/dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../../../components/ui/select';
 
 interface QuickIntakeModalProps {
+  isOpen: boolean;
   intakeCompany: string;
   setIntakeCompany: (v: string) => void;
   intakeContact: string;
@@ -15,6 +31,7 @@ interface QuickIntakeModalProps {
 }
 
 export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
+  isOpen = true,
   intakeCompany,
   setIntakeCompany,
   intakeContact,
@@ -28,68 +45,68 @@ export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
   onSubmit
 }) => {
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-[#0E1422] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-6 space-y-4 max-w-md w-full">
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="max-w-md">
         <form onSubmit={onSubmit} className="space-y-4">
-          
-          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-            <h3 className="font-extrabold text-base text-slate-950 dark:text-white">
-              + New Customer Quote
-            </h3>
-            <button type="button" onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors cursor-pointer">✕</button>
-          </div>
+          <DialogHeader>
+            <DialogTitle>+ New Customer Quote</DialogTitle>
+            <DialogDescription>
+              Create an expedited packaging inquiry directly from the floor.
+            </DialogDescription>
+          </DialogHeader>
 
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3.5 text-xs py-1">
             <div>
-              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Company / Customer Name *</label>
+              <label className="block font-sans font-bold text-foreground mb-1.5 text-xs">Company / Customer Name *</label>
               <input
                 type="text"
                 required
                 value={intakeCompany}
                 onChange={(e) => setIntakeCompany(e.target.value)}
                 placeholder="e.g. Metro Dairy Co"
-                className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
+                className="w-full h-10 px-3 rounded-xl border border-input bg-card text-foreground text-xs font-bold focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               />
             </div>
 
             <div>
-              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Contact Person *</label>
+              <label className="block font-sans font-bold text-foreground mb-1.5 text-xs">Contact Person *</label>
               <input
                 type="text"
                 required
                 value={intakeContact}
                 onChange={(e) => setIntakeContact(e.target.value)}
                 placeholder="e.g. John Miller"
-                className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
+                className="w-full h-10 px-3 rounded-xl border border-input bg-card text-foreground text-xs font-bold focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               />
             </div>
 
             <div>
-              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Customer Phone Number *</label>
+              <label className="block font-sans font-bold text-foreground mb-1.5 text-xs">Customer Phone Number *</label>
               <input
                 type="tel"
                 required
                 value={intakePhone}
                 onChange={(e) => setIntakePhone(e.target.value)}
                 placeholder="+1 (555) 019-XXXX"
-                className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
+                className="w-full h-10 px-3 rounded-xl border border-input bg-card text-foreground text-xs font-bold focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               />
             </div>
 
             <div>
-              <label className="block font-mono font-bold text-slate-700 dark:text-slate-300 mb-1">Packaging Type</label>
-              <select
-                value={intakeCategory}
-                onChange={(e) => setIntakeCategory(e.target.value as any)}
-                className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold cursor-pointer"
-              >
-                <option value="flexo_labels">Roll Labels (Flexo)</option>
-                <option value="offset_packaging">Folding Cartons & Boxes</option>
-              </select>
+              <label className="block font-sans font-bold text-foreground mb-1.5 text-xs">Packaging Type</label>
+              <Select value={intakeCategory} onValueChange={(val: any) => setIntakeCategory(val)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Packaging Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="flexo_labels">Roll Labels (Flexo)</SelectItem>
+                  <SelectItem value="offset_packaging">Folding Cartons & Boxes</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-slate-200 dark:border-slate-800">
+          <DialogFooter className="gap-2 pt-2 border-t border-border">
             <button
               type="button"
               onClick={onClose}
@@ -103,12 +120,11 @@ export const QuickIntakeModal: React.FC<QuickIntakeModalProps> = ({
               disabled={submitting}
               className="btn-pill btn-pill-primary text-xs font-bold disabled:opacity-50 cursor-pointer"
             >
-              {submitting ? 'Creating Quote...' : 'Create Quote & Open Calculator'}
+              {submitting ? 'Creating Quote...' : 'Create Quote'}
             </button>
-          </div>
-
+          </DialogFooter>
         </form>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 };
