@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useCorporateMotion } from '../../lib/motion';
+import { finatStandardsForViewer, rewindDirectionForRfq, DEFAULT_FINAT } from '../../lib/finat';
 
 // Modular Child Components
 import { StudioMockupViewer } from './components/StudioMockupViewer';
@@ -106,7 +107,7 @@ export const ConfiguratorPage: React.FC = () => {
           quantity: quantity,
           roll_or_sheet: rollOrSheet,
           roll_core_mm: rollOrSheet === 'roll' ? coreMm : null,
-          rewind_direction: rollOrSheet === 'roll' ? finatDirection : null,
+          rewind_direction: rewindDirectionForRfq(rollOrSheet, finatDirection),
           embellishments: embellishments,
           artwork_file_url: fileUrl || (artworkFile ? artworkFile.name : null),
           artwork_original_name: artworkFile ? artworkFile.name : null,
@@ -147,23 +148,7 @@ export const ConfiguratorPage: React.FC = () => {
     carton: '/assets/img/mockups/carton_studio.jpg',
   };
 
-  const finatStandards: Record<number, { 
-    title: string; 
-    winding: 'Wound Out' | 'Wound In'; 
-    leadEdge: string; 
-    rotationDeg: number;
-    headDirection: 'right' | 'left' | 'up' | 'down';
-    diagramDesc: string;
-  }> = {
-    1: { title: 'FINAT #1', winding: 'Wound Out', leadEdge: 'Top Edge Off First', rotationDeg: 0, headDirection: 'right', diagramDesc: 'Labels on OUTSIDE face of web • Top of artwork feeds first into applicator' },
-    2: { title: 'FINAT #2', winding: 'Wound Out', leadEdge: 'Bottom Edge Off First', rotationDeg: 180, headDirection: 'left', diagramDesc: 'Labels on OUTSIDE face of web • Bottom of artwork feeds first into applicator' },
-    3: { title: 'FINAT #3', winding: 'Wound Out', leadEdge: 'Right Edge Off First', rotationDeg: 90, headDirection: 'down', diagramDesc: 'Labels on OUTSIDE face of web • Right side of artwork leads the exit' },
-    4: { title: 'FINAT #4', winding: 'Wound Out', leadEdge: 'Left Edge Off First', rotationDeg: 270, headDirection: 'up', diagramDesc: 'Labels on OUTSIDE face of web • Left side of artwork leads the exit' },
-    5: { title: 'FINAT #5', winding: 'Wound In', leadEdge: 'Top Edge Off First', rotationDeg: 0, headDirection: 'right', diagramDesc: 'Labels on INSIDE face of web • Top of artwork feeds first' },
-    6: { title: 'FINAT #6', winding: 'Wound In', leadEdge: 'Bottom Edge Off First', rotationDeg: 180, headDirection: 'left', diagramDesc: 'Labels on INSIDE face of web • Bottom of artwork feeds first' },
-    7: { title: 'FINAT #7', winding: 'Wound In', leadEdge: 'Right Edge Off First', rotationDeg: 90, headDirection: 'down', diagramDesc: 'Labels on INSIDE face of web • Right side feeds first' },
-    8: { title: 'FINAT #8', winding: 'Wound In', leadEdge: 'Left Edge Off First', rotationDeg: 270, headDirection: 'up', diagramDesc: 'Labels on INSIDE face of web • Left side feeds first' },
-  };
+  const finatStandards = finatStandardsForViewer();
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">

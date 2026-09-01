@@ -213,14 +213,15 @@
 
 ---
 
-### [D023] Playwright E2E Suite, Fast-Check Property Fuzzing & DOM Quality Hygiene Verification
-- **Date:** 2026-08-29
-- **Verification Results:**
-  - **Playwright E2E Smoke & Functional Suite:** 16 tests executed across all public routes (`/`, `/services`, `/configurator`, `/gallery`, `/about`, `/contact`), portal login flows (`/sales/login`, `/admin/login`), route protection guards, 5-step wizard submissions, and mobile drawer navigation — **16 passed cleanly with 0 failures**.
-  - **Property-Based Fuzzing (`fast-check`):** 1,000 randomized packaging inputs verified in `backend/test/calculatorFuzzing.test.js` asserting finite price invariants, VAT precision, tooling fee waivers, and unit price calculations — **1000/1000 passed**.
-  - **Backend Integration Tests:** 17 unit and security test cases passing cleanly covering Helmet headers, strict CORS, magic-byte signatures, CSV injection sanitization, and fail-closed auth.
-  - **Frontend Quality & Copy Hygiene Auditor (`audit-dom-quality.js`):** Scanned 44 source files with zero forbidden buzzwords, zero unlabelled metrics, 100% compliant `alt` attributes, and 100% genuine entity data.
-  - **TypeScript & Vite Build:** `npm run build` compiled 1,989 modules with zero TypeScript errors and zero warnings.
+### [D024] Centralized FINAT Rewind Specification & Web Telemetry Engine
+- **Date:** 2026-09-01
+- **Action:** Created dedicated FINAT unwind specification module in `frontend/src/lib/finat.ts`:
+  - Standardized complete FINAT #1 through #8 specifications according to FINAT Handbook §2.8 standards (Directions 1–4 Wound Out, Directions 5–8 Wound In; Top, Bottom, Right, Left lead edges and 0°, 90°, 180°, 270° orientation rotations).
+  - Implemented `rewindDirectionForRfq(rollOrSheet, finatDirection)` ensuring flat sheets/cartons store `null` while rotary rolls preserve validated `1–8` integer codes.
+  - Implemented centralized `finatWebTelemetry` matching CPQ calculator web gap (3mm) and reel packaging density (2,500 labels/roll).
+  - Replaced inline definition tables in `ConfiguratorPage.tsx` and manual math calculations in `FinatReelViewer.tsx`.
+- **Validation:** Clean TypeScript build (0 errors, 0 warnings), 16/16 Playwright E2E tests passing, and 0 DOM quality violations across 45 files.
+
 
 
 

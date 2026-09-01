@@ -1,5 +1,6 @@
 import React from 'react';
 import { RotateCw, Check, ArrowRight, Activity, Gauge, Disc } from 'lucide-react';
+import { finatWebTelemetry, FinatViewerSpec } from '../../../lib/finat';
 
 interface FinatReelViewerProps {
   finatDirection: number;
@@ -8,14 +9,7 @@ interface FinatReelViewerProps {
   widthMm?: number;
   heightMm?: number;
   quantity?: number;
-  finatStandards: Record<number, {
-    title: string;
-    winding: 'Wound Out' | 'Wound In';
-    leadEdge: string;
-    rotationDeg: number;
-    headDirection: 'right' | 'left' | 'up' | 'down';
-    diagramDesc: string;
-  }>;
+  finatStandards: Record<number, FinatViewerSpec>;
 }
 
 export const FinatReelViewer: React.FC<FinatReelViewerProps> = ({
@@ -29,11 +23,12 @@ export const FinatReelViewer: React.FC<FinatReelViewerProps> = ({
 }) => {
   const currentFinat = finatStandards[finatDirection] || finatStandards[1];
 
-  // Technical Manufacturing Math
-  const unitAreaCm2 = ((widthMm * heightMm) / 100).toFixed(1);
-  const linearMeters = Math.round((quantity * (heightMm + 3)) / 1000).toLocaleString();
-  const totalM2 = (((quantity * widthMm * (heightMm + 3)) / 1000000)).toFixed(1);
-  const estRolls = Math.ceil(quantity / 2000);
+  // Technical Manufacturing Math via centralized FINAT telemetry spec
+  const { unitAreaCm2, linearMeters, totalM2, estRolls, gapMm, labelsPerRoll } = finatWebTelemetry({
+    widthMm,
+    heightMm,
+    quantity,
+  });
 
   // SVG Diagram Generator for FINAT 1 to 8
   const renderFinatSvgTile = (dirNum: number, isSelected: boolean) => {
@@ -206,8 +201,8 @@ export const FinatReelViewer: React.FC<FinatReelViewerProps> = ({
 
           <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
             <span className="text-slate-400 text-[10px] block">LINEAR WEB RUN</span>
-            <strong className="text-slate-900 dark:text-white text-sm">{linearMeters} m</strong>
-            <span className="text-[9px] text-slate-500 block">@ 3mm web gap</span>
+            <strong className="text-slate-900 dark:text-white text-sm">{linearMeters.toLocaleString()} m</strong>
+            <span className="text-[9px] text-slate-500 block">@ {gapMm}mm web gap</span>
           </div>
 
           <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
@@ -219,7 +214,7 @@ export const FinatReelViewer: React.FC<FinatReelViewerProps> = ({
           <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
             <span className="text-slate-400 text-[10px] block">ESTIMATED ROLLS</span>
             <strong className="text-slate-900 dark:text-white text-sm">{estRolls} Reels</strong>
-            <span className="text-[9px] text-slate-500 block">~2,000 labels / roll</span>
+            <span className="text-[9px] text-slate-500 block">~{labelsPerRoll.toLocaleString()} labels / roll</span>
           </div>
         </div>
 
